@@ -2,11 +2,18 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "lint": "eslint ."
     },
     "dependencies": {
         "next": "^2.1.1",
         "react": "^15.5.4",
         "react-dom": "^15.5.4"
+    },
+    "devDependencies": {
+        "babel-eslint": "^7.2.2",
+        "eslint": "^3.19.0",
+        "eslint-plugin-class-property": "^1.0.6",
+        "eslint-plugin-react": "^6.10.3"
     }
 }
