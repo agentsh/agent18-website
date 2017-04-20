@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import Icon from './Icon';
+import Lines from './Lines';
 
 const logoSize = 80;
 
@@ -93,6 +94,7 @@ export default class Navigation extends React.Component {
     renderNavigationList() {
         return (
             <List>
+                <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
                     <li>Schedule</li>
                     <li>Venue</li>

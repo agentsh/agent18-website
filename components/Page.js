@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {injectGlobal} from 'styled-components';
 import Head from 'next/head';
 import Navigation from './Navigation';
+import Lines from './Lines';
 
 injectGlobal`
     * {
@@ -38,6 +39,7 @@ export default class Page extends React.Component {
                 <Head>
                     <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet" />
                 </Head>
+                <Lines color="rgba(0, 0, 0, 0.15)" />
                 <Navigation />
                 {this.props.children}
             </div>
