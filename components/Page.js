@@ -11,7 +11,8 @@ injectGlobal`
     }
 
     body {
-        background: #aaa;
+        background: url(static/site-background.png) #282828;
+        background-size: 80px;
     }
 `;
 

@@ -45,7 +45,8 @@ const List = styled.ul`
     left: 0;
     padding: ${navigationTop}px 0 0 0;
 
-    background-color: #fff;
+    background: url(static/menu-background.png) #fff;
+    background-size: 80px;
 
     list-style-type: none;
     list-style-position: inside;
