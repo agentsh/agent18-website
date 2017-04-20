@@ -4,7 +4,6 @@ import Button from './Button';
 import Icon from './Icon';
 
 const logoSize = 80;
-const togglerSize = 40;
 
 const HeaderContainer = styled.div`
     position: fixed;
@@ -82,7 +81,7 @@ export default class Navigation extends React.Component {
             <header>
                 <HeaderContainer opened={this.state.opened}>
                     <Logo />
-                    <Toggler size={togglerSize} onClick={this.handleToggle}>
+                    <Toggler onClick={this.handleToggle}>
                         <Icon name={this.state.opened ? 'close' : 'hamburger'} />
                     </Toggler>
                 </HeaderContainer>
