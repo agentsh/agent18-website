@@ -14,6 +14,17 @@ injectGlobal`
         background: url(static/site-background.png) #282828;
         background-size: 80px;
     }
+
+    @font-face {
+        font-family: 'icomoon';
+        src:  url('static/fonts/icomoon.eot?qevub9');
+        src:  url('static/fonts/icomoon.eot?qevub9#iefix') format('embedded-opentype'),
+            url('static/fonts/icomoon.ttf?qevub9') format('truetype'),
+            url('static/fonts/icomoon.woff?qevub9') format('woff'),
+            url('static/fonts/icomoon.svg?qevub9#icomoon') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
 `;
 
 export default class Page extends React.Component {
