@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const icons = {
     close: '\\e903',
     hamburger: '\\e90b',
+    ticket: '\\e910',
 };
 
 const Icon = styled.span`
