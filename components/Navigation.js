@@ -70,7 +70,7 @@ const List = styled.nav`
     }
 `;
 
-export default class Navigation extends React.Component {
+export default class Navigation extends React.PureComponent {
     state = {
         opened: false,
     };

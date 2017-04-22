@@ -28,7 +28,7 @@ injectGlobal`
     }
 `;
 
-export default class Page extends React.Component {
+export default class Page extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
     };

@@ -14,7 +14,7 @@ const Line = styled.div`
     background: ${(props) => props.color};
 `;
 
-export default class Lines extends React.Component {
+export default class Lines extends React.PureComponent {
     static propTypes = {
         color: PropTypes.string.isRequired,
     };
