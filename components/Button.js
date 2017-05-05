@@ -17,7 +17,7 @@ const Button = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
 
-        font-size: ${(props) => props.size / 3}px;
+        font-size: ${size / 3}px;
     }
 `;
 

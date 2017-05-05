@@ -50,7 +50,6 @@ const List = styled.nav`
     text-transform: uppercase;
     font-family: Teko;
     font-size: 40px;
-    color: #2C2C2C;
     line-height: 44px;
 
     > ul {
@@ -66,6 +65,11 @@ const List = styled.nav`
             margin: 20px 0 0 0;
 
             letter-spacing: 1px;
+
+            > a {
+                color: #2C2C2C;
+                text-decoration: none;
+            }
         }
     }
 `;
@@ -96,11 +100,7 @@ export default class Navigation extends React.PureComponent {
             <List>
                 <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
-                    <li>Schedule</li>
-                    <li>Venue</li>
-                    <li>About</li>
-                    <li>Blog</li>
-                    <li>AgentConf 2017</li>
+                    <li><a href="http://www.2017.agent.sh">AgentConf 2017</a></li>
                 </ul>
             </List>
         );
