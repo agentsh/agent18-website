@@ -41,6 +41,10 @@ const Action = styled(Button)`
     transform: translate(-50%);
 
     box-shadow: 0 2px 30px 0 rgba(0, 0, 0, .2);
+
+    > span {
+        font-size: 20px;
+    }
 `;
 
 export default class FooterHint extends React.Component {
