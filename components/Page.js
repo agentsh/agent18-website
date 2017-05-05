@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import styled, {injectGlobal} from 'styled-components';
 import Head from './Head';
+=======
+import { injectGlobal } from 'styled-components';
+import Head from 'next/head';
+>>>>>>> slider started, basics done
 import Navigation from './Navigation';
 import Lines from './Lines';
 import FooterHint from './FooterHint';
@@ -59,8 +64,23 @@ export default class Page extends React.PureComponent {
 
     render() {
         return (
+<<<<<<< HEAD
             <Container>
                 <Head {...this.props.seo} />
+=======
+            <div>
+                <Head>
+                    <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet" />
+                    <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+                    <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+                </Head>
+>>>>>>> slider started, basics done
                 <Lines color="rgba(0, 0, 0, 0.15)" />
                 <Main>
                     {this.props.children}
