@@ -13,7 +13,7 @@ const MountainContainer = styled.div`
     background-color: #fff;
 `;
 
-const MountainTitle = styled.header`
+const SlideTitle = styled.header`
     color: #231F20;
     font-family: Teko;
     text-align: center;
@@ -126,10 +126,10 @@ class MountainSlide extends React.PureComponent {
                     animationProgress={this.state.animationProgress}
                     image="static/cloud3.png"
                     left={-284} />
-                <MountainTitle>
+                <SlideTitle>
                     <h2>The international event for coding inspiration</h2>
                     <h1>AgentConf 2018</h1>
-                </MountainTitle>
+                </SlideTitle>
             </MountainContainer>
         );
     }
