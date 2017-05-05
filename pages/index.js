@@ -13,6 +13,31 @@ const MountainContainer = styled.div`
     background-color: #fff;
 `;
 
+const MountainTitle = styled.header`
+    color: #231F20;
+    font-family: Teko;
+    text-align: center;
+    text-transform: uppercase;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    > h1 {
+        font-size: 64px;
+        font-weight: 100;
+        line-height: 64px;
+    }
+
+    > h2 {
+        font-size: 28px;
+        font-weight: 100;
+        line-height: 40px;
+    }
+`;
+
 const MountainBackground = styled.div`
     position: fixed;
     top: 0;
@@ -101,6 +126,10 @@ class MountainSlide extends React.PureComponent {
                     animationProgress={this.state.animationProgress}
                     image="static/cloud3.png"
                     left={-284} />
+                <MountainTitle>
+                    <h2>The international event for coding inspiration</h2>
+                    <h1>AgentConf 2018</h1>
+                </MountainTitle>
             </MountainContainer>
         );
     }
