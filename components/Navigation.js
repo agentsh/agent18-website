@@ -50,7 +50,7 @@ const List = styled.nav`
     text-transform: uppercase;
     font-family: Teko;
     font-size: 40px;
-    line-height: 44px;
+    line-height: 1.1;
 
     > ul {
         position: absolute;
