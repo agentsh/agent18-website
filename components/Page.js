@@ -39,6 +39,7 @@ export default class Page extends React.PureComponent {
             <div>
                 <Head>
                     <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </Head>
                 <Lines color="rgba(0, 0, 0, 0.15)" />
                 {this.props.children}
