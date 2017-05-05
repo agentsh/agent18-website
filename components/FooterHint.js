@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import Icon from './Icon';
 
-const radius = 335 / 4;
+const radius = 84;
 const diameter = radius * 2;
 const height = 40;
 
