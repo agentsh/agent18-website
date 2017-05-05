@@ -67,7 +67,7 @@ class MountainBackgroundContainer extends React.Component {
             <MountainBackground
                 style={{
                     transform: 'scale(' + (1 + this.props.animationProgress / 500) + ')',
-                    opacity: (0.4 + this.props.animationProgress / 100),
+                    opacity: (0.4 + 0.3 * this.props.animationProgress / 100),
                 }} />
         );
     }
@@ -126,16 +126,51 @@ class MountainSlide extends React.PureComponent {
                     animationProgress={this.state.animationProgress}
                     image="static/cloud3.png"
                     left={-284} />
-                <SlideTitle>
+                <SlideTitle style={{opacity: this.getSlideTitleOpacity(0)}}>
                     <h2>The international event for coding inspiration</h2>
                     <h1>AgentConf 2018</h1>
+                </SlideTitle>
+                <SlideTitle style={{opacity: this.getSlideTitleOpacity(1)}}>
+                    <h2>25 - 28 January 2018</h2>
+                    <h1>
+                        Experts and industry leaders will
+                        come together to showcase their work
+                        in ReactJS, React Native and more
+                    </h1>
+                </SlideTitle>
+                <SlideTitle style={{opacity: this.getSlideTitleOpacity(2)}}>
+                    <h1>Learn, talk and ski</h1>
                 </SlideTitle>
             </MountainContainer>
         );
     }
 
+    getSlideTitleOpacity = (slide) => {
+        const tile = 100 / 3;
+        const center = tile / 2;
+        const lower = tile * (slide);
+        const upper = tile * (slide + 1);
+
+        if (this.state.animationProgress < center && slide === 0) {
+            return 1;
+        }
+
+        if (this.state.animationProgress < lower || this.state.animationProgress > upper) {
+            return 0;
+        }
+
+        const diff = Math.abs((this.state.animationProgress - lower) - center);
+
+        return 1 - diff / center;
+    };
+
     updateAnimationProgress = () => {
-        this.setState({animationProgress: window.scrollY / 50});
+        let scroll = window.scrollY / 50;
+        if (scroll > 100) {
+            scroll = 100;
+        }
+
+        this.setState({animationProgress: scroll});
     };
 }
 
@@ -144,6 +179,7 @@ export default class Index extends React.PureComponent {
         return (
             <Page>
                 <MountainSlide />
+                <div style={{marginTop: '6000px'}} />
             </Page>
         );
     }
