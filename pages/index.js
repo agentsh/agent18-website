@@ -5,7 +5,7 @@ import Page from '../components/Page';
 
 const maxProgress = 100;
 
-const MountainContainerWrapper = styled.div`
+const SlideContainer = styled.div`
     height: ${(props) => props.height}px;
 `;
 
@@ -51,7 +51,7 @@ const MountainBackground = styled.div`
     bottom: 0;
     left: 0;
 
-    background-image: url(static/homepage-background.jpg);
+    background-image: url(static/mountain-background.jpg);
     background-size: cover;
 
     will-change: transform, filter;
@@ -89,7 +89,9 @@ class MountainBackgroundContainer extends React.Component {
             return this.startOpacity + ((this.increaseOpacity) * this.props.animationProgress / this.animationSplit1);
         }
 
-        return this.topOpacity - (this.topOpacity * (this.props.animationProgress - this.animationSplit1) / this.animationSplit2);
+        return this.topOpacity - (
+            this.topOpacity * (this.props.animationProgress - this.animationSplit1) / this.animationSplit2
+        );
     };
 }
 
@@ -116,25 +118,25 @@ class MountainCloudContainer extends React.Component {
 }
 
 class MountainSlide extends React.PureComponent {
+    static propTypes = {
+        windowHeight: PropTypes.number.isRequired,
+        scrollDividend: PropTypes.number.isRequired,
+    };
+
     state = {
         animationProgress: 0,
-        windowHeight: 0,
     };
 
     slideCount = 3;
-    scrollDividend = 50;
     progressStep = maxProgress / this.slideCount;
 
     componentDidMount() {
-        this.updateWindowHeight();
         this.updateAnimationProgress();
         window.addEventListener('scroll', this.updateAnimationProgress);
-        window.addEventListener('resize', this.updateWindowHeight);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.updateAnimationProgress);
-        window.removeEventListener('resize', this.updateWindowHeight);
     }
 
     render() {
@@ -167,25 +169,23 @@ class MountainSlide extends React.PureComponent {
         }
 
         return (
-            <MountainContainerWrapper height={maxProgress * this.scrollDividend + this.state.windowHeight}>
-                <MountainContainer>
-                    <MountainBackgroundContainer animationProgress={this.state.animationProgress} />
-                    <MountainCloudContainer
-                        animationProgress={this.state.animationProgress}
-                        image="static/cloud1.png"
-                        top={-366}
-                        left={-65} />
-                    <MountainCloudContainer
-                        animationProgress={this.state.animationProgress}
-                        image="static/cloud2.png"
-                        top={299} />
-                    <MountainCloudContainer
-                        animationProgress={this.state.animationProgress}
-                        image="static/cloud3.png"
-                        left={-284} />
-                    {slide}
-                </MountainContainer>
-            </MountainContainerWrapper>
+            <MountainContainer>
+                <MountainBackgroundContainer animationProgress={this.state.animationProgress} />
+                <MountainCloudContainer
+                    animationProgress={this.state.animationProgress}
+                    image="static/cloud1.png"
+                    top={-366}
+                    left={-65} />
+                <MountainCloudContainer
+                    animationProgress={this.state.animationProgress}
+                    image="static/cloud2.png"
+                    top={299} />
+                <MountainCloudContainer
+                    animationProgress={this.state.animationProgress}
+                    image="static/cloud3.png"
+                    left={-284} />
+                {slide}
+            </MountainContainer>
         );
     }
 
@@ -202,25 +202,45 @@ class MountainSlide extends React.PureComponent {
     };
 
     updateAnimationProgress = () => {
-        let scroll = window.scrollY / this.scrollDividend;
+        let scroll = window.scrollY / this.props.scrollDividend;
         if (scroll > maxProgress) {
             scroll = maxProgress;
         }
 
         this.setState({animationProgress: scroll});
     };
+}
+
+export default class Index extends React.PureComponent {
+    state = {
+        windowHeight: 0,
+    };
+
+    mountainSlideScrollDividend = 50;
+
+    componentDidMount() {
+        this.updateWindowHeight();
+        window.addEventListener('resize', this.updateWindowHeight);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowHeight);
+    }
+    render() {
+        const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend + this.state.windowHeight;
+
+        return (
+            <Page>
+                <SlideContainer height={mountainSlideHeight}>
+                    <MountainSlide
+                        windowHeight={this.state.windowHeight}
+                        scrollDividend={this.mountainSlideScrollDividend} />
+                </SlideContainer>
+            </Page>
+        );
+    }
 
     updateWindowHeight = () => {
         this.setState({windowHeight: window.innerHeight});
     };
-}
-
-export default class Index extends React.PureComponent {
-    render() {
-        return (
-            <Page>
-                <MountainSlide />
-            </Page>
-        );
-    }
 }
