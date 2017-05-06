@@ -5,11 +5,11 @@ import Page from '../components/Page';
 
 const maxProgress = 100;
 
-const SlideContainer = styled.div`
+const SlideContainerWrapper = styled.div`
     height: ${(props) => props.height}px;
 `;
 
-const MountainContainer = styled.div`
+const SlideContainer = styled.div`
     position: fixed;
     top: 0;
     right: 0;
@@ -44,14 +44,14 @@ const SlideTitle = styled.header`
     }
 `;
 
-const MountainBackground = styled.div`
+const SlideBackground = styled.div`
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
 
-    background-image: url(static/mountain-background.jpg);
+    background-image: url(${(props) => props.image});
     background-size: cover;
 
     will-change: transform, filter;
@@ -63,20 +63,56 @@ const MountainCloud = styled.img`
     will-change: transform, opacity;
 `;
 
-class MountainBackgroundContainer extends React.Component {
+class SlideTitleContainer extends React.Component {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
+        progressStep: PropTypes.number.isRequired,
+        fadeIn: PropTypes.bool,
+        children: PropTypes.node,
+    };
+
+    static defaultProps = {
+        fadeIn: true,
+    };
+
+    render() {
+        return (
+            <SlideTitle style={{
+                opacity: this.getOpacity(this.props.animationProgress, this.props.progressStep, this.props.fadeIn),
+            }}>
+                {this.props.children}
+            </SlideTitle>
+        );
+    }
+
+    getOpacity = (animationProgress, progressStep, fadeIn = true) => {
+        const center = progressStep / 2;
+
+        if (animationProgress < center && !fadeIn) {
+            return 1;
+        }
+
+        const diff = Math.abs(animationProgress % progressStep - center);
+
+        return 1 - diff / center;
+    };
+}
+
+class SlideBackgroundContainer extends React.Component {
+    static propTypes = {
+        animationProgress: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        animationSplit: PropTypes.number.isRequired,
     };
 
     startOpacity = 0.4;
     topOpacity = 0.7;
     increaseOpacity = this.topOpacity - this.startOpacity;
-    animationSplit1 = 99;
-    animationSplit2 = maxProgress - this.animationSplit1;
 
     render() {
         return (
-            <MountainBackground
+            <SlideBackground
+                image={this.props.image}
                 style={{
                     transform: 'scale(' + (1 + this.props.animationProgress / 500) + ')',
                     opacity: this.getBackgroundOpacity(),
@@ -85,12 +121,16 @@ class MountainBackgroundContainer extends React.Component {
     }
 
     getBackgroundOpacity = () => {
-        if (this.props.animationProgress <= this.animationSplit1) {
-            return this.startOpacity + ((this.increaseOpacity) * this.props.animationProgress / this.animationSplit1);
+        if (this.props.animationProgress <= this.props.animationSplit) {
+            return this.startOpacity + (
+                this.increaseOpacity * this.props.animationProgress / this.props.animationSplit
+            );
         }
 
         return this.topOpacity - (
-            this.topOpacity * (this.props.animationProgress - this.animationSplit1) / this.animationSplit2
+            this.topOpacity * (
+                (this.props.animationProgress - this.props.animationSplit) / (maxProgress - this.props.animationSplit)
+            )
         );
     };
 }
@@ -119,128 +159,151 @@ class MountainCloudContainer extends React.Component {
 
 class MountainSlide extends React.PureComponent {
     static propTypes = {
-        windowHeight: PropTypes.number.isRequired,
-        scrollDividend: PropTypes.number.isRequired,
-    };
-
-    state = {
-        animationProgress: 0,
+        animationProgress: PropTypes.number.isRequired,
     };
 
     slideCount = 3;
     progressStep = maxProgress / this.slideCount;
 
-    componentDidMount() {
-        this.updateAnimationProgress();
-        window.addEventListener('scroll', this.updateAnimationProgress);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.updateAnimationProgress);
-    }
-
     render() {
         let slide = null;
 
-        if (this.state.animationProgress > 2 * this.progressStep) {
+        if (this.props.animationProgress > 2 * this.progressStep) {
             slide = (
-                <SlideTitle style={{opacity: this.getSlideTitleOpacity(2)}}>
+                <SlideTitleContainer animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Learn, talk and ski</h1>
-                </SlideTitle>
+                </SlideTitleContainer>
             );
-        } else if (this.state.animationProgress > this.progressStep) {
+        } else if (this.props.animationProgress > this.progressStep) {
             slide = (
-                <SlideTitle style={{opacity: this.getSlideTitleOpacity(1)}}>
+                <SlideTitleContainer animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h2>25 - 28 January 2018</h2>
                     <h1>
                         Experts and industry leaders will
                         come together to showcase their work
                         in ReactJS, React Native and more
                     </h1>
-                </SlideTitle>
+                </SlideTitleContainer>
             );
         } else {
             slide = (
-                <SlideTitle style={{opacity: this.getSlideTitleOpacity(0)}}>
+                <SlideTitleContainer
+                    animationProgress={this.props.animationProgress}
+                    progressStep={this.progressStep}
+                    fadeIn={false}>
                     <h2>The international event for coding inspiration</h2>
                     <h1>AgentConf 2018</h1>
-                </SlideTitle>
+                </SlideTitleContainer>
             );
         }
 
         return (
-            <MountainContainer>
-                <MountainBackgroundContainer animationProgress={this.state.animationProgress} />
+            <SlideContainer>
+                <SlideBackgroundContainer
+                    animationProgress={this.props.animationProgress}
+                    animationSplit={95}
+                    image="static/mountain-background.jpg" />
                 <MountainCloudContainer
-                    animationProgress={this.state.animationProgress}
+                    animationProgress={this.props.animationProgress}
                     image="static/cloud1.png"
                     top={-366}
                     left={-65} />
                 <MountainCloudContainer
-                    animationProgress={this.state.animationProgress}
+                    animationProgress={this.props.animationProgress}
                     image="static/cloud2.png"
                     top={299} />
                 <MountainCloudContainer
-                    animationProgress={this.state.animationProgress}
+                    animationProgress={this.props.animationProgress}
                     image="static/cloud3.png"
                     left={-284} />
                 {slide}
-            </MountainContainer>
+            </SlideContainer>
         );
     }
+}
 
-    getSlideTitleOpacity = (slide) => {
-        const center = this.progressStep / 2;
-
-        if (this.state.animationProgress < center && slide === 0) {
-            return 1;
-        }
-
-        const diff = Math.abs(this.state.animationProgress % this.progressStep - center);
-
-        return 1 - diff / center;
+class CitySlide extends React.PureComponent {
+    static propTypes = {
+        animationProgress: PropTypes.number.isRequired,
     };
 
-    updateAnimationProgress = () => {
-        let scroll = window.scrollY / this.props.scrollDividend;
-        if (scroll > maxProgress) {
-            scroll = maxProgress;
+    render() {
+        let slideTitleContainer = null;
+        if (this.props.animationProgress > 50) {
+            slideTitleContainer = (
+                <SlideTitleContainer animationProgress={this.props.animationProgress} progressStep={50}>
+                    <h1>Dornbirn, Austria</h1>
+                </SlideTitleContainer>
+            );
         }
-
-        this.setState({animationProgress: scroll});
-    };
+        return (
+            <SlideContainer>
+                <SlideBackgroundContainer
+                    animationProgress={this.props.animationProgress}
+                    animationSplit={40}
+                    image="static/city-background.jpg" />
+                {slideTitleContainer}
+            </SlideContainer>
+        );
+    }
 }
 
 export default class Index extends React.PureComponent {
     state = {
         windowHeight: 0,
+        scrollY: 0,
     };
 
     mountainSlideScrollDividend = 50;
+    citySlideScrollDividend = 20;
 
     componentDidMount() {
         this.updateWindowHeight();
+        this.updateScrollY();
         window.addEventListener('resize', this.updateWindowHeight);
+        window.addEventListener('scroll', this.updateScrollY);
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWindowHeight);
+        window.removeEventListener('scroll', this.updateScrollY);
     }
     render() {
-        const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend + this.state.windowHeight;
+        const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend;
+        const citySlideHeight = maxProgress * this.citySlideScrollDividend + this.state.windowHeight;
+
+        let mountainSlide = 0;
+        let citySlide = 0;
+
+        if (this.state.scrollY < mountainSlideHeight) {
+            mountainSlide = (
+                <MountainSlide
+                    animationProgress={this.state.scrollY / this.mountainSlideScrollDividend} />
+                );
+        } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight) {
+            citySlide = (
+                <CitySlide
+                    animationProgress={(this.state.scrollY - mountainSlideHeight) / this.citySlideScrollDividend} />
+            );
+        }
 
         return (
             <Page>
-                <SlideContainer height={mountainSlideHeight}>
-                    <MountainSlide
-                        windowHeight={this.state.windowHeight}
-                        scrollDividend={this.mountainSlideScrollDividend} />
-                </SlideContainer>
+                <SlideContainerWrapper height={mountainSlideHeight}>
+                    {mountainSlide}
+                </SlideContainerWrapper>
+                <SlideContainerWrapper height={citySlideHeight}>
+                    {citySlide}
+                </SlideContainerWrapper>
             </Page>
         );
     }
 
     updateWindowHeight = () => {
         this.setState({windowHeight: window.innerHeight});
+    };
+
+    updateScrollY = () => {
+        this.setState({scrollY: window.scrollY});
     };
 }
