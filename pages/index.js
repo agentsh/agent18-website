@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Page from '../components/Page';
 
+const maxProgress = 100;
+
 const MountainContainerWrapper = styled.div`
     height: ${(props) => props.height}px;
 `;
@@ -66,15 +68,29 @@ class MountainBackgroundContainer extends React.Component {
         animationProgress: PropTypes.number.isRequired,
     };
 
+    startOpacity = 0.4;
+    topOpacity = 0.7;
+    increaseOpacity = this.topOpacity - this.startOpacity;
+    animationSplit1 = 99;
+    animationSplit2 = maxProgress - this.animationSplit1;
+
     render() {
         return (
             <MountainBackground
                 style={{
                     transform: 'scale(' + (1 + this.props.animationProgress / 500) + ')',
-                    opacity: (0.4 + 0.3 * this.props.animationProgress / 100),
+                    opacity: this.getBackgroundOpacity(),
                 }} />
         );
     }
+
+    getBackgroundOpacity = () => {
+        if (this.props.animationProgress <= this.animationSplit1) {
+            return this.startOpacity + ((this.increaseOpacity) * this.props.animationProgress / this.animationSplit1);
+        }
+
+        return this.topOpacity - (this.topOpacity * (this.props.animationProgress - this.animationSplit1) / this.animationSplit2);
+    };
 }
 
 class MountainCloudContainer extends React.Component {
@@ -107,8 +123,7 @@ class MountainSlide extends React.PureComponent {
 
     slideCount = 3;
     scrollDividend = 50;
-    maxProgress = 100;
-    progressStep = this.maxProgress / this.slideCount;
+    progressStep = maxProgress / this.slideCount;
 
     componentDidMount() {
         this.updateWindowHeight();
@@ -152,7 +167,7 @@ class MountainSlide extends React.PureComponent {
         }
 
         return (
-            <MountainContainerWrapper height={this.maxProgress * this.scrollDividend + this.state.windowHeight}>
+            <MountainContainerWrapper height={maxProgress * this.scrollDividend + this.state.windowHeight}>
                 <MountainContainer>
                     <MountainBackgroundContainer animationProgress={this.state.animationProgress} />
                     <MountainCloudContainer
@@ -175,29 +190,21 @@ class MountainSlide extends React.PureComponent {
     }
 
     getSlideTitleOpacity = (slide) => {
-        const tile = this.maxProgress / this.slideCount;
-        const center = tile / 2;
+        const center = this.progressStep / 2;
 
         if (this.state.animationProgress < center && slide === 0) {
             return 1;
         }
 
-        const lower = tile * slide;
-        const upper = tile * (slide + 1);
-
-        if (this.state.animationProgress < lower || this.state.animationProgress > upper) {
-            return 0;
-        }
-
-        const diff = Math.abs((this.state.animationProgress - lower) - center);
+        const diff = Math.abs(this.state.animationProgress % this.progressStep - center);
 
         return 1 - diff / center;
     };
 
     updateAnimationProgress = () => {
         let scroll = window.scrollY / this.scrollDividend;
-        if (scroll > this.maxProgress) {
-            scroll = this.maxProgress;
+        if (scroll > maxProgress) {
+            scroll = maxProgress;
         }
 
         this.setState({animationProgress: scroll});
