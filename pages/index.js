@@ -103,11 +103,9 @@ class SlideBackgroundContainer extends React.Component {
         animationProgress: PropTypes.number.isRequired,
         image: PropTypes.string.isRequired,
         animationSplit: PropTypes.number.isRequired,
+        topOpacity: PropTypes.number.isRequired,
+        startOpacity: PropTypes.number.isRequired,
     };
-
-    startOpacity = 0.4;
-    topOpacity = 0.7;
-    increaseOpacity = this.topOpacity - this.startOpacity;
 
     render() {
         return (
@@ -121,14 +119,16 @@ class SlideBackgroundContainer extends React.Component {
     }
 
     getBackgroundOpacity = () => {
+        const increaseOpacity = this.props.topOpacity - this.props.startOpacity;
+
         if (this.props.animationProgress <= this.props.animationSplit) {
-            return this.startOpacity + (
-                this.increaseOpacity * this.props.animationProgress / this.props.animationSplit
+            return this.props.startOpacity + (
+                increaseOpacity * this.props.animationProgress / this.props.animationSplit
             );
         }
 
-        return this.topOpacity - (
-            this.topOpacity * (
+        return this.props.topOpacity - (
+            this.props.topOpacity * (
                 (this.props.animationProgress - this.props.animationSplit) / (maxProgress - this.props.animationSplit)
             )
         );
@@ -162,13 +162,15 @@ class MountainSlide extends React.PureComponent {
         animationProgress: PropTypes.number.isRequired,
     };
 
-    slideCount = 3;
+    slideCount = 4;
     progressStep = maxProgress / this.slideCount;
 
     render() {
         let slide = null;
 
-        if (this.props.animationProgress > 2 * this.progressStep) {
+        if (this.props.animationProgress > 3 * this.progressStep) {
+            // empty slide for transition of background images
+        } else if (this.props.animationProgress > 2 * this.progressStep) {
             slide = (
                 <SlideTitleContainer animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Learn, talk and ski</h1>
@@ -201,7 +203,9 @@ class MountainSlide extends React.PureComponent {
             <SlideContainer>
                 <SlideBackgroundContainer
                     animationProgress={this.props.animationProgress}
-                    animationSplit={95}
+                    animationSplit={90}
+                    startOpacity={0.4}
+                    topOpacity={0.7}
                     image="static/mountain-background.jpg" />
                 <MountainCloudContainer
                     animationProgress={this.props.animationProgress}
@@ -227,20 +231,31 @@ class CitySlide extends React.PureComponent {
         animationProgress: PropTypes.number.isRequired,
     };
 
+    maxProgress = 100;
+    slideCount = 3;
+    progressStep = this.maxProgress / this.slideCount;
+
     render() {
         let slideTitleContainer = null;
-        if (this.props.animationProgress > 50) {
+        if (this.props.animationProgress > 2 * this.progressStep) {
+            // empty slide
+        } else if (this.props.animationProgress > this.progressStep) {
             slideTitleContainer = (
-                <SlideTitleContainer animationProgress={this.props.animationProgress} progressStep={50}>
+                <SlideTitleContainer animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Dornbirn, Austria</h1>
                 </SlideTitleContainer>
             );
+        } else {
+            // empty slide
         }
+
         return (
             <SlideContainer>
                 <SlideBackgroundContainer
                     animationProgress={this.props.animationProgress}
-                    animationSplit={40}
+                    animationSplit={50}
+                    startOpacity={0.0}
+                    topOpacity={0.5}
                     image="static/city-background.jpg" />
                 {slideTitleContainer}
             </SlideContainer>
@@ -255,7 +270,7 @@ export default class Index extends React.PureComponent {
     };
 
     mountainSlideScrollDividend = 50;
-    citySlideScrollDividend = 20;
+    citySlideScrollDividend = 30;
 
     componentDidMount() {
         this.updateWindowHeight();
