@@ -51,9 +51,11 @@ export default class FooterHint extends React.Component {
     render() {
         return (
             <FooterContainer>
-                <Action>
-                    <Icon name="ticket" />
-                </Action>
+                <a href="https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218">
+                    <Action>
+                        <Icon name="ticket" />
+                    </Action>
+                </a>
                 <Circle>
                     Tickets
                 </Circle>
