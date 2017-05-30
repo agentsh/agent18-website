@@ -19,8 +19,8 @@ injectGlobal`
 
     @font-face {
         font-family: 'icomoon';
-        src:  url('static/fonts/icomoon.eot?qevub9');
-        src:  url('static/fonts/icomoon.eot?qevub9#iefix') format('embedded-opentype'),
+        src: url('static/fonts/icomoon.eot?qevub9');
+        src: url('static/fonts/icomoon.eot?qevub9#iefix') format('embedded-opentype'),
             url('static/fonts/icomoon.ttf?qevub9') format('truetype'),
             url('static/fonts/icomoon.woff?qevub9') format('woff'),
             url('static/fonts/icomoon.svg?qevub9#icomoon') format('svg');
@@ -39,10 +39,11 @@ export default class Page extends React.PureComponent {
             <div>
                 <Head>
                     <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </Head>
                 <Lines color="rgba(0, 0, 0, 0.15)" />
-                <Navigation />
                 {this.props.children}
+                <Navigation />
                 <FooterHint />
             </div>
         );

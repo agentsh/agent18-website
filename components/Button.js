@@ -18,6 +18,7 @@ const Button = styled.div`
         transform: translate(-50%, -50%);
 
         font-size: ${size / 3}px;
+        color: #000;
     }
 `;
 
