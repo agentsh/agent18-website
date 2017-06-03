@@ -45,9 +45,9 @@ export default class Lines extends React.PureComponent {
         }
 
         return (
-            <div>
+            <Line>
                 {lines}
-            </div>
+            </Line>
         );
     }
 

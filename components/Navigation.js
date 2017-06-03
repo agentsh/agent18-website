@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import Button from './Button';
 import Icon from './Icon';
 import Lines from './Lines';
 
 const logoSize = 80;
+
+const Header = styled.header`
+    position: relative;
+    z-index: 2;
+`;
 
 const HeaderContainer = styled.div`
     position: fixed;
@@ -83,7 +89,7 @@ export default class Navigation extends React.PureComponent {
         const navigationList = this.state.opened ? this.renderNavigationList() : '';
 
         return (
-            <header>
+            <Header>
                 <HeaderContainer opened={this.state.opened}>
                     <Logo />
                     <Toggler onClick={this.handleToggle}>
@@ -91,7 +97,7 @@ export default class Navigation extends React.PureComponent {
                     </Toggler>
                 </HeaderContainer>
                 {navigationList}
-            </header>
+            </Header>
         );
     }
 
@@ -100,6 +106,7 @@ export default class Navigation extends React.PureComponent {
             <List>
                 <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
+                    <li><Link href="/disclaimer"><a>Disclaimer</a></Link></li>
                     <li><a href="https://blog.agent.sh">Blog</a></li>
                     <li><a href="http://www.2017.agent.sh">AgentConf 2017</a></li>
                 </ul>
