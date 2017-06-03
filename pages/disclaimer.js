@@ -8,8 +8,8 @@ const HeaderImage = styled.header`
     margin: 60px 60px 0 60px;
     height: calc(100% - 115px);
 
-	background: url(http://placehold.it/1300x660) no-repeat center;
-	background-size: auto 100%;
+    background: url(http://placehold.it/1300x660) no-repeat center;
+    background-size: auto 100%;
 `;
 
 const Main = styled.main`

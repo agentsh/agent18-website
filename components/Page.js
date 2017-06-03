@@ -36,6 +36,7 @@ injectGlobal`
 `;
 
 const Main = styled.main`
+    min-width: 800px;
     height: 100%;
     position: relative;
     z-index: 2;
