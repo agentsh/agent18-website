@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Page from '../components/Page.js';
 
-const Header = styled.header`
+const HeaderImage = styled.header`
     position: relative;
     z-index: 1;
-    margin: 60px 60px 140px 60px;
+    margin: 60px 60px 0 60px;
+    height: calc(100% - 115px);
 
-    img {
-        width: 100%;
-    }
+	background: url(http://placehold.it/1300x660) no-repeat center;
+	background-size: auto 100%;
 `;
 
 const Main = styled.main`
@@ -18,7 +18,7 @@ const Main = styled.main`
     position: relative;
     z-index: 1;
 
-    margin: 0 110px 100px 110px;
+    margin: 140px 110px 100px 110px;
 
     color: #fff;
 
@@ -59,9 +59,7 @@ export default class Disclaimer extends React.PureComponent {
     render() {
         return (
             <Page>
-                <Header>
-                    <img src="http://placehold.it/1300x660" />
-                </Header>
+                <HeaderImage />
                 <Main>
                     <HeaderSection>
                         <h2>Disclaimer with some aditional stuff</h2>
