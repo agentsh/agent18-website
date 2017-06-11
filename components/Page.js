@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {injectGlobal} from 'styled-components';
+import styled, {injectGlobal} from 'styled-components';
 import Head from 'next/head';
 import Navigation from './Navigation';
 import Lines from './Lines';
@@ -15,6 +15,12 @@ injectGlobal`
     body {
         background: url(static/site-background.png) #282828;
         background-size: 80px;
+
+        font-family: 'Open Sans';
+    }
+
+    html, body, body > div:first-child, #__next, [data-reactroot] {
+        height: 100%;
     }
 
     @font-face {
@@ -29,6 +35,22 @@ injectGlobal`
     }
 `;
 
+const Main = styled.main`
+    min-width: 800px;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+`;
+
+const Footer = styled.footer`
+    position: relative;
+    z-index: 2;
+`;
+
+const Container = styled.div`
+    height: 100%;
+`;
+
 export default class Page extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
@@ -36,16 +58,19 @@ export default class Page extends React.PureComponent {
 
     render() {
         return (
-            <div>
+            <Container>
                 <Head>
-                    <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Teko" rel="stylesheet" />
                 </Head>
                 <Lines color="rgba(0, 0, 0, 0.15)" />
-                {this.props.children}
+                <Main>
+                    {this.props.children}
+                </Main>
                 <Navigation />
-                <FooterHint />
-            </div>
+                <Footer>
+                    <FooterHint />
+                </Footer>
+            </Container>
         );
     }
 }

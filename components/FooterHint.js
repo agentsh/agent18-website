@@ -7,7 +7,7 @@ const radius = 84;
 const diameter = radius * 2;
 const height = 40;
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled.div`
     position: fixed;
     left: 50%;
     bottom: ${-diameter + height}px;
