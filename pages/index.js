@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import fetch from 'isomorphic-fetch';
 import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
@@ -52,6 +53,7 @@ class MountainCloudContainer extends React.Component {
 class MountainSlide extends React.PureComponent {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
+        image: PropTypes.object.isRequired,
     };
 
     slideCount = 4;
@@ -98,7 +100,7 @@ class MountainSlide extends React.PureComponent {
                     animationSplit={90}
                     startOpacity={0.4}
                     topOpacity={0.7}
-                    image="static/mountain-background.jpg" />
+                    image={this.props.image} />
                 <MountainCloudContainer
                     animationProgress={this.props.animationProgress}
                     image="static/cloud1.png"
@@ -121,6 +123,7 @@ class MountainSlide extends React.PureComponent {
 class CitySlide extends React.PureComponent {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
+        image: PropTypes.object.isRequired,
     };
 
     maxProgress = 100;
@@ -148,7 +151,7 @@ class CitySlide extends React.PureComponent {
                     animationSplit={50}
                     startOpacity={0.0}
                     topOpacity={0.5}
-                    image="static/city-background.jpg" />
+                    image={this.props.image} />
                 {slideTitleContainer}
             </SlideContainer>
         );
@@ -161,8 +164,19 @@ export default class Index extends React.PureComponent {
         scrollY: 0,
     };
 
+    static propTypes = {
+        animationBackground1: PropTypes.object.isRequired,
+        animationBackground2: PropTypes.object.isRequired,
+    };
+
     mountainSlideScrollDividend = 50;
     citySlideScrollDividend = 30;
+
+    static async getInitialProps() {
+        const response = await fetch('http://127.0.0.1:8001/.json');
+        const json = await response.json();
+        return json;
+    }
 
     componentDidMount() {
         this.updateWindowHeight();
@@ -186,12 +200,14 @@ export default class Index extends React.PureComponent {
         if (this.state.scrollY < mountainSlideHeight) {
             mountainSlide = (
                 <MountainSlide
-                    animationProgress={this.state.scrollY / this.mountainSlideScrollDividend} />
+                    animationProgress={this.state.scrollY / this.mountainSlideScrollDividend}
+                    image={this.props.animationBackground1} />
                 );
         } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight) {
             citySlide = (
                 <CitySlide
-                    animationProgress={(this.state.scrollY - mountainSlideHeight) / this.citySlideScrollDividend} />
+                    animationProgress={(this.state.scrollY - mountainSlideHeight) / this.citySlideScrollDividend}
+                    image={this.props.animationBackground2} />
             );
         }
 
