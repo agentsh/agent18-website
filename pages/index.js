@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import fetch from 'isomorphic-fetch';
+import config from '../config';
 import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
@@ -173,7 +174,7 @@ export default class Index extends React.PureComponent {
     citySlideScrollDividend = 30;
 
     static async getInitialProps() {
-        const response = await fetch('http://127.0.0.1:8001/.json');
+        const response = await fetch(config.baseUrl + '/.json');
         const json = await response.json();
         return json;
     }
