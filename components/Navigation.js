@@ -107,6 +107,7 @@ export default class Navigation extends React.PureComponent {
                 <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
                     <li><Link href="/disclaimer"><a>Disclaimer</a></Link></li>
+                    <li><Link href="/coc"><a>Code of Conduct</a></Link></li>
                     <li><a href="https://blog.agent.sh">Blog</a></li>
                     <li><a href="http://www.2017.agent.sh">AgentConf 2017</a></li>
                 </ul>
