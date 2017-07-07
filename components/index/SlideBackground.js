@@ -11,16 +11,23 @@ const StyledSlideBackground = styled.div`
     bottom: 0;
     left: 0;
 
-    background-image: url(${(props) => props.image});
+    background-image: url(${(props) => props.image['large']});
     background-size: cover;
 
     will-change: transform, filter;
+
+    @media (max-width: 1000px) {
+        background-image: url(${(props) => props.image['small']});
+    }
+    @media (max-width: 2000px) {
+        background-image: url(${(props) => props.image['medium']});
+    }
 `;
 
 export default class SlideBackground extends React.Component {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
+        image: PropTypes.object.isRequired,
         animationSplit: PropTypes.number.isRequired,
         topOpacity: PropTypes.number.isRequired,
         startOpacity: PropTypes.number.isRequired,
