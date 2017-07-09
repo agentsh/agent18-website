@@ -91,7 +91,7 @@ export default class Navigation extends React.PureComponent {
         return (
             <Header>
                 <HeaderContainer opened={this.state.opened}>
-                    <Logo />
+                    <Link href="/"><Logo /></Link>
                     <Toggler onClick={this.handleToggle}>
                         <Icon name={this.state.opened ? 'close' : 'hamburger'} />
                     </Toggler>
