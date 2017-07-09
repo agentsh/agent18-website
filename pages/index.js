@@ -6,6 +6,7 @@ import config from '../config';
 import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
+import Head from '../components/Head';
 
 const maxProgress = 100;
 
@@ -64,24 +65,24 @@ class MountainSlide extends React.PureComponent {
         let slide = null;
 
         if (this.props.animationProgress > 3 * this.progressStep) {
-            // empty slide for transition of background images
+      // empty slide for transition of background images
         } else if (this.props.animationProgress > 2 * this.progressStep) {
             slide = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Learn, talk and ski</h1>
                 </SlideTitle>
-            );
+      );
         } else if (this.props.animationProgress > this.progressStep) {
             slide = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h2>25 - 28 January 2018</h2>
                     <h1>
-                        Experts and industry leaders will
-                        come together to showcase their work
-                        in ReactJS, React Native and more
-                    </h1>
+            Experts and industry leaders will
+            come together to showcase their work
+            in ReactJS, React Native and more
+          </h1>
                 </SlideTitle>
-            );
+      );
         } else {
             slide = (
                 <SlideTitle
@@ -91,7 +92,7 @@ class MountainSlide extends React.PureComponent {
                     <h2>The international event for coding inspiration</h2>
                     <h1>AgentConf 2018</h1>
                 </SlideTitle>
-            );
+      );
         }
 
         return (
@@ -134,15 +135,15 @@ class CitySlide extends React.PureComponent {
     render() {
         let slideTitleContainer = null;
         if (this.props.animationProgress > 2 * this.progressStep) {
-            // empty slide
+      // empty slide
         } else if (this.props.animationProgress > this.progressStep) {
             slideTitleContainer = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Dornbirn, Austria</h1>
                 </SlideTitle>
-            );
+      );
         } else {
-            // empty slide
+      // empty slide
         }
 
         return (
@@ -203,7 +204,7 @@ export default class Index extends React.PureComponent {
                 <MountainSlide
                     animationProgress={this.state.scrollY / this.mountainSlideScrollDividend}
                     image={this.props.animationBackground1} />
-                );
+            );
         } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight) {
             citySlide = (
                 <CitySlide
@@ -213,14 +214,17 @@ export default class Index extends React.PureComponent {
         }
 
         return (
-            <Page>
-                <SlideContainerWrapper height={mountainSlideHeight}>
-                    {mountainSlide}
-                </SlideContainerWrapper>
-                <SlideContainerWrapper height={citySlideHeight}>
-                    {citySlide}
-                </SlideContainerWrapper>
-            </Page>
+            <div>
+                <Head />
+                <Page>
+                    <SlideContainerWrapper height={mountainSlideHeight}>
+                        {mountainSlide}
+                    </SlideContainerWrapper>
+                    <SlideContainerWrapper height={citySlideHeight}>
+                        {citySlide}
+                    </SlideContainerWrapper>
+                </Page>
+            </div>
         );
     }
 
