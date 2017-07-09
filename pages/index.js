@@ -175,7 +175,6 @@ export default class Index extends React.PureComponent {
     citySlideScrollDividend = 30;
 
     static async getInitialProps() {
-        console.log(config);
         const response = await fetch(config.baseUrl + '/.json');
         const json = await response.json();
         return json;
