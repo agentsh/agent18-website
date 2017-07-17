@@ -7,6 +7,7 @@ import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
 import Head from '../components/Head';
+import Tickets from '../components/Tickets';
 
 const maxProgress = 100;
 
@@ -21,7 +22,7 @@ const SlideContainer = styled.div`
     bottom: 0;
     left: 0;
 
-    background-color: #fff;
+    background-color: ${(props) => props.noBg ? 'none' : '#fff'};
 `;
 
 const MountainCloud = styled.img`
@@ -134,6 +135,7 @@ class CitySlide extends React.PureComponent {
 
     render() {
         let slideTitleContainer = null;
+
         if (this.props.animationProgress > 2 * this.progressStep) {
       // empty slide
         } else if (this.props.animationProgress > this.progressStep) {
@@ -194,23 +196,26 @@ export default class Index extends React.PureComponent {
 
     render() {
         const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend;
-        const citySlideHeight = maxProgress * this.citySlideScrollDividend + this.state.windowHeight;
-
+        const citySlideHeight = maxProgress * this.citySlideScrollDividend;
+        const ticketSlideHeight = 1 * this.state.windowHeight;
         let mountainSlide = 0;
         let citySlide = 0;
+        let ticketSlide = 0;
 
         if (this.state.scrollY < mountainSlideHeight) {
             mountainSlide = (
                 <MountainSlide
                     animationProgress={this.state.scrollY / this.mountainSlideScrollDividend}
                     image={this.props.animationBackground1} />
-            );
+      );
         } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight) {
             citySlide = (
                 <CitySlide
                     animationProgress={(this.state.scrollY - mountainSlideHeight) / this.citySlideScrollDividend}
                     image={this.props.animationBackground2} />
-            );
+      );
+        } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight + ticketSlideHeight) {
+            ticketSlide = <SlideContainer noBg={true}><Tickets /></SlideContainer>;
         }
 
         return (
@@ -218,10 +223,13 @@ export default class Index extends React.PureComponent {
                 <Head />
                 <Page>
                     <SlideContainerWrapper height={mountainSlideHeight}>
-                        {mountainSlide}
+                        {mountainSlide}#
                     </SlideContainerWrapper>
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}
+                    </SlideContainerWrapper>
+                    <SlideContainerWrapper height={ticketSlideHeight}>
+                        {ticketSlide}
                     </SlideContainerWrapper>
                 </Page>
             </div>
