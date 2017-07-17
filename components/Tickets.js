@@ -25,7 +25,6 @@ const Title = styled.div`
     font-family: Teko;
 `;
 
-
 const TicketBox = styled.div`
     width:338px;
     text-align:center;
@@ -96,9 +95,7 @@ const ButtonLink = styled.div`
     cursor: pointer;
 `;
 
-
 export default class Tickets extends React.PureComponent {
-
     render() {
         return (
             <TicketWrapper>
@@ -141,7 +138,7 @@ export default class Tickets extends React.PureComponent {
               2 Ski passes in Lech<br />
                             <br />
                         </Description>
-                        <ButtonLink >buy now</ButtonLink>
+                        <ButtonLink>buy now</ButtonLink>
                     </TicketBox>
                 </div>
             </TicketWrapper>
