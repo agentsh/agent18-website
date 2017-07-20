@@ -7,7 +7,6 @@ export default class Header extends React.PureComponent {
         title: PropTypes.string,
         description: PropTypes.string,
         image: PropTypes.string,
-
     };
 
     render() {
@@ -22,8 +21,9 @@ export default class Header extends React.PureComponent {
 
                 <meta name="title" content="Agent the first alpine conference software engineering" />
                 <meta
-                    name="description" content="Experts and core contributers come to showcase their work in ReactJS,
-                        ReactNative, Node and more. Learn, talk and go skiing" />
+                    name="description"
+                    content="Experts and core contributers come to showcase their work in ReactJS,
+              ReactNative, Node and more. Learn, talk and go skiing" />
                 <meta name="keywords" content="" />
                 <meta name="robots" content="INDEX, FOLLOW" />
 
@@ -38,8 +38,9 @@ export default class Header extends React.PureComponent {
 
                 <meta property="og:title" content="Agent the first alpine conference software engineering" />
                 <meta
-                    property="og:description" content="Experts and core contributers come to showcase their
-                    work in ReactJS, ReactNative, Node and more. Learn, talk and go skiing" />
+                    property="og:description"
+                    content="Experts and core contributers come to showcase their
+              work in ReactJS, ReactNative, Node and more. Learn, talk and go skiing" />
                 <meta property="og:url" content="http://www.agent.sh" />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:image" content="http://www.agent.sh/static/img/agent_sh_og.jpg" />
@@ -54,11 +55,11 @@ export default class Header extends React.PureComponent {
                 <meta property="twitter:url" content="http://www.agent.sh" />
                 <meta property="twitter:title" content="Agent the first alpine conference software engineering" />
                 <meta
-                    property="twitter:description" content="Experts and core contributers come to showcase their work
-                    in ReactJS, ReactNative, Node and more. Learn, talk and go skiing" />
+                    property="twitter:description"
+                    content="Experts and core contributers come to showcase their work
+              in ReactJS, ReactNative, Node and more. Learn, talk and go skiing" />
                 <meta property="twitter:image" content="http://www.agent.sh/static/img/agent_sh_og.jpg" />
                 <meta property="twitter:image:" content="agent.sh Javascript conference" />
-
 
                 <link rel="apple-touch-icon" sizes="57x57" href="static/favicon/apple-icon-57x57.png" />
                 <link rel="apple-touch-icon" sizes="60x60" href="static/favicon/apple-icon-60x60.png" />
@@ -76,8 +77,7 @@ export default class Header extends React.PureComponent {
                 <link rel="manifest" href="static/favicon/manifest.json" />
                 <meta name="msapplication-TileImage" content="static/favicon/ms-icon-144x144.png" />
 
-                <script src="static/js/tracking.header.js"></script>
-
+                <script src="static/js/tracking.header.js" />
             </Head>
         );
     }
