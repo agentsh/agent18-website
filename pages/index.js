@@ -21,7 +21,7 @@ const SlideContainer = styled.div`
     bottom: 0;
     left: 0;
 
-    background-color: #fff;
+    background-color: ${(props) => 'color' in props ? props.color : '#fff'};
 `;
 
 const MountainCloud = styled.img`
@@ -31,15 +31,32 @@ const MountainCloud = styled.img`
 `;
 
 const VideoImageContainer = styled.figure`
-    height: ${(props) => props.height - 120}px;
-    width: calc(100% - 120px);
-    margin: 60px;
+    height: calc(100% - ${(props) => props.margin * 2}px);
+    width: calc(100% - ${(props) => props.margin * 2}px);
+    margin: ${(props) => props.margin}px;
+
+    background-color: #fff;
 
     overflow: hidden;
+
+    will-change: height, width, margin;
 `;
 
-const VideoImage = styled.img`
-    float: right;
+const VideoImage = styled.div`
+    height: 100%;
+    opacity: ${(props) => props.opacity};
+
+    background-image: url(${(props) => props.image['medium']});
+    background-position: center;
+
+    @media (max-width: 1000px) {
+        background-image: url(${(props) => props.image['small']});
+    }
+    @media (max-width: 2000px) {
+        background-image: url(${(props) => props.image['medium']});
+    }
+
+    will-change: opacity;
 `;
 
 class MountainCloudContainer extends React.Component {
@@ -147,7 +164,7 @@ class CitySlide extends React.PureComponent {
     render() {
         let slideTitleContainer = null;
         if (this.props.animationProgress > 2 * this.progressStep) {
-      // empty slide
+            // empty slide
         } else if (this.props.animationProgress > this.progressStep) {
             slideTitleContainer = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
@@ -155,7 +172,7 @@ class CitySlide extends React.PureComponent {
                 </SlideTitle>
       );
         } else {
-      // empty slide
+            // empty slide
         }
 
         return (
@@ -172,6 +189,25 @@ class CitySlide extends React.PureComponent {
     }
 }
 
+class VideoSlide extends React.PureComponent {
+    static propTypes = {
+        animationProgress: PropTypes.number.isRequired,
+        image: PropTypes.object.isRequired,
+    };
+
+    render() {
+        return (
+            <SlideContainer color="transparent">
+                <VideoImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
+                    <VideoImage
+                        image={this.props.image}
+                        opacity={this.props.animationProgress / 50} />
+                </VideoImageContainer>
+            </SlideContainer>
+        );
+    }
+}
+
 export default class Index extends React.PureComponent {
     state = {
         windowHeight: 0,
@@ -181,18 +217,22 @@ export default class Index extends React.PureComponent {
     static propTypes = {
         animationBackground1: PropTypes.object.isRequired,
         animationBackground2: PropTypes.object.isRequired,
-        videoTeaserImage: PropTypes.string.isRequired,
+        videoTeaserImage: PropTypes.object.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
     citySlideScrollDividend = 30;
+    videoSlideScrollDividend = 10;
 
     static async getInitialProps() {
         const response = await fetch(config.baseUrl + '/.json');
         const json = await response.json();
 
-        json.videoTeaserImage = 'http://127.0.0.1:8000/uploads/media/2000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0';
-
+        json.videoTeaserImage = {
+            small: 'http://127.0.0.1:8000/uploads/media/1000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0',
+            medium: 'http://127.0.0.1:8000/uploads/media/2000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0',
+            large: 'http://127.0.0.1:8000/uploads/media/3000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0',
+        };
         return json;
     }
 
@@ -210,10 +250,12 @@ export default class Index extends React.PureComponent {
 
     render() {
         const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend;
-        const citySlideHeight = maxProgress * this.citySlideScrollDividend + this.state.windowHeight;
+        const citySlideHeight = maxProgress * this.citySlideScrollDividend;
+        const videoSlideHeight = maxProgress * this.videoSlideScrollDividend + this.state.windowHeight;
 
-        let mountainSlide = 0;
-        let citySlide = 0;
+        let mountainSlide = null;
+        let citySlide = null;
+        let videoSlide = null;
 
         if (this.state.scrollY < mountainSlideHeight) {
             mountainSlide = (
@@ -227,8 +269,19 @@ export default class Index extends React.PureComponent {
                     animationProgress={(this.state.scrollY - mountainSlideHeight) / this.citySlideScrollDividend}
                     image={this.props.animationBackground2} />
             );
+        } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight + videoSlideHeight) {
+            videoSlide = (
+                <VideoSlide
+                    animationProgress={(
+                        this.state.scrollY
+                        - mountainSlideHeight
+                        - citySlideHeight
+                    ) / this.videoSlideScrollDividend}
+                    image={this.props.videoTeaserImage} />
+            );
         }
 
+        // TODO Use correct videoTeaserImage
         return (
             <div>
                 <Head />
@@ -239,9 +292,10 @@ export default class Index extends React.PureComponent {
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}
                     </SlideContainerWrapper>
-                    <VideoImageContainer height={this.state.windowHeight}>
-                        <VideoImage src={this.props.videoTeaserImage} />
-                    </VideoImageContainer>
+                    <SlideContainerWrapper height={videoSlideHeight}>
+                        {videoSlide}
+                    </SlideContainerWrapper>
+                    {videoSlide}
                 </Page>
             </div>
         );
