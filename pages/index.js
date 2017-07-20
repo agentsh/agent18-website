@@ -215,7 +215,7 @@ export default class Index extends React.PureComponent {
                     image={this.props.animationBackground2} />
       );
         } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight + ticketSlideHeight) {
-            ticketSlide = <SlideContainer noBg={true}><Tickets /></SlideContainer>;
+            ticketSlide = <SlideContainer noBg={true}><Tickets {...this.props} /></SlideContainer>;
         }
 
         return (

@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 const bookingUrl = 'https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218?ref=elink';
 const TicketWrapper = styled.div`
     position: absolute;
@@ -76,7 +78,7 @@ const Description = styled.div`
     font-weight: 600;
 `;
 
-const ButtonLink = styled.div`
+const ButtonLink = styled.a`
     display: block;
     height: 40px;
     border-radius: 100px;
@@ -92,51 +94,55 @@ const ButtonLink = styled.div`
     text-align: center;
     text-transform: uppercase;
     margin: 0 auto;
-    cursor: pointer;
+    text-decoration: none;
 `;
 
 export default class Tickets extends React.PureComponent {
+    static propTypes = {
+        ticket1Headline: PropTypes.string.isRequired,
+        ticket1Price: PropTypes.string.isRequired,
+        ticket1Description: PropTypes.string.isRequired,
+        ticket1ButtonText: PropTypes.string.isRequired,
+        ticket2Headline: PropTypes.string.isRequired,
+        ticket2Price: PropTypes.string.isRequired,
+        ticket2Description: PropTypes.string.isRequired,
+        ticket2ButtonText: PropTypes.string.isRequired,
+        ticket3Headline: PropTypes.string.isRequired,
+        ticket3Price: PropTypes.string.isRequired,
+        ticket3Description: PropTypes.string.isRequired,
+        ticket3ButtonText: PropTypes.string.isRequired,
+    };
+
     render() {
+
         return (
             <TicketWrapper>
                 <Title>Tickets, Prices and Benefits</Title>
                 <div style={{clear: 'both'}}>
                     <ClosedTicketbox>
-                        <Headline>Blind Bird</Headline>
+                        <Headline>{this.props.ticket1Headline}</Headline>
                         <hr />
-                        <Price> 99€ </Price>
+                        <Price>{this.props.ticket1Price} €</Price>
                         <hr />
-                        <Description>
-                            Conference 20.01 & 21.01<br />
-                            All Talks <br />
-                            Conference refreshments<br />
-                        </Description>
-                        <ButtonLink>sold out</ButtonLink>
+                        <Description dangerouslySetInnerHTML={{__html: this.props.ticket1Description}} />
+                        <ButtonLink>{this.props.ticket1ButtonText}</ButtonLink>
                     </ClosedTicketbox>
                     <ActiveTicketbox>
-                        <Headline>Super Early Bird</Headline>
+                        <Headline>{this.props.ticket1Headline}</Headline>
                         <hr />
-                        <Price> 199€</Price>
+                        <Price>{this.props.ticket2Price} €</Price>
                         <hr />
-                        <Description>
-                            Conference 20.01 & 21.01<br />
-                            All Talks <br />
-                            Conference refreshments<br />
-                            Networking Events
-                        </Description>
-                        <ButtonLink>buy now</ButtonLink>
+                        <Description dangerouslySetInnerHTML={{__html: this.props.ticket2Description}} />
+                        <ButtonLink href={bookingUrl} target="_blank">{this.props.ticket2ButtonText}</ButtonLink>
                     </ActiveTicketbox>
                     <TicketBox>
-                        <Headline>Ski addon</Headline>
+                        <Headline>{this.props.ticket3Headline}</Headline>
                         <hr />
-                        <Price> 400€</Price>
+                        <Price>{this.props.ticket3Price} €</Price>
                         <hr />
-                        <Description>
-                            2 Nights Hostel in Lech<br />
-                            2 Ski passes in Lech<br />
-                            <br />
-                        </Description>
-                        <ButtonLink>buy now</ButtonLink>
+                        <Description dangerouslySetInnerHTML={{__html: this.props.ticket3Description}} />
+                            
+                        <ButtonLink href={bookingUrl} target="_blank">{this.props.ticket3ButtonText}</ButtonLink>
                     </TicketBox>
                 </div>
             </TicketWrapper>

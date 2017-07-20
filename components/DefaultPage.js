@@ -8,9 +8,16 @@ const HeaderImage = styled.header`
     z-index: 1;
     margin: 60px 60px 0 60px;
     height: calc(100% - 115px);
-
-background: url(static/disclaimer-header.jpg) no-repeat center;
+    background-image: url(${(props) => props.image['large']});
+    background: no-repeat center;
     background-size: auto 100%;
+    
+    @media (max-width: 1000px) {
+        background-image: url(${(props) => props.image['small']});
+    }
+    @media (max-width: 2000px) {
+        background-image: url(${(props) => props.image['medium']});
+    }
 `;
 
 const Main = styled.main`
@@ -59,21 +66,26 @@ const MainSection = styled.section`
     }
 `;
 
+
 export default class DefaultPage extends React.PureComponent {
     static propTypes = {
-        header: PropTypes.string.isRequired,
+        headerImage: PropTypes.object.isRequired,
+        title: PropTypes.string.isRequired,
         article: PropTypes.string.isRequired,
+        title2: PropTypes.string.isRequired,
     };
 
     render() {
         return (
             <Page>
-                <HeaderImage />
+                <HeaderImage image={this.props.headerImage} />
                 <Main>
                     <HeaderSection>
-                        <h2>{this.props.header}</h2>
+                        <h2>{this.props.title2}</h2>
                     </HeaderSection>
-                    <MainSection dangerouslySetInnerHTML={{__html: this.props.article}} />
+                    <MainSection
+                        dangerouslySetInnerHTML={{__html: this.props.article}} />
+
                 </Main>
             </Page>
         );
