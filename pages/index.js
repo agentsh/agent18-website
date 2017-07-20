@@ -30,6 +30,18 @@ const MountainCloud = styled.img`
     will-change: transform, opacity;
 `;
 
+const VideoImageContainer = styled.figure`
+    height: ${(props) => props.height - 120}px;
+    width: calc(100% - 120px);
+    margin: 60px;
+
+    overflow: hidden;
+`;
+
+const VideoImage = styled.img`
+    float: right;
+`;
+
 class MountainCloudContainer extends React.Component {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
@@ -169,6 +181,7 @@ export default class Index extends React.PureComponent {
     static propTypes = {
         animationBackground1: PropTypes.object.isRequired,
         animationBackground2: PropTypes.object.isRequired,
+        videoTeaserImage: PropTypes.string.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
@@ -177,6 +190,9 @@ export default class Index extends React.PureComponent {
     static async getInitialProps() {
         const response = await fetch(config.baseUrl + '/.json');
         const json = await response.json();
+
+        json.videoTeaserImage = 'http://127.0.0.1:8000/uploads/media/2000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0';
+
         return json;
     }
 
@@ -223,6 +239,9 @@ export default class Index extends React.PureComponent {
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}
                     </SlideContainerWrapper>
+                    <VideoImageContainer height={this.state.windowHeight}>
+                        <VideoImage src={this.props.videoTeaserImage} />
+                    </VideoImageContainer>
                 </Page>
             </div>
         );
