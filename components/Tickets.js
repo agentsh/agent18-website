@@ -22,7 +22,7 @@ const Title = styled.div`
     float: right;
     color: white;
     margin-bottom: 50px;
-    margin-top: 200px;
+    margin-top: 80px;
     text-transform: uppercase;
     font-family: Teko;
 `;

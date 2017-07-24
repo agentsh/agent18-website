@@ -30,6 +30,12 @@ const MountainCloud = styled.img`
 `;
 
 const VideoImageContainer = styled.figure`
+    height: ${(props) => props.height - 120}px;
+    margin-top: -${(props) => props.height}px;
+    padding: 60px;
+`;
+
+const VideoSlideImageContainer = styled.figure`
     height: calc(100% - ${props => props.margin * 2}px);
     width: calc(100% - ${props => props.margin * 2}px);
     margin: ${props => props.margin}px;
@@ -43,7 +49,7 @@ const VideoImageContainer = styled.figure`
 
 const VideoImage = styled.div`
     height: 100%;
-    opacity: ${props => props.opacity};
+    ${props => props.opacity ? 'opacity: ' + props.opacity : ''};
 
     background-image: url(${props => props.image['medium']});
     background-position: center;
@@ -197,9 +203,9 @@ class VideoSlide extends React.PureComponent {
     render() {
         return (
             <SlideContainer color="transparent">
-                <VideoImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
+                <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
                     <VideoImage image={this.props.image} opacity={this.props.animationProgress / 50} />
-                </VideoImageContainer>
+                </VideoSlideImageContainer>
             </SlideContainer>
         );
     }
@@ -225,11 +231,6 @@ export default class Index extends React.PureComponent {
         const response = await fetch(config.baseUrl + '/.json');
         const json = await response.json();
 
-        // json.videoTeaserImage = {
-        //     small: 'http://127.0.0.1:8000/uploads/media/1000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0',
-        //     medium: 'http://127.0.0.1:8000/uploads/media/2000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0',
-        //     large: 'http://127.0.0.1:8000/uploads/media/3000x/03/3-Agent_Conf_17_BY_MATTHIAS_RHOMBERG_156.jpg?v=1-0',
-        // };
         return json;
     }
 
@@ -248,11 +249,12 @@ export default class Index extends React.PureComponent {
     render() {
         const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend;
         const citySlideHeight = maxProgress * this.citySlideScrollDividend;
-        const videoSlideHeight = maxProgress * this.videoSlideScrollDividend + this.state.windowHeight;
+        const videoSlideHeight = maxProgress * this.videoSlideScrollDividend;
 
         let mountainSlide = null;
         let citySlide = null;
         let videoSlide = null;
+        let videoImageContainer = null;
 
         if (this.state.scrollY < mountainSlideHeight) {
             mountainSlide = (
@@ -274,6 +276,12 @@ export default class Index extends React.PureComponent {
                     }
                     image={this.props.videoTeaserImage} />
             );
+        } else {
+            videoImageContainer = (
+                <VideoImageContainer height={this.state.windowHeight}>
+                    <VideoImage image={this.props.videoTeaserImage} />
+                </VideoImageContainer>
+            );
         }
 
         // TODO Use correct videoTeaserImage
@@ -287,12 +295,11 @@ export default class Index extends React.PureComponent {
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}
                     </SlideContainerWrapper>
-                    <SlideContainerWrapper height={videoSlideHeight}>
+                    <SlideContainerWrapper height={videoSlideHeight + this.state.windowHeight}>
                         {videoSlide}
                     </SlideContainerWrapper>
-                    <SlideContainerWrapper height={this.state.windowHeight + 100}>
-                        <Tickets {...this.props} />
-                    </SlideContainerWrapper>
+                    {videoImageContainer}
+                    <Tickets {...this.props} />
                 </Page>
             </div>
         );

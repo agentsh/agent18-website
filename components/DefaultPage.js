@@ -11,7 +11,7 @@ const HeaderImage = styled.header`
     background-image: url(${(props) => props.image['large']});
     background: no-repeat center;
     background-size: auto 100%;
-    
+
     @media (max-width: 1000px) {
         background-image: url(${(props) => props.image['small']});
     }
