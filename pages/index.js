@@ -30,9 +30,10 @@ const MountainCloud = styled.img`
 `;
 
 const VideoImageContainer = styled.figure`
-    height: ${(props) => props.height - 120}px;
-    margin-top: -${(props) => props.height}px;
+    height: ${props => props.height - 120}px;
+    margin-top: -${props => props.height}px;
     padding: 60px;
+    position: relative;
 `;
 
 const VideoSlideImageContainer = styled.figure`
@@ -45,11 +46,12 @@ const VideoSlideImageContainer = styled.figure`
     overflow: hidden;
 
     will-change: height, width, margin;
+    position: relative;
 `;
 
 const VideoImage = styled.div`
     height: 100%;
-    ${props => props.opacity ? 'opacity: ' + props.opacity : ''};
+    ${props => (props.opacity ? 'opacity: ' + props.opacity : '')};
 
     background-image: url(${props => props.image['medium']});
     background-position: center;
@@ -60,10 +62,28 @@ const VideoImage = styled.div`
     @media (max-width: 2000px) {
         background-image: url(${props => props.image['medium']});
     }
-
+    postion: relative;
     will-change: opacity;
 `;
+const VideoTrigger = styled.div`
+    position: ${props => (props.absolute ? 'absolute' : 'fixed')};
+    right: 25%;
+    top: 40%;
+    zIndex: 10;
+    width: 250;
+    color: white;
+    padding: 30px 80px 30px 0;
 
+    font-family: Teko;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: right;
+    background: url('static/logo.png') no-repeat right;
+    background-size: 60px;
+    cursor: pointer;
+`;
 class MountainCloudContainer extends React.Component {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
@@ -204,6 +224,7 @@ class VideoSlide extends React.PureComponent {
         return (
             <SlideContainer color="transparent">
                 <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
+                    <VideoTrigger>play video</VideoTrigger>
                     <VideoImage image={this.props.image} opacity={this.props.animationProgress / 50} />
                 </VideoSlideImageContainer>
             </SlideContainer>
@@ -280,6 +301,7 @@ export default class Index extends React.PureComponent {
             videoImageContainer = (
                 <VideoImageContainer height={this.state.windowHeight}>
                     <VideoImage image={this.props.videoTeaserImage} />
+                    <VideoTrigger absolute={true}>play video</VideoTrigger>
                 </VideoImageContainer>
             );
         }

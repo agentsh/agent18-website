@@ -29,6 +29,7 @@ const Title = styled.div`
 
 const TicketBox = styled.div`
     width: 338px;
+    height: 500px;
     text-align: center;
     float: left;
     padding: 30px 20px;
@@ -48,10 +49,19 @@ const TicketBox = styled.div`
 
 const ActiveTicketbox = styled(TicketBox)`
     margin-top: -24px;
+    padding-top: 54px;
+    height: 548px;
     color:black;
     background:white;
     border:none;
     width:380px;
+`;
+
+const Line = styled.div`
+    box-sizing: border-box;
+    height: 0;
+    border: 1px solid #bdbdbd;
+    margin: 15px 10px;
 `;
 
 const ClosedTicketbox = styled(TicketBox)`
@@ -71,8 +81,9 @@ const Price = styled.div`
     font-weight: 600;
 `;
 const Description = styled.div`
-    padding-top:50px;
-    padding-bottom: 70px
+    padding-top: 50px;
+    padding-bottom: 70px;
+    height: 140px;
     font-size: 16px;
     line-height: 40px;
     font-weight: 600;
@@ -114,35 +125,52 @@ export default class Tickets extends React.PureComponent {
     };
 
     render() {
-
         return (
             <TicketWrapper>
                 <Title>Tickets, Prices and Benefits</Title>
                 <div style={{clear: 'both'}}>
                     <ClosedTicketbox>
-                        <Headline>{this.props.ticket1Headline}</Headline>
-                        <hr />
-                        <Price>{this.props.ticket1Price} €</Price>
-                        <hr />
+                        <Headline>
+                            {this.props.ticket1Headline}
+                        </Headline>
+                        <Line />
+                        <Price>
+                            {this.props.ticket1Price} €
+                        </Price>
+                        <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket1Description}} />
-                        <ButtonLink>{this.props.ticket1ButtonText}</ButtonLink>
+                        <ButtonLink>
+                            {this.props.ticket1ButtonText}
+                        </ButtonLink>
                     </ClosedTicketbox>
                     <ActiveTicketbox>
-                        <Headline>{this.props.ticket1Headline}</Headline>
-                        <hr />
-                        <Price>{this.props.ticket2Price} €</Price>
-                        <hr />
+                        <Headline>
+                            {this.props.ticket1Headline}
+                        </Headline>
+                        <Line />
+                        <Price>
+                            {this.props.ticket2Price} €
+                        </Price>
+                        <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket2Description}} />
-                        <ButtonLink href={bookingUrl} target="_blank">{this.props.ticket2ButtonText}</ButtonLink>
+                        <ButtonLink href={bookingUrl} target="_blank">
+                            {this.props.ticket2ButtonText}
+                        </ButtonLink>
                     </ActiveTicketbox>
                     <TicketBox>
-                        <Headline>{this.props.ticket3Headline}</Headline>
-                        <hr />
-                        <Price>{this.props.ticket3Price} €</Price>
-                        <hr />
+                        <Headline>
+                            {this.props.ticket3Headline}
+                        </Headline>
+                        <Line />
+                        <Price>
+                            {this.props.ticket3Price} €
+                        </Price>
+                        <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket3Description}} />
-                            
-                        <ButtonLink href={bookingUrl} target="_blank">{this.props.ticket3ButtonText}</ButtonLink>
+
+                        <ButtonLink href={bookingUrl} target="_blank">
+                            {this.props.ticket3ButtonText}
+                        </ButtonLink>
                     </TicketBox>
                 </div>
             </TicketWrapper>
