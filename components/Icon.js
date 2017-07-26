@@ -4,6 +4,7 @@ const icons = {
     close: '\\e903',
     hamburger: '\\e90b',
     ticket: '\\e910',
+    play: '\\e90c',
 };
 
 const Icon = styled.span`
@@ -18,7 +19,7 @@ const Icon = styled.span`
     -moz-osx-font-smoothing: grayscale;
 
     &:before {
-        content: "${(props) => icons[props.name]}";
+        content: "${props => icons[props.name]}";
     }
 `;
 

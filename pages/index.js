@@ -8,6 +8,7 @@ import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
 import Head from '../components/Head';
 import Tickets from '../components/Tickets';
+import VideoTrigger from '../components/VideoTrigger';
 
 const maxProgress = 100;
 
@@ -65,25 +66,7 @@ const VideoImage = styled.div`
     postion: relative;
     will-change: opacity;
 `;
-const VideoTrigger = styled.div`
-    position: ${props => (props.absolute ? 'absolute' : 'fixed')};
-    right: 25%;
-    top: 40%;
-    zIndex: 10;
-    width: 250;
-    color: white;
-    padding: 30px 80px 30px 0;
 
-    font-family: Teko;
-    text-decoration: underline;
-    text-transform: uppercase;
-    font-size: 18px;
-    line-height: 26px;
-    text-align: right;
-    background: url('static/logo.png') no-repeat right;
-    background-size: 60px;
-    cursor: pointer;
-`;
 class MountainCloudContainer extends React.Component {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
@@ -224,7 +207,7 @@ class VideoSlide extends React.PureComponent {
         return (
             <SlideContainer color="transparent">
                 <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
-                    <VideoTrigger>play video</VideoTrigger>
+                    <VideoTrigger absolute={false} />
                     <VideoImage image={this.props.image} opacity={this.props.animationProgress / 50} />
                 </VideoSlideImageContainer>
             </SlideContainer>
@@ -300,8 +283,8 @@ export default class Index extends React.PureComponent {
         } else {
             videoImageContainer = (
                 <VideoImageContainer height={this.state.windowHeight}>
+                    <VideoTrigger absolute={true} />
                     <VideoImage image={this.props.videoTeaserImage} />
-                    <VideoTrigger absolute={true}>play video</VideoTrigger>
                 </VideoImageContainer>
             );
         }
