@@ -30,10 +30,13 @@ const MountainCloud = styled.img`
 `;
 
 const VideoImageContainer = styled.figure`
+    display: flex;
+    align-items: center;
     position: relative;
     height: ${props => props.height}px;
     margin-top: -${props => props.height}px;
     @media (min-width: 800px) {
+        height: ${props => props.height - 120}px;
         padding: 60px;
     }
 `;
@@ -69,14 +72,13 @@ const VideoImage = styled.div`
     @media (min-width: 2000px) {
         background-image: url(${props => props.image['large']});
     }
-    postion: relative;
+    position: relative;
     will-change: opacity;
 `;
 
 const VideoText = styled.div`
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
-    left: 10%;
-    top: 20%;
+    left: 15%;
     width: 300;
     z-index: 10;
     color: #ffffff;
@@ -235,7 +237,7 @@ class VideoSlide extends React.PureComponent {
         return (
             <SlideContainer color="transparent">
                 <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
-                    <VideoText absolute={true}>
+                    <VideoText absolute={false}>
                         {this.props.videoHeadline}
                     </VideoText>
                     <VideoTrigger absolute={false} handleClick={this.props.startVideo} />

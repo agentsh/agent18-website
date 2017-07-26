@@ -36,10 +36,8 @@ const Icon = styled.span`
 const Container = styled.div`
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
     right: 5%;
-    bottom: 20%;
     @media (min-width: 800px) {
         right: 25%;
-        bottom: 40%;
     }
     width: 250;
     z-index: 10;
@@ -60,7 +58,7 @@ const Text = styled.span`
     margin-right: 15px;
 `;
 
-export default class Lines extends React.PureComponent {
+export default class VideoTrigger extends React.PureComponent {
     static propTypes = {
         absolute: PropTypes.bool.isRequired,
         handleClick: PropTypes.func.isRequired,
