@@ -67,9 +67,11 @@ const ActiveTicketbox = styled(TicketBox)`
     background:white;
     border:none;
     width: 380px;
+`;
 
-    @media (min-width: 600px) {
-    }
+const ClosedTicketbox = styled(TicketBox)`
+    color: #757575;
+    border:none;
 `;
 
 const Line = styled.div`
@@ -77,11 +79,6 @@ const Line = styled.div`
     height: 0;
     border: 1px solid #bdbdbd;
     margin: 15px 10px;
-`;
-
-const ClosedTicketbox = styled(TicketBox)`
-    color: #757575;
-    border:none;
 `;
 
 const Headline = styled.div`
@@ -104,12 +101,24 @@ const Description = styled.div`
     font-weight: 600;
 `;
 
+const buttonBackground = {
+    past: '#757575',
+    now: '#231F20',
+    addon: '#FFFFFF',
+};
+
+const buttonColor = {
+    past: '#231F20',
+    now: '#FFFFFF',
+    addon: '#231F20',
+};
+
 const ButtonLink = styled.a`
     display: block;
     height: 40px;
     border-radius: 100px;
-    background-color: #231f20;
-    color: white;
+    background-color: ${(props) => buttonBackground[props.type]};
+    color: ${(props) => buttonColor[props.type]};
     text-align: center;
     width: 260px;
     font-family: Teko;
@@ -154,7 +163,7 @@ export default class Tickets extends React.PureComponent {
                         </Price>
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket1Description}} />
-                        <ButtonLink>
+                        <ButtonLink type="past">
                             {this.props.ticket1ButtonText}
                         </ButtonLink>
                     </ClosedTicketbox>
@@ -168,7 +177,7 @@ export default class Tickets extends React.PureComponent {
                         </Price>
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket2Description}} />
-                        <ButtonLink href={bookingUrl} target="_blank">
+                        <ButtonLink type="now" href={bookingUrl} target="_blank">
                             {this.props.ticket2ButtonText}
                         </ButtonLink>
                     </ActiveTicketbox>
@@ -183,7 +192,7 @@ export default class Tickets extends React.PureComponent {
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket3Description}} />
 
-                        <ButtonLink href={bookingUrl} target="_blank">
+                        <ButtonLink type="addon" href={bookingUrl} target="_blank">
                             {this.props.ticket3ButtonText}
                         </ButtonLink>
                     </TicketBox>
