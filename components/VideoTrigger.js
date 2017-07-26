@@ -35,8 +35,12 @@ const Icon = styled.span`
 
 const Container = styled.div`
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
-    right: 25%;
-    top: 40%;
+    right: 5%;
+    bottom: 20%;
+    @media (min-width: 800px) {
+        right: 25%;
+        bottom: 40%;
+    }
     width: 250;
     z-index: 10;
     color: white;
@@ -59,6 +63,7 @@ const Text = styled.span`
 export default class Lines extends React.PureComponent {
     static propTypes = {
         absolute: PropTypes.bool.isRequired,
+        handleClick: PropTypes.func.isRequired,
     };
 
     state = {
@@ -67,7 +72,7 @@ export default class Lines extends React.PureComponent {
 
     render() {
         return (
-            <Container absolute={this.props.absolute}>
+            <Container absolute={this.props.absolute} onClick={this.props.handleClick}>
                 <Text>play video</Text>
                 <IconContainer>
                     <Icon name="play" />

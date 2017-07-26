@@ -36,7 +36,7 @@ injectGlobal`
 `;
 
 const Main = styled.main`
-    min-width: 800px;
+    max-width: 100%;
     height: 100%;
     position: relative;
     z-index: 2;
@@ -47,13 +47,12 @@ const Footer = styled.footer`
     z-index: 2;
 `;
 
-const Container = styled.div`
-    height: 100%;
-`;
+const Container = styled.div`height: 100%;`;
 
 export default class Page extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
+        hideHeader: PropTypes.bool,
     };
 
     render() {
@@ -66,7 +65,7 @@ export default class Page extends React.PureComponent {
                 <Main>
                     {this.props.children}
                 </Main>
-                <Navigation />
+                {!this.props.hideHeader && <Navigation />}
                 <Footer>
                     <FooterHint />
                 </Footer>

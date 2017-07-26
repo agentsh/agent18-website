@@ -16,26 +16,38 @@ const TicketWrapper = styled.div`
 `;
 
 const Title = styled.div`
-    width: 150px;
     font-size: 48px;
     line-height: 54px;
-    float: right;
     color: white;
     margin-bottom: 50px;
     margin-top: 80px;
     text-transform: uppercase;
     font-family: Teko;
+    margin-left: 20px;
+    margin-right: 20px;
+    @media (min-width: 800px) {
+        width: 150px;
+        float: right;
+        margin-right: 0;
+    }
 `;
 
 const TicketBox = styled.div`
-    width: 338px;
     height: 500px;
     text-align: center;
-    float: left;
+
     padding: 30px 20px;
     box-sizing: border-box;
     background: #282828;
     color: white;
+    width: 338px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    display: block;
+    @media (min-width: 1000px) {
+        float: left;
+    }
 
     hr {
         display: block;
@@ -54,7 +66,10 @@ const ActiveTicketbox = styled(TicketBox)`
     color:black;
     background:white;
     border:none;
-    width:380px;
+    width: 380px;
+
+    @media (min-width: 600px) {
+    }
 `;
 
 const Line = styled.div`

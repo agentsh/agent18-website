@@ -9,7 +9,7 @@ import SlideTitle from '../components/index/SlideTitle';
 import Head from '../components/Head';
 import Tickets from '../components/Tickets';
 import VideoTrigger from '../components/VideoTrigger';
-
+import VideoPlayer from '../components/VideoPlayer';
 const maxProgress = 100;
 
 const SlideContainerWrapper = styled.div`height: ${props => props.height}px;`;
@@ -20,7 +20,6 @@ const SlideContainer = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-
     background-color: ${props => ('color' in props ? props.color : '#fff')};
 `;
 
@@ -31,16 +30,21 @@ const MountainCloud = styled.img`
 `;
 
 const VideoImageContainer = styled.figure`
-    height: ${props => props.height - 120}px;
-    margin-top: -${props => props.height}px;
-    padding: 60px;
     position: relative;
+    height: ${props => props.height}px;
+    margin-top: -${props => props.height}px;
+    @media (min-width: 800px) {
+        padding: 60px;
+    }
 `;
 
 const VideoSlideImageContainer = styled.figure`
-    height: calc(100% - ${props => props.margin * 2}px);
-    width: calc(100% - ${props => props.margin * 2}px);
-    margin: ${props => props.margin}px;
+    height: 100%;
+    @media (min-width: 800px) {
+        height: calc(100% - ${props => props.margin * 2}px);
+        width: calc(100% - ${props => props.margin * 2}px);
+        margin: ${props => props.margin}px;
+    }
 
     background-color: #fff;
 
@@ -54,17 +58,39 @@ const VideoImage = styled.div`
     height: 100%;
     ${props => (props.opacity ? 'opacity: ' + props.opacity : '')};
 
-    background-image: url(${props => props.image['medium']});
-    background-position: center;
+    background-image: url(${props => props.image['small']});
+    background-position: right;
+    background-size: cover;
 
-    @media (max-width: 1000px) {
-        background-image: url(${props => props.image['small']});
-    }
-    @media (max-width: 2000px) {
+    @media (min-width: 1000px) {
         background-image: url(${props => props.image['medium']});
+        background-position: center;
+    }
+    @media (min-width: 2000px) {
+        background-image: url(${props => props.image['large']});
     }
     postion: relative;
     will-change: opacity;
+`;
+
+const VideoText = styled.div`
+    position: ${props => (props.absolute ? 'absolute' : 'fixed')};
+    left: 10%;
+    top: 20%;
+    width: 300;
+    z-index: 10;
+    color: #ffffff;
+    font-family: Teko;
+
+    text-transform: uppercase;
+    font-size: 55px;
+    line-height: 55px;
+    width: 80%;
+    @media (min-width: 800px) {
+        width: 380px;
+        font-size: 64px;
+        line-height: 64px;
+    }
 `;
 
 class MountainCloudContainer extends React.Component {
@@ -201,13 +227,18 @@ class VideoSlide extends React.PureComponent {
     static propTypes = {
         animationProgress: PropTypes.number.isRequired,
         image: PropTypes.object.isRequired,
+        videoHeadline: PropTypes.string.isRequired,
+        startVideo: PropTypes.func.isRequired,
     };
 
     render() {
         return (
             <SlideContainer color="transparent">
                 <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
-                    <VideoTrigger absolute={false} />
+                    <VideoText absolute={true}>
+                        {this.props.videoHeadline}
+                    </VideoText>
+                    <VideoTrigger absolute={false} handleClick={this.props.startVideo} />
                     <VideoImage image={this.props.image} opacity={this.props.animationProgress / 50} />
                 </VideoSlideImageContainer>
             </SlideContainer>
@@ -219,12 +250,15 @@ export default class Index extends React.PureComponent {
     state = {
         windowHeight: 0,
         scrollY: 0,
+        showVideoPlayer: false,
     };
 
     static propTypes = {
         animationBackground1: PropTypes.object.isRequired,
         animationBackground2: PropTypes.object.isRequired,
         videoTeaserImage: PropTypes.object.isRequired,
+        videoYoutubeId: PropTypes.string.isRequired,
+        videoHeadline: PropTypes.string.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
@@ -278,22 +312,26 @@ export default class Index extends React.PureComponent {
                     animationProgress={
                         (this.state.scrollY - mountainSlideHeight - citySlideHeight) / this.videoSlideScrollDividend
                     }
-                    image={this.props.videoTeaserImage} />
+                    image={this.props.videoTeaserImage}
+                    videoHeadline={this.props.videoHeadline}
+                    startVideo={this.toggleVideoPlayer} />
             );
         } else {
             videoImageContainer = (
                 <VideoImageContainer height={this.state.windowHeight}>
-                    <VideoTrigger absolute={true} />
+                    <VideoTrigger absolute={true} handleClick={this.toggleVideoPlayer} />
+                    <VideoText absolute={true}>
+                        {this.props.videoHeadline}
+                    </VideoText>
                     <VideoImage image={this.props.videoTeaserImage} />
                 </VideoImageContainer>
             );
         }
 
-        // TODO Use correct videoTeaserImage
         return (
             <div>
                 <Head />
-                <Page>
+                <Page hideHeader={this.state.showVideoPlayer}>
                     <SlideContainerWrapper height={mountainSlideHeight}>
                         {mountainSlide}#
                     </SlideContainerWrapper>
@@ -305,6 +343,10 @@ export default class Index extends React.PureComponent {
                     </SlideContainerWrapper>
                     {videoImageContainer}
                     <Tickets {...this.props} />
+                    <VideoPlayer
+                        visible={this.state.showVideoPlayer}
+                        youtubeId={this.props.videoYoutubeId}
+                        handleClose={this.toggleVideoPlayer} />
                 </Page>
             </div>
         );
@@ -316,5 +358,8 @@ export default class Index extends React.PureComponent {
 
     updateScrollY = () => {
         this.setState({scrollY: window.scrollY});
+    };
+    toggleVideoPlayer = () => {
+        this.setState({showVideoPlayer: !this.state.showVideoPlayer});
     };
 }
