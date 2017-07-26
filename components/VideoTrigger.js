@@ -34,7 +34,12 @@ const Icon = styled.span`
 `;
 
 const Container = styled.div`
+    display: flex;
+    align-items: center;
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
+    opacity: ${(props) => 'opacity' in props ? props.opacity : 1};
+    top: 0;
+    bottom: 0;
     right: 5%;
     @media (min-width: 800px) {
         right: 25%;
@@ -62,6 +67,7 @@ export default class VideoTrigger extends React.PureComponent {
     static propTypes = {
         absolute: PropTypes.bool.isRequired,
         handleClick: PropTypes.func.isRequired,
+        opacity: PropTypes.number,
     };
 
     state = {
@@ -70,7 +76,7 @@ export default class VideoTrigger extends React.PureComponent {
 
     render() {
         return (
-            <Container absolute={this.props.absolute} onClick={this.props.handleClick}>
+            <Container absolute={this.props.absolute} onClick={this.props.handleClick} opacity={this.props.opacity}>
                 <Text>play video</Text>
                 <IconContainer>
                     <Icon name="play" />

@@ -59,6 +59,7 @@ const VideoSlideImageContainer = styled.figure`
 
 const VideoImage = styled.div`
     height: 100%;
+    width: 100%;
     ${props => (props.opacity ? 'opacity: ' + props.opacity : '')};
 
     background-image: url(${props => props.image['small']});
@@ -77,9 +78,13 @@ const VideoImage = styled.div`
 `;
 
 const VideoText = styled.div`
+    display: flex;
+    align-items: center;
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
+    top: 0;
+    bottom: 0;
     left: 15%;
-    width: 300;
+    width: 300px;
     z-index: 10;
     color: #ffffff;
     font-family: Teko;
@@ -87,7 +92,6 @@ const VideoText = styled.div`
     text-transform: uppercase;
     font-size: 55px;
     line-height: 55px;
-    width: 80%;
     @media (min-width: 800px) {
         width: 380px;
         font-size: 64px;
@@ -234,14 +238,15 @@ class VideoSlide extends React.PureComponent {
     };
 
     render() {
+        const opacity = (this.props.animationProgress  + 1) / 50;
         return (
             <SlideContainer color="transparent">
                 <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
                     <VideoText absolute={false}>
                         {this.props.videoHeadline}
                     </VideoText>
-                    <VideoTrigger absolute={false} handleClick={this.props.startVideo} />
-                    <VideoImage image={this.props.image} opacity={this.props.animationProgress / 50} />
+                    <VideoTrigger absolute={false} handleClick={this.props.startVideo} opacity={opacity} />
+                    <VideoImage image={this.props.image} opacity={opacity} />
                 </VideoSlideImageContainer>
             </SlideContainer>
         );
