@@ -261,6 +261,7 @@ export default class Index extends React.PureComponent {
         videoTeaserImage: PropTypes.object.isRequired,
         videoYoutubeId: PropTypes.string.isRequired,
         videoHeadline: PropTypes.string.isRequired,
+        seo: PropTypes.object.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
@@ -332,7 +333,7 @@ export default class Index extends React.PureComponent {
 
         return (
             <div>
-                <Head />
+                <Head {...this.props.seo} />
                 <Page hideHeader={this.state.showVideoPlayer}>
                     <SlideContainerWrapper height={mountainSlideHeight}>
                         {mountainSlide}#

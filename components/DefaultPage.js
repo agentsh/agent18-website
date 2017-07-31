@@ -31,6 +31,8 @@ const HeaderImage = styled.header`
         @media (min-width: 1000px) {
             margin-left: 200px;
         }
+        text-shadow: 2px 2px #000;
+        text-transform: uppercase;
     }
 `;
 
@@ -86,6 +88,7 @@ export default class DefaultPage extends React.PureComponent {
         title: PropTypes.string.isRequired,
         article: PropTypes.string.isRequired,
         title2: PropTypes.string.isRequired,
+        seo: PropTypes.object.isRequired,
     };
 
     render() {

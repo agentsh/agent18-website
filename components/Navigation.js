@@ -31,6 +31,7 @@ const Logo = styled.div`
     background-size: ${logoSize}px ${logoSize}px;
     border-radius: ${logoSize / 2}px;
     box-shadow: 0 2px 30px 0 rgba(0, 0, 0, .2);
+    cursor:pointer;
 `;
 
 const Toggler = styled(Button)`
@@ -106,18 +107,22 @@ export default class Navigation extends React.PureComponent {
             <List>
                 <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
-                    <li><Link href="/disclaimer"><a>Disclaimer</a></Link></li>
-                    <li><Link href="/coc"><a>Code of Conduct</a></Link></li>
-                    <li><a href="https://blog.agent.sh">Blog</a></li>
-                    <li><a href="http://www.2017.agent.sh">AgentConf 2017</a></li>
+                    <li onClick={this.handleClose}><Link href="/disclaimer"><a>Disclaimer</a></Link></li>
+                    <li onClick={this.handleClose}><Link href="/coc"><a>Code of Conduct</a></Link></li>
+                    <li onClick={this.handleClose}><a href="https://blog.agent.sh">Blog</a></li>
+                    <li onClick={this.handleClose}><a href="http://www.2017.agent.sh">AgentConf 2017</a></li>
                 </ul>
             </List>
         );
     }
 
     handleToggle = () => {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
             opened: !prevState.opened,
         }));
+    };
+    handleClose = () => {
+        console.error('handle close');
+        this.setState({opened: false});
     };
 }

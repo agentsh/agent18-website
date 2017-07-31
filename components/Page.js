@@ -53,12 +53,13 @@ export default class Page extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
         hideHeader: PropTypes.bool,
+        seo: PropTypes.object.isRequired,
     };
 
     render() {
         return (
             <Container>
-                <Head>
+                <Head {...this.props.seo}>
                     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Teko" rel="stylesheet" />
                 </Head>
                 <Lines color="rgba(0, 0, 0, 0.15)" />
