@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Page from '../components/Page.js';
+import Footer from '../components/Footer.js';
 
 const HeaderImage = styled.header`
     position: relative;
@@ -103,6 +104,7 @@ export default class DefaultPage extends React.PureComponent {
                     </HeaderSection>
                     <MainSection dangerouslySetInnerHTML={{__html: this.props.article}} />
                 </Main>
+                <Footer />
             </Page>
         );
     }
