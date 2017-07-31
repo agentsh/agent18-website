@@ -16,10 +16,11 @@ const FooterContainer = styled.footer`
     font-weight: 300;
     letter-spacing: 1px;
     line-height: 22px;
+    box-sizing: border-box;
     
 `;
 
-const Row = styled.footer`
+const Row = styled.div`
     height:100px;
     width: 100%;
     ${props => (props.center ? 'justify-content: center' : '')};
@@ -27,6 +28,7 @@ const Row = styled.footer`
     padding: 0px 30px;
     display:flex;
     align-items: center;
+    box-sizing: border-box;
 
 `;
 
