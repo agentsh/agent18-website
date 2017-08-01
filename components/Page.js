@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, {injectGlobal} from 'styled-components';
-import Head from 'next/head';
+import Head from './Head';
 import Navigation from './Navigation';
 import Lines from './Lines';
 import FooterHint from './FooterHint';
@@ -53,15 +53,13 @@ export default class Page extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
         hideHeader: PropTypes.bool,
-        seo: PropTypes.object.isRequired,
+        seo: PropTypes.object,
     };
 
     render() {
         return (
             <Container>
-                <Head {...this.props.seo}>
-                    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Teko" rel="stylesheet" />
-                </Head>
+                <Head {...this.props.seo} />
                 <Lines color="rgba(0, 0, 0, 0.15)" />
                 <Main>
                     {this.props.children}

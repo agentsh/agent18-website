@@ -9,9 +9,11 @@ export default class Header extends React.PureComponent {
         image: PropTypes.string,
         keywords: PropTypes.string,
         canonical: PropTypes.string,
-        robots: PropTypes.string.isRequired,
+        robots: PropTypes.string,
     };
-
+    static defaultProps = {
+        title: 'Agent Conf',
+    };
     render() {
         return (
             <Head>
@@ -33,14 +35,14 @@ export default class Header extends React.PureComponent {
                 <meta property="copyright" content="agent.sh" />
                 <meta property="audience" content="all" />
                 <meta property="distribution" content="global" />
-                <meta property="image" content="" />
+                <meta property="image" content={this.props.image} />
                 <meta property="format-detection" content="telephone=yes" />
 
                 <meta property="og:title" content={this.props.title} />
                 <meta property="og:description" content={this.props.description} />
                 <meta property="og:url" content="http://www.agent.sh" />
                 <meta property="og:locale" content="en_US" />
-                <meta property="og:image" content="http://www.agent.sh/static/img/agent_sh_og.jpg" />
+                <meta property="og:image" content={this.props.image} />
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Agent.sh" />
 
@@ -52,7 +54,7 @@ export default class Header extends React.PureComponent {
                 <meta property="twitter:url" content="http://www.agent.sh" />
                 <meta property="twitter:title" content={this.props.title} />
                 <meta property="twitter:description" content={this.props.description} />
-                <meta property="twitter:image" content="http://www.agent.sh/static/img/agent_sh_og.jpg" />
+                <meta property="twitter:image" content={this.props.image} />
                 <meta property="twitter:image:" content="agent.sh Javascript conference" />
 
                 <link rel="apple-touch-icon" sizes="57x57" href="static/favicon/apple-icon-57x57.png" />
@@ -72,6 +74,7 @@ export default class Header extends React.PureComponent {
                 <meta name="msapplication-TileImage" content="static/favicon/ms-icon-144x144.png" />
 
                 <script src="static/js/tracking.header.js" />
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans|Teko" rel="stylesheet" />
             </Head>
         );
     }
