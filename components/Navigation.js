@@ -122,7 +122,6 @@ export default class Navigation extends React.PureComponent {
         }));
     };
     handleClose = () => {
-        console.error('handle close');
         this.setState({opened: false});
     };
 }

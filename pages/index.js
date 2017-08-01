@@ -135,30 +135,33 @@ class MountainSlide extends React.PureComponent {
         let slide = null;
 
         if (this.props.animationProgress > 3 * this.progressStep) {
-      // empty slide for transition of background images
+            // empty slide for transition of background images
         } else if (this.props.animationProgress > 2 * this.progressStep) {
             slide = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Learn, talk and ski</h1>
                 </SlideTitle>
-      );
+            );
         } else if (this.props.animationProgress > this.progressStep) {
             slide = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h2>25 - 28 January 2018</h2>
                     <h1>
-            Experts and industry leaders will come together to showcase their work in ReactJS, React Native
-            and more
-          </h1>
+                        Experts and industry leaders will come together to showcase their work in ReactJS, React Native
+                        and more
+                    </h1>
                 </SlideTitle>
-      );
+            );
         } else {
             slide = (
-                <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep} fadeIn={false}>
+                <SlideTitle
+                    animationProgress={this.props.animationProgress}
+                    progressStep={this.progressStep}
+                    fadeIn={false}>
                     <h2>The international event for coding inspiration</h2>
                     <h1>AgentConf 2018</h1>
                 </SlideTitle>
-      );
+            );
         }
 
         return (
@@ -174,7 +177,10 @@ class MountainSlide extends React.PureComponent {
                     image="static/cloud1.png"
                     top={-366}
                     left={-65} />
-                <MountainCloudContainer animationProgress={this.props.animationProgress} image="static/cloud2.png" top={299} />
+                <MountainCloudContainer
+                    animationProgress={this.props.animationProgress}
+                    image="static/cloud2.png"
+                    top={299} />
                 <MountainCloudContainer
                     animationProgress={this.props.animationProgress}
                     image="static/cloud3.png"
@@ -199,15 +205,15 @@ class CitySlide extends React.PureComponent {
         let slideTitleContainer = null;
 
         if (this.props.animationProgress > 2 * this.progressStep) {
-      // empty slide
+            // empty slide
         } else if (this.props.animationProgress > this.progressStep) {
             slideTitleContainer = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h1>Dornbirn, Austria</h1>
                 </SlideTitle>
-      );
+            );
         } else {
-      // empty slide
+            // empty slide
         }
 
         return (
@@ -302,23 +308,23 @@ export default class Index extends React.PureComponent {
                 <MountainSlide
                     animationProgress={this.state.scrollY / this.mountainSlideScrollDividend}
                     image={this.props.animationBackground1} />
-      );
+            );
         } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight) {
             citySlide = (
                 <CitySlide
                     animationProgress={(this.state.scrollY - mountainSlideHeight) / this.citySlideScrollDividend}
                     image={this.props.animationBackground2} />
-      );
+            );
         } else if (this.state.scrollY < mountainSlideHeight + citySlideHeight + videoSlideHeight) {
             videoSlide = (
                 <VideoSlide
                     animationProgress={
-            (this.state.scrollY - mountainSlideHeight - citySlideHeight) / this.videoSlideScrollDividend
-          }
+                        (this.state.scrollY - mountainSlideHeight - citySlideHeight) / this.videoSlideScrollDividend
+                    }
                     image={this.props.videoTeaserImage}
                     videoHeadline={this.props.videoHeadline}
                     startVideo={this.toggleVideoPlayer} />
-      );
+            );
         } else {
             videoImageContainer = (
                 <VideoImageContainer height={this.state.windowHeight}>
@@ -328,7 +334,7 @@ export default class Index extends React.PureComponent {
                     </VideoText>
                     <VideoImage image={this.props.videoTeaserImage} />
                 </VideoImageContainer>
-      );
+            );
         }
 
         return (
@@ -337,7 +343,7 @@ export default class Index extends React.PureComponent {
                 <Page hideHeader={this.state.showVideoPlayer}>
                     <SlideContainerWrapper height={mountainSlideHeight}>
                         {mountainSlide}#
-          </SlideContainerWrapper>
+                    </SlideContainerWrapper>
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}
                     </SlideContainerWrapper>
