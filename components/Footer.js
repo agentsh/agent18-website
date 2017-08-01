@@ -9,7 +9,7 @@ const FooterContainer = styled.footer`
     width:1300px;
     max-width:100%;
     align-items: center;
-    margin: 0 auto 100px auto;
+    margin: 0 auto 300px auto;
     color: white;
     font-family: Teko;
     font-size: 22px;
@@ -17,6 +17,7 @@ const FooterContainer = styled.footer`
     letter-spacing: 1px;
     line-height: 22px;
     box-sizing: border-box;
+    padding-top: 150px;
     
 `;
 

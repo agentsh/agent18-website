@@ -93,7 +93,7 @@ export default class DefaultPage extends React.PureComponent {
 
     render() {
         return (
-            <Page>
+            <Page {...this.props}>
                 <HeaderImage image={this.props.headerImage}>
                     <h1>
                         {this.props.title}
