@@ -4,10 +4,20 @@ import PropTypes from 'prop-types';
 import Page from '../components/Page.js';
 import Footer from '../components/Footer.js';
 
-const HeaderImage = styled.header`
+const HeaderImageContainer = styled.div`
+    height: 100%;
+
+    @media (min-width: 800px) {
+        height: calc(100% - 120px);
+        width: calc(100% - 120px);
+        margin: 60px;
+    }
+`;
+
+const HeaderImage = styled.div`
     position: relative;
     z-index: 1;
-    height: calc(100% - 115px);
+    height: 100%;
     max-width: 100%;
     background-image: url(${props => props.image['small']});
     background-position: center;
@@ -22,15 +32,12 @@ const HeaderImage = styled.header`
         margin: 60px 60px 0 60px;
     }
     h1 {
-        margin-left: 20px;
+        margin-left: 15%;
         width: 352px;
         color: #ffffff;
         font-family: Teko;
         font-size: 64px;
         line-height: 64px;
-        @media (min-width: 1000px) {
-            margin-left: 200px;
-        }
         text-transform: uppercase;
     }
 `;
@@ -93,11 +100,13 @@ export default class DefaultPage extends React.PureComponent {
     render() {
         return (
             <Page {...this.props}>
-                <HeaderImage image={this.props.headerImage}>
-                    <h1>
-                        {this.props.title}
-                    </h1>
-                </HeaderImage>
+                <HeaderImageContainer>
+                    <HeaderImage image={this.props.headerImage}>
+                        <h1>
+                            {this.props.title}
+                        </h1>
+                    </HeaderImage>
+                </HeaderImageContainer>
                 <Main>
                     <HeaderSection>
                         <h2>

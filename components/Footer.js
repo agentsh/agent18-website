@@ -4,51 +4,33 @@ import Newsletter from './Newsletter';
 import Link from 'next/link';
 
 const FooterContainer = styled.footer`
-    height: 200px;
-    width:1300px;
-    max-width:100%;
-    align-items: center;
-    margin: 0 auto 300px auto;
+    margin: 0 70px 55px 70px;
+    padding: 45px 60px;
     color: white;
+    background-color: black;
     font-family: Teko;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    line-height: 22px;
-    box-sizing: border-box;
-    padding-top: 150px;
 `;
 
-const Row = styled.div`
-    height:100px;
-    width: 100%;
-    ${props => (props.center ? 'justify-content: center' : '')};
-    ${props => (props.black ? 'background: black' : '')};
-    padding: 0px 30px;
-    display:flex;
-    align-items: center;
-    box-sizing: border-box;
-`;
-
-const FooterLink = styled.div`
-    display:inline-block;
+const FooterLink = styled.a`
+    display: inline-block;
     padding-right: 30px;
-    a,a:hover{
-        color:white;
-        text-transform:uppercase;
-    }
+    color: white;
+    font-size: 22px;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
 `;
 
 export default class Footer extends React.PureComponent {
     render() {
         return (
             <FooterContainer>
-                <Row center={true}><Newsletter /></Row>
-                <Row black={true}>
-                    <FooterLink><Link href="/coc"><a>Code of Conduct</a></Link></FooterLink>
-                    <FooterLink><Link href="/disclaimer"><a>Disclaimer</a></Link></FooterLink>
-                    <FooterLink><a href="mailto:team@agent.sh">contact</a></FooterLink>
-                </Row>
+                <Newsletter />
+                <Link href="/coc"><FooterLink>Code of Conduct</FooterLink></Link>
+                <Link href="/disclaimer"><FooterLink>Disclaimer</FooterLink></Link>
+                <FooterLink href="mailto:team@agent.sh">contact</FooterLink>
             </FooterContainer>
         );
     }
