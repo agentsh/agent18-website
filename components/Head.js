@@ -11,9 +11,11 @@ export default class Header extends React.PureComponent {
         canonical: PropTypes.string,
         robots: PropTypes.string,
     };
+
     static defaultProps = {
         title: 'Agent Conf',
     };
+
     render() {
         return (
             <Head>

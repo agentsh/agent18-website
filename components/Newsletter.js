@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
+
 const Form = styled.form`
     height: 100px;
     padding:20px 10px 10px 10px;
 `;
+
 const Input = styled.input`
     padding:0 10px;
     height: 44px;
@@ -15,6 +16,7 @@ const Input = styled.input`
     border: 0;
     display:inline-block;
 `;
+
 const Submit = styled.input`
     padding:0 10px;
     font-size: 22px;
@@ -29,14 +31,15 @@ const Submit = styled.input`
 `;
 
 export default class Newsletter extends React.PureComponent {
-    static propTypes = {};
     constructor(props) {
         super(props);
         this.state = {email: null};
     }
+
     handleEmailChanged = event => {
         this.setState({email: event.target.source});
     };
+
     render() {
         return (
             <div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 import Newsletter from './Newsletter';
 import Link from 'next/link';
 
@@ -18,7 +17,6 @@ const FooterContainer = styled.footer`
     line-height: 22px;
     box-sizing: border-box;
     padding-top: 150px;
-    
 `;
 
 const Row = styled.div`
@@ -30,7 +28,6 @@ const Row = styled.div`
     display:flex;
     align-items: center;
     box-sizing: border-box;
-
 `;
 
 const FooterLink = styled.div`
@@ -43,8 +40,6 @@ const FooterLink = styled.div`
 `;
 
 export default class Footer extends React.PureComponent {
-    static propTypes = {};
-
     render() {
         return (
             <FooterContainer>

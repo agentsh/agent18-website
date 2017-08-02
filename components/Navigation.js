@@ -121,6 +121,7 @@ export default class Navigation extends React.PureComponent {
             opened: !prevState.opened,
         }));
     };
+
     handleClose = () => {
         this.setState({opened: false});
     };

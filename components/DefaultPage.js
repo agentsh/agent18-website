@@ -31,7 +31,6 @@ const HeaderImage = styled.header`
         @media (min-width: 1000px) {
             margin-left: 200px;
         }
-        text-shadow: 2px 2px #000;
         text-transform: uppercase;
     }
 `;

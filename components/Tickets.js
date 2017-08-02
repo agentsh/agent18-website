@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const bookingUrl = 'https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218?ref=elink';
 const TicketWrapper = styled.div`
-    position:relative; 
+    position: relative;
     z-index: 2;
     width: 1060px;
     max-width: 100%;
@@ -87,11 +87,13 @@ const Headline = styled.div`
     text-transform: uppercase;
     font-family: Teko;
 `;
+
 const Price = styled.div`
     font-size: 24px;
     line-height: 30px;
     font-weight: 600;
 `;
+
 const Description = styled.div`
     padding-top: 50px;
     padding-bottom: 70px;
@@ -160,7 +162,7 @@ export default class Tickets extends React.PureComponent {
                         <Line />
                         <Price>
                             {this.props.ticket1Price} €
-            </Price>
+                        </Price>
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket1Description}} />
                         <ButtonLink type="past">
@@ -174,7 +176,7 @@ export default class Tickets extends React.PureComponent {
                         <Line />
                         <Price>
                             {this.props.ticket2Price} €
-            </Price>
+                        </Price>
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket2Description}} />
                         <ButtonLink type="now" href={bookingUrl} target="_blank">
@@ -188,7 +190,7 @@ export default class Tickets extends React.PureComponent {
                         <Line />
                         <Price>
                             {this.props.ticket3Price} €
-            </Price>
+                        </Price>
                         <Line />
                         <Description
                             dangerouslySetInnerHTML={{
