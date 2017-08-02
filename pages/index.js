@@ -58,21 +58,23 @@ const VideoSlideImageContainer = styled.figure`
     position: relative;
 `;
 
+const videoImageGradient = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))';
+
 const VideoImage = styled.div`
     height: 100%;
     width: 100%;
     ${props => (props.opacity ? 'opacity: ' + props.opacity : '')};
 
-    background-image: url(${props => props.image['small']});
+    background-image: ${videoImageGradient}, url(${props => props.image['small']});
     background-position: right;
     background-size: cover;
 
     @media (min-width: 1000px) {
-        background-image: url(${props => props.image['medium']});
+        background-image: ${videoImageGradient}, url(${props => props.image['medium']});
         background-position: center;
     }
     @media (min-width: 2000px) {
-        background-image: url(${props => props.image['large']});
+        background-image: ${videoImageGradient}, url(${props => props.image['large']});
     }
     position: relative;
     will-change: opacity;

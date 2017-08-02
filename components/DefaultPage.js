@@ -13,22 +13,23 @@ const HeaderImageContainer = styled.div`
         margin: 60px;
     }
 `;
+const headerImageGradient = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))';
 
 const HeaderImage = styled.div`
     position: relative;
     z-index: 1;
     height: 100%;
     max-width: 100%;
-    background-image: url(${props => props.image['small']});
+    background-image: ${headerImageGradient}, url(${props => props.image['small']});
     background-position: center;
     background-size: cover;
     display: flex;
     align-items: center;
     @media (min-width: 1000px) {
-        background-image: url(${props => props.image['medium']});
+        background-image: ${headerImageGradient}, url(${props => props.image['medium']});
     }
     @media (min-width: 2000px) {
-        background-image: url(${props => props.image['large']});
+        background-image: ${headerImageGradient}, url(${props => props.image['large']});
         margin: 60px 60px 0 60px;
     }
     h1 {
