@@ -36,7 +36,7 @@ injectGlobal`
 `;
 
 const Main = styled.main`
-    max-width: 100%;
+    min-width: 800px;
     height: 100%;
     position: relative;
     z-index: 2;
@@ -47,26 +47,26 @@ const Footer = styled.footer`
     z-index: 2;
 `;
 
-const Container = styled.div`height: 100%;`;
+const Container = styled.div`
+    height: 100%;
+`;
 
 export default class Page extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
-        hideHeader: PropTypes.bool,
-        seo: PropTypes.object.isRequired,
     };
 
     render() {
         return (
             <Container>
-                <Head {...this.props.seo}>
+                <Head>
                     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Teko" rel="stylesheet" />
                 </Head>
                 <Lines color="rgba(0, 0, 0, 0.15)" />
                 <Main>
                     {this.props.children}
                 </Main>
-                {!this.props.hideHeader && <Navigation />}
+                <Navigation />
                 <Footer>
                     <FooterHint />
                 </Footer>
