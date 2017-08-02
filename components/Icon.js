@@ -6,6 +6,9 @@ const icons = {
     ticket: '\\e910',
     play: '\\e90c',
     forward: '\\e901',
+    fb: '\\e913',
+    twitter: '\\e914',
+    instagram: '\\e912',
 };
 
 const Icon = styled.span`

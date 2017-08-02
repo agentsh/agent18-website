@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const size = 40;
+const defaultSize = 40;
 
 const Button = styled.div`
-    width: ${size}px;
-    height: ${size}px;
+    width: ${props => props.size || defaultSize}px;
+    height: ${props => props.size || defaultSize}px;
 
     background: white;
-    border-radius: ${size / 2}px;
+    border-radius: ${props => (props.size || defaultSize) / 2}px;
 
     cursor: pointer;
 
@@ -17,7 +17,7 @@ const Button = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
 
-        font-size: ${size / 3}px;
+        font-size: ${props => props.fontSize ? props.fontSize : (props.size || defaultSize) / 3}px;
         color: #000;
     }
 `;
