@@ -35,14 +35,14 @@ export default class Header extends React.PureComponent {
                 <meta property="copyright" content="agent.sh" />
                 <meta property="audience" content="all" />
                 <meta property="distribution" content="global" />
-                <meta property="image" content={this.props.image} />
+                {this.props.image && <meta property="image" content={this.props.image} />}
                 <meta property="format-detection" content="telephone=yes" />
 
                 <meta property="og:title" content={this.props.title} />
                 <meta property="og:description" content={this.props.description} />
                 <meta property="og:url" content="http://www.agent.sh" />
                 <meta property="og:locale" content="en_US" />
-                <meta property="og:image" content={this.props.image} />
+                {this.props.image &&<meta property="og:image" content={this.props.image} />}
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Agent.sh" />
 
@@ -54,8 +54,7 @@ export default class Header extends React.PureComponent {
                 <meta property="twitter:url" content="http://www.agent.sh" />
                 <meta property="twitter:title" content={this.props.title} />
                 <meta property="twitter:description" content={this.props.description} />
-                <meta property="twitter:image" content={this.props.image} />
-                <meta property="twitter:image:" content="agent.sh Javascript conference" />
+                {this.props.image && <meta property="twitter:image" content={this.props.image} />}
 
                 <link rel="apple-touch-icon" sizes="57x57" href="static/favicon/apple-icon-57x57.png" />
                 <link rel="apple-touch-icon" sizes="60x60" href="static/favicon/apple-icon-60x60.png" />
