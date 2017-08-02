@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledSlideTitle = styled.header`
-    color: #231F20;
+    color: #231f20;
     font-family: Teko;
     text-align: center;
     text-transform: uppercase;
@@ -15,9 +15,17 @@ const StyledSlideTitle = styled.header`
     transform: translate(-50%, -50%);
 
     > h1 {
-        font-size: 64px;
+        font-size: 30px;
+        line-height: 30px;
+        @media (min-width: 600px) {
+            font-size: 48px;
+            line-height: 48px;
+        }
+        @media (min-width: 1000px) {
+            font-size: 64px;
+            line-height: 64px;
+        }
         font-weight: 100;
-        line-height: 64px;
     }
 
     > h2 {
@@ -41,9 +49,10 @@ export default class SlideTitle extends React.Component {
 
     render() {
         return (
-            <StyledSlideTitle style={{
-                opacity: this.getOpacity(this.props.animationProgress, this.props.progressStep, this.props.fadeIn),
-            }}>
+            <StyledSlideTitle
+                style={{
+                    opacity: this.getOpacity(this.props.animationProgress, this.props.progressStep, this.props.fadeIn),
+                }}>
                 {this.props.children}
             </StyledSlideTitle>
         );
