@@ -7,6 +7,7 @@ import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
 import Head from '../components/Head';
+import Footer from '../components/Footer';
 import Tickets from '../components/Tickets';
 import VideoTrigger from '../components/VideoTrigger';
 import VideoPlayer from '../components/VideoPlayer';
@@ -57,21 +58,23 @@ const VideoSlideImageContainer = styled.figure`
     position: relative;
 `;
 
+const videoImageGradient = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))';
+
 const VideoImage = styled.div`
     height: 100%;
     width: 100%;
     ${props => (props.opacity ? 'opacity: ' + props.opacity : '')};
 
-    background-image: url(${props => props.image['small']});
+    background-image: ${videoImageGradient}, url(${props => props.image['small']});
     background-position: right;
     background-size: cover;
 
     @media (min-width: 1000px) {
-        background-image: url(${props => props.image['medium']});
+        background-image: ${videoImageGradient}, url(${props => props.image['medium']});
         background-position: center;
     }
     @media (min-width: 2000px) {
-        background-image: url(${props => props.image['large']});
+        background-image: ${videoImageGradient}, url(${props => props.image['large']});
     }
     position: relative;
     will-change: opacity;
@@ -238,7 +241,7 @@ class VideoSlide extends React.PureComponent {
     };
 
     render() {
-        const opacity = (this.props.animationProgress  + 1) / 50;
+        const opacity = (this.props.animationProgress + 1) / 50;
         return (
             <SlideContainer color="transparent">
                 <VideoSlideImageContainer margin={60 * (this.props.animationProgress - 50) / 50}>
@@ -266,6 +269,7 @@ export default class Index extends React.PureComponent {
         videoTeaserImage: PropTypes.object.isRequired,
         videoYoutubeId: PropTypes.string.isRequired,
         videoHeadline: PropTypes.string.isRequired,
+        seo: PropTypes.object.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
@@ -337,7 +341,7 @@ export default class Index extends React.PureComponent {
 
         return (
             <div>
-                <Head />
+                <Head {...this.props.seo} />
                 <Page hideHeader={this.state.showVideoPlayer}>
                     <SlideContainerWrapper height={mountainSlideHeight}>
                         {mountainSlide}#
@@ -350,6 +354,7 @@ export default class Index extends React.PureComponent {
                     </SlideContainerWrapper>
                     {videoImageContainer}
                     <Tickets {...this.props} />
+                    <Footer />
                     <VideoPlayer
                         visible={this.state.showVideoPlayer}
                         youtubeId={this.props.videoYoutubeId}

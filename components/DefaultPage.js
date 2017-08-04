@@ -2,34 +2,44 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Page from '../components/Page.js';
+import Footer from '../components/Footer.js';
 
-const HeaderImage = styled.header`
+const HeaderImageContainer = styled.div`
+    height: 100%;
+
+    @media (min-width: 800px) {
+        height: calc(100% - 120px);
+        width: calc(100% - 120px);
+        margin: 60px;
+    }
+`;
+const headerImageGradient = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))';
+
+const HeaderImage = styled.div`
     position: relative;
     z-index: 1;
-    height: calc(100% - 115px);
+    height: 100%;
     max-width: 100%;
-    background-image: url(${props => props.image['small']});
+    background-image: ${headerImageGradient}, url(${props => props.image['small']});
     background-position: center;
     background-size: cover;
     display: flex;
     align-items: center;
     @media (min-width: 1000px) {
-        background-image: url(${props => props.image['medium']});
+        background-image: ${headerImageGradient}, url(${props => props.image['medium']});
     }
     @media (min-width: 2000px) {
-        background-image: url(${props => props.image['large']});
+        background-image: ${headerImageGradient}, url(${props => props.image['large']});
         margin: 60px 60px 0 60px;
     }
     h1 {
-        margin-left: 20px;
+        margin-left: 15%;
         width: 352px;
         color: #ffffff;
         font-family: Teko;
         font-size: 64px;
         line-height: 64px;
-        @media (min-width: 1000px) {
-            margin-left: 200px;
-        }
+        text-transform: uppercase;
     }
 `;
 
@@ -85,16 +95,19 @@ export default class DefaultPage extends React.PureComponent {
         title: PropTypes.string.isRequired,
         article: PropTypes.string.isRequired,
         title2: PropTypes.string.isRequired,
+        seo: PropTypes.object.isRequired,
     };
 
     render() {
         return (
-            <Page>
-                <HeaderImage image={this.props.headerImage}>
-                    <h1>
-                        {this.props.title}
-                    </h1>
-                </HeaderImage>
+            <Page {...this.props}>
+                <HeaderImageContainer>
+                    <HeaderImage image={this.props.headerImage}>
+                        <h1>
+                            {this.props.title}
+                        </h1>
+                    </HeaderImage>
+                </HeaderImageContainer>
                 <Main>
                     <HeaderSection>
                         <h2>
@@ -103,6 +116,7 @@ export default class DefaultPage extends React.PureComponent {
                     </HeaderSection>
                     <MainSection dangerouslySetInnerHTML={{__html: this.props.article}} />
                 </Main>
+                <Footer />
             </Page>
         );
     }

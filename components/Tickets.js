@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const bookingUrl = 'https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218?ref=elink';
 const TicketWrapper = styled.div`
-    position: absolute;
+    position: relative;
     z-index: 2;
     width: 1060px;
     max-width: 100%;
@@ -87,11 +87,13 @@ const Headline = styled.div`
     text-transform: uppercase;
     font-family: Teko;
 `;
+
 const Price = styled.div`
     font-size: 24px;
     line-height: 30px;
     font-weight: 600;
 `;
+
 const Description = styled.div`
     padding-top: 50px;
     padding-bottom: 70px;
@@ -117,8 +119,8 @@ const ButtonLink = styled.a`
     display: block;
     height: 40px;
     border-radius: 100px;
-    background-color: ${(props) => buttonBackground[props.type]};
-    color: ${(props) => buttonColor[props.type]};
+    background-color: ${props => buttonBackground[props.type]};
+    color: ${props => buttonColor[props.type]};
     text-align: center;
     width: 260px;
     font-family: Teko;
@@ -190,7 +192,10 @@ export default class Tickets extends React.PureComponent {
                             {this.props.ticket3Price} €
                         </Price>
                         <Line />
-                        <Description dangerouslySetInnerHTML={{__html: this.props.ticket3Description}} />
+                        <Description
+                            dangerouslySetInnerHTML={{
+                                __html: this.props.ticket3Description,
+                            }} />
 
                         <ButtonLink type="addon" href={bookingUrl} target="_blank">
                             {this.props.ticket3ButtonText}

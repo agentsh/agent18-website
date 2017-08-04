@@ -5,6 +5,10 @@ const icons = {
     hamburger: '\\e90b',
     ticket: '\\e910',
     play: '\\e90c',
+    forward: '\\e901',
+    fb: '\\e913',
+    twitter: '\\e914',
+    instagram: '\\e912',
 };
 
 const Icon = styled.span`
@@ -17,6 +21,8 @@ const Icon = styled.span`
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    ${props => props.size ? 'font-size: ' + props.size + 'px;' : ''}
 
     &:before {
         content: "${props => icons[props.name]}";
