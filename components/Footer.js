@@ -6,7 +6,7 @@ import Icon from './Icon';
 import Link from 'next/link';
 
 const FooterContainer = styled.footer`
-    margin: 0 0px 55px 0px;
+    margin: 0 0 55px 0;
     padding: 60px 25px;
     color: white;
     background-color: black;
@@ -56,7 +56,7 @@ export default class Footer extends React.PureComponent {
                 <TextLink href="mailto:team@agent.sh" target="_blank">
                     contact
                 </TextLink>
-                <ButtonLink href="https://www.instagram.com/teamagent">
+                <ButtonLink href="https://www.instagram.com/teamagent" target="_blank">
                     <Button size={buttonSize} fontSize={buttonFontSize}>
                         <Icon name="instagram" />
                     </Button>

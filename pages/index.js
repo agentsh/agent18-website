@@ -92,7 +92,7 @@ const VideoText = styled.div`
     font-size: 50px;
     line-height: 50px;
     @media (min-width: 800px) {
-        left: 15px;
+        left: 15%;
         width: 380px;
         font-size: 64px;
         line-height: 64px;

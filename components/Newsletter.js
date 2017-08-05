@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
 
-const Form = styled.form`padding: 0 0 80px 0;`;
+const Form = styled.form`
+    padding: 0 0 80px 0;
+`;
 
 const Input = styled.input`
     width: 90%;
