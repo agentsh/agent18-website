@@ -37,12 +37,13 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
-    opacity: ${(props) => 'opacity' in props ? props.opacity : 1};
-    top: 0;
-    bottom: 0;
+    opacity: ${props => ('opacity' in props ? props.opacity : 1)};
+    bottom: 15%;
     right: 5%;
     @media (min-width: 800px) {
         right: 25%;
+        top: 0;
+        bottom: 0;
     }
     width: 250;
     z-index: 10;

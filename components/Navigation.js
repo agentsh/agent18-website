@@ -31,7 +31,7 @@ const Logo = styled.div`
     background-size: ${logoSize}px ${logoSize}px;
     border-radius: ${logoSize / 2}px;
     box-shadow: 0 2px 30px 0 rgba(0, 0, 0, .2);
-    cursor:pointer;
+    cursor: pointer;
 `;
 
 const Toggler = styled(Button)`
@@ -74,7 +74,7 @@ const List = styled.nav`
             letter-spacing: 1px;
 
             > a {
-                color: #2C2C2C;
+                color: #2c2c2c;
                 text-decoration: none;
             }
         }
@@ -92,7 +92,9 @@ export default class Navigation extends React.PureComponent {
         return (
             <Header>
                 <HeaderContainer opened={this.state.opened}>
-                    <Link href="/index"><Logo /></Link>
+                    <Link href="/index">
+                        <Logo />
+                    </Link>
                     <Toggler onClick={this.handleToggle}>
                         <Icon name={this.state.opened ? 'close' : 'hamburger'} />
                     </Toggler>
@@ -107,10 +109,22 @@ export default class Navigation extends React.PureComponent {
             <List>
                 <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
-                    <li onClick={this.handleClose}><Link href="/disclaimer"><a>Disclaimer</a></Link></li>
-                    <li onClick={this.handleClose}><Link href="/coc"><a>Code of Conduct</a></Link></li>
-                    <li onClick={this.handleClose}><a href="https://blog.agent.sh">Blog</a></li>
-                    <li onClick={this.handleClose}><a href="http://www.2017.agent.sh">AgentConf 2017</a></li>
+                    <li onClick={this.handleClose}>
+                        <Link href="/disclaimer">
+                            <a>Disclaimer</a>
+                        </Link>
+                    </li>
+                    <li onClick={this.handleClose}>
+                        <Link href="/coc">
+                            <a>Code of Conduct</a>
+                        </Link>
+                    </li>
+                    <li onClick={this.handleClose}>
+                        <a href="https://blog.agent.sh">Blog</a>
+                    </li>
+                    <li onClick={this.handleClose}>
+                        <a href="http://www.2017.agent.sh">AgentConf 2017</a>
+                    </li>
                 </ul>
             </List>
         );

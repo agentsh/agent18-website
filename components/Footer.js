@@ -6,16 +6,19 @@ import Icon from './Icon';
 import Link from 'next/link';
 
 const FooterContainer = styled.footer`
-    margin: 0 70px 55px 70px;
-    padding: 45px 60px;
+    margin: 0 0px 55px 0px;
+    padding: 60px 25px;
     color: white;
     background-color: black;
     font-family: Teko;
+    @media (min-width: 800px) {
+        margin: 0 70px 55px 70px;
+        padding: 45px 60px;
+    }
 `;
 
 const TextLink = styled.a`
-    display: inline-block;
-    padding-right: 30px;
+    display: block;
     color: white;
     font-size: 22px;
     line-height: 35px;
@@ -23,6 +26,10 @@ const TextLink = styled.a`
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    @media (min-width: 800px) {
+        display: inline-block;
+        padding-right: 30px;
+    }
 `;
 
 const ButtonLink = styled.a`
@@ -40,20 +47,26 @@ export default class Footer extends React.PureComponent {
         return (
             <FooterContainer>
                 <Newsletter />
-                <Link href="/coc"><TextLink>Code of Conduct</TextLink></Link>
-                <Link href="/disclaimer"><TextLink>Disclaimer</TextLink></Link>
-                <TextLink href="mailto:team@agent.sh">contact</TextLink>
+                <Link href="/coc">
+                    <TextLink>Code of Conduct</TextLink>
+                </Link>
+                <Link href="/disclaimer">
+                    <TextLink>Disclaimer</TextLink>
+                </Link>
+                <TextLink href="mailto:team@agent.sh" target="_blank">
+                    contact
+                </TextLink>
                 <ButtonLink href="https://www.instagram.com/teamagent">
                     <Button size={buttonSize} fontSize={buttonFontSize}>
                         <Icon name="instagram" />
                     </Button>
                 </ButtonLink>
-                <ButtonLink href="https://twitter.com/agentconf">
+                <ButtonLink href="https://twitter.com/agentconf" target="_blank">
                     <Button size={buttonSize} fontSize={buttonFontSize}>
                         <Icon name="twitter" />
                     </Button>
                 </ButtonLink>
-                <ButtonLink href="https://www.facebook.com/agentsh/">
+                <ButtonLink href="https://www.facebook.com/agentsh/" target="_blank">
                     <Button size={buttonSize} fontSize={buttonFontSize}>
                         <Icon name="fb" />
                     </Button>

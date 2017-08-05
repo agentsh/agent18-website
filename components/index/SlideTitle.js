@@ -13,10 +13,12 @@ const StyledSlideTitle = styled.header`
     left: 50%;
 
     transform: translate(-50%, -50%);
+    width: 80%;
 
-    > h1 {
-        font-size: 30px;
-        line-height: 30px;
+    > h1,
+    > h2 {
+        font-size: 35px;
+        line-height: 35px;
         @media (min-width: 600px) {
             font-size: 48px;
             line-height: 48px;
@@ -28,10 +30,10 @@ const StyledSlideTitle = styled.header`
         font-weight: 100;
     }
 
-    > h2 {
+    > h3 {
         font-size: 28px;
         font-weight: 100;
-        line-height: 40px;
+        line-height: 28px;
     }
 `;
 

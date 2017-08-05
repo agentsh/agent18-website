@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
 
-const Form = styled.form`
-    padding: 0 0 80px 0;
-`;
+const Form = styled.form`padding: 0 0 80px 0;`;
 
 const Input = styled.input`
-    width: 50%;
+    width: 90%;
     border: none;
     border-bottom: 1px solid white;
     background-color: transparent;
@@ -16,9 +14,14 @@ const Input = styled.input`
     font-size: 28px;
     line-height: 40px;
     text-transform: uppercase;
+    outline: none;
 
     &::placeholder {
         color: white;
+    }
+
+    @media (min-width: 800px) {
+        width: 50%;
     }
 `;
 
@@ -28,10 +31,10 @@ const Submit = styled.button`
     font-family: Teko;
     background: transparent;
     color: white;
-    border:0;
-    height:45px;
+    border: 0;
+    height: 45px;
     margin-left: -15px;
-    display:inline-block;
+    display: inline-block;
 `;
 
 export default class Newsletter extends React.PureComponent {
@@ -53,7 +56,6 @@ export default class Newsletter extends React.PureComponent {
                 name="mc-embedded-subscribe-form"
                 target="_blank"
                 noValidate>
-
                 <Input
                     type="email"
                     onChange={this.handleEmailChanged}
