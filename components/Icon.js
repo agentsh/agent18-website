@@ -9,6 +9,7 @@ const icons = {
     fb: '\\e913',
     twitter: '\\e914',
     instagram: '\\e912',
+    scroll: '\\e90a',
 };
 
 const Icon = styled.span`

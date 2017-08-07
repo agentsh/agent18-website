@@ -54,6 +54,7 @@ export default class Page extends React.PureComponent {
         children: PropTypes.node,
         hideHeader: PropTypes.bool,
         seo: PropTypes.object,
+        showScrollInfo: PropTypes.bool,
     };
 
     render() {
@@ -66,7 +67,7 @@ export default class Page extends React.PureComponent {
                 </Main>
                 {!this.props.hideHeader && <Navigation />}
                 <Footer>
-                    <FooterHint />
+                    <FooterHint showScrollInfo={this.props.showScrollInfo} />
                 </Footer>
             </Container>
         );
