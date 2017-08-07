@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
 
-const Form = styled.form`padding: 0 0 80px 0;`;
+const Form = styled.form`
+    box-sizing: border-box;
+    padding: 0 0 80px 0;
+`;
 
 const Input = styled.input`
-    width: 90%;
+    width: 85%;
     border: none;
     border-bottom: 1px solid white;
     background-color: transparent;
@@ -16,8 +19,10 @@ const Input = styled.input`
     text-transform: uppercase;
     outline: none;
 
+    padding-right: 30px;
+
     &::placeholder {
-        color: white;
+        color: lightgrey;
     }
 
     @media (min-width: 800px) {

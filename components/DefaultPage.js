@@ -8,8 +8,8 @@ const HeaderImageContainer = styled.div`
     height: 100%;
 
     @media (min-width: 800px) {
-        height: calc(100% - 120px);
-        width: calc(100% - 120px);
+        height: calc(100vh - 120px);
+        width: calc(100vh - 120px);
         margin: 60px;
     }
 `;
