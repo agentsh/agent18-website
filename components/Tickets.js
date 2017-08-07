@@ -5,14 +5,18 @@ import styled from 'styled-components';
 const bookingUrl = 'https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218?ref=elink';
 const TicketWrapper = styled.div`
     position: relative;
+    display: block;
+    overflow: auto;
     z-index: 2;
-    width: 1060px;
+    width: 1090px;
     max-width: 100%;
     left: 0;
     right: 0;
     margin: 0 auto;
-    height: 500px;
-    margin-bottom: 400px;
+    margin-bottom: 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
 `;
 
 const Title = styled.div`
@@ -35,18 +39,24 @@ const Title = styled.div`
 const TicketBox = styled.div`
     height: 500px;
     text-align: center;
-
     padding: 30px 20px;
     box-sizing: border-box;
     background: #282828;
     color: white;
-    width: 338px;
-    max-width: 100%;
+    width: 500px;
+    max-width: 90%;
     margin: 0 auto;
     margin-bottom: 100px;
     display: block;
-    @media (min-width: 1000px) {
+
+    @media (min-width: 900px) {
         float: left;
+        width: 30%;
+    }
+
+    @media (min-width: 1090px) {
+        float: left;
+        width: 338px;
     }
 
     hr {
@@ -66,7 +76,15 @@ const ActiveTicketbox = styled(TicketBox)`
     color:black;
     background:white;
     border:none;
-    width: 380px;
+    width: 550px;
+    max-width: 95%;
+    @media (min-width: 900px) {
+        float: left;
+        width: 40%;
+    }
+    @media (min-width: 1060px) {
+        width: 380px;
+    }
 `;
 
 const ClosedTicketbox = styled(TicketBox)`
@@ -122,7 +140,7 @@ const ButtonLink = styled.a`
     background-color: ${props => buttonBackground[props.type]};
     color: ${props => buttonColor[props.type]};
     text-align: center;
-    width: 260px;
+    width: 80%;
     font-family: Teko;
     font-size: 14px;
     font-weight: 500;
@@ -132,6 +150,9 @@ const ButtonLink = styled.a`
     text-transform: uppercase;
     margin: 0 auto;
     text-decoration: none;
+    @media (min-size: 1060px) {
+        width: 280px;
+    }
 `;
 
 export default class Tickets extends React.PureComponent {

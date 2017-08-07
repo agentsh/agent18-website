@@ -19,7 +19,9 @@ export default class Header extends React.PureComponent {
     render() {
         return (
             <Head>
-                <title>{this.props.title}</title>
+                <title>
+                    {this.props.title}
+                </title>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="mobile-web-app-capable" content="yes" />
@@ -44,7 +46,7 @@ export default class Header extends React.PureComponent {
                 <meta property="og:description" content={this.props.description} />
                 <meta property="og:url" content="http://www.agent.sh" />
                 <meta property="og:locale" content="en_US" />
-                {this.props.image &&<meta property="og:image" content={this.props.image} />}
+                {this.props.image && <meta property="og:image" content={this.props.image} />}
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Agent.sh" />
 

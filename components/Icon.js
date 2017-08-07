@@ -22,7 +22,7 @@ const Icon = styled.span`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    ${props => props.size ? 'font-size: ' + props.size + 'px;' : ''}
+    ${props => (props.size ? 'font-size: ' + props.size + 'px;' : '')}
 
     &:before {
         content: "${props => icons[props.name]}";

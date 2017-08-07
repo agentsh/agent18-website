@@ -26,7 +26,6 @@ const SlideContainer = styled.div`
 
 const MountainCloud = styled.img`
     position: fixed;
-
     will-change: transform, opacity;
 `;
 
@@ -49,11 +48,8 @@ const VideoSlideImageContainer = styled.figure`
         width: calc(100% - ${props => props.margin * 2}px);
         margin: ${props => props.margin}px;
     }
-
     background-color: #fff;
-
     overflow: hidden;
-
     will-change: height, width, margin;
     position: relative;
 `;
@@ -86,16 +82,17 @@ const VideoText = styled.div`
     position: ${props => (props.absolute ? 'absolute' : 'fixed')};
     top: 0;
     bottom: 0;
-    left: 15%;
+    left: 5%;
     width: 300px;
     z-index: 10;
     color: #ffffff;
     font-family: Teko;
 
     text-transform: uppercase;
-    font-size: 55px;
-    line-height: 55px;
+    font-size: 50px;
+    line-height: 50px;
     @media (min-width: 800px) {
+        left: 15%;
         width: 380px;
         font-size: 64px;
         line-height: 64px;
@@ -141,17 +138,17 @@ class MountainSlide extends React.PureComponent {
         } else if (this.props.animationProgress > 2 * this.progressStep) {
             slide = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
-                    <h1>Learn, talk and ski</h1>
+                    <h2>Learn, talk and ski</h2>
                 </SlideTitle>
             );
         } else if (this.props.animationProgress > this.progressStep) {
             slide = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
-                    <h2>25 - 28 January 2018</h2>
-                    <h1>
+                    <h3>25 - 28 January 2018</h3>
+                    <h2>
                         Experts and industry leaders will come together to showcase their work in ReactJS, React Native
                         and more
-                    </h1>
+                    </h2>
                 </SlideTitle>
             );
         } else {
@@ -160,7 +157,7 @@ class MountainSlide extends React.PureComponent {
                     animationProgress={this.props.animationProgress}
                     progressStep={this.progressStep}
                     fadeIn={false}>
-                    <h2>The international event for coding inspiration</h2>
+                    <h3>The international event for coding inspiration</h3>
                     <h1>AgentConf 2018</h1>
                 </SlideTitle>
             );
@@ -211,7 +208,7 @@ class CitySlide extends React.PureComponent {
         } else if (this.props.animationProgress > this.progressStep) {
             slideTitleContainer = (
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
-                    <h1>Dornbirn, Austria</h1>
+                    <h2>Dornbirn, Austria</h2>
                 </SlideTitle>
             );
         } else {
