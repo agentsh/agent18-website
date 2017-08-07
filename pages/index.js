@@ -343,7 +343,7 @@ export default class Index extends React.PureComponent {
                     hideHeader={this.state.showVideoPlayer}
                     showScrollInfo={this.state.scrollY < mountainSlideHeight + citySlideHeight + videoSlideHeight}>
                     <SlideContainerWrapper height={mountainSlideHeight}>
-                        {mountainSlide}#
+                        {mountainSlide}
                     </SlideContainerWrapper>
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}
