@@ -53,6 +53,9 @@ export default class Footer extends React.PureComponent {
                 <Link href="/disclaimer">
                     <TextLink>Disclaimer</TextLink>
                 </Link>
+                <Link href="/faq">
+                    <TextLink>Questions</TextLink>
+                </Link>
                 <TextLink href="mailto:team@agent.sh" target="_blank">
                     contact
                 </TextLink>

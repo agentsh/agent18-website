@@ -9,7 +9,7 @@ const HeaderImageContainer = styled.div`
 
     @media (min-width: 800px) {
         height: calc(100vh - 120px);
-        width: calc(100vh - 120px);
+        width: calc(100% - 120px);
         margin: 60px;
     }
 `;
@@ -55,6 +55,10 @@ const Main = styled.main`
 
     color: #fff;
 
+    a,
+    a:hover {
+        color: white;
+    }
     h2 {
         font-weight: 100;
         font-family: Teko;
@@ -70,8 +74,6 @@ const Main = styled.main`
         font-size: 28px;
         line-height: 40px;
         text-transform: uppercase;
-
-        margin: 60px 0 30px 0;
     }
 
     p {
