@@ -192,7 +192,7 @@ export default class Tickets extends React.PureComponent {
                     </ClosedTicketbox>
                     <ActiveTicketbox>
                         <Headline>
-                            {this.props.ticket1Headline}
+                            {this.props.ticket2Headline}
                         </Headline>
                         <Line />
                         <Price>
