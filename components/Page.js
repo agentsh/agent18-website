@@ -69,6 +69,8 @@ export default class Page extends React.PureComponent {
                 <Footer>
                     <FooterHint showScrollInfo={this.props.showScrollInfo} />
                 </Footer>
+
+                <script src="static/js/tracking.footer.js" />
             </Container>
         );
     }
