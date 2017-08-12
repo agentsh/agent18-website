@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import Icon from './Icon';
 
 const Form = styled.form`
+    box-sizing: border-box;
     padding: 0 0 80px 0;
 `;
 
 const Input = styled.input`
-    width: 90%;
+    width: 85%;
     border: none;
     border-bottom: 1px solid white;
     background-color: transparent;
@@ -18,8 +19,10 @@ const Input = styled.input`
     text-transform: uppercase;
     outline: none;
 
+    padding-right: 30px;
+
     &::placeholder {
-        color: white;
+        color: lightgrey;
     }
 
     @media (min-width: 800px) {
@@ -37,6 +40,16 @@ const Submit = styled.button`
     height: 45px;
     margin-left: -15px;
     display: inline-block;
+`;
+
+const Label = styled.label`
+    font-size: 28px;
+    line-height: 28px;
+    padding-bottom: 10px;
+    font-family: Teko;
+    color: white;
+    display: block;
+    text-transform: uppercase;
 `;
 
 export default class Newsletter extends React.PureComponent {
@@ -58,12 +71,13 @@ export default class Newsletter extends React.PureComponent {
                 name="mc-embedded-subscribe-form"
                 target="_blank"
                 noValidate>
+                <Label htmlFor="mce-EMAIL">Stay connected! Subscribe for updates</Label>
                 <Input
                     type="email"
                     onChange={this.handleEmailChanged}
                     name="EMAIL"
                     id="mce-EMAIL"
-                    placeholder="Sign our newsletter" />
+                    placeholder="you@awesomecorp.com" />
                 <Submit
                     type="submit"
                     name="subscribe"

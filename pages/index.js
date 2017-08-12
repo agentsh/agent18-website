@@ -339,9 +339,11 @@ export default class Index extends React.PureComponent {
         return (
             <div>
                 <Head {...this.props.seo} />
-                <Page hideHeader={this.state.showVideoPlayer}>
+                <Page
+                    hideHeader={this.state.showVideoPlayer}
+                    showScrollInfo={this.state.scrollY < mountainSlideHeight + citySlideHeight + videoSlideHeight}>
                     <SlideContainerWrapper height={mountainSlideHeight}>
-                        {mountainSlide}#
+                        {mountainSlide}
                     </SlideContainerWrapper>
                     <SlideContainerWrapper height={citySlideHeight}>
                         {citySlide}

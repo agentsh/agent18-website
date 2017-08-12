@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from './Button';
 import Icon from './Icon';
@@ -48,18 +49,31 @@ const Action = styled(Button)`
 `;
 
 export default class FooterHint extends React.Component {
+    static propTypes = {
+        showScrollInfo: PropTypes.bool,
+    };
     render() {
-        return (
-            <FooterContainer>
-                <a href="https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218">
+        const {showScrollInfo} = this.props;
+        if (showScrollInfo) {
+            return (
+                <FooterContainer>
                     <Action>
-                        <Icon name="ticket" />
+                        <Icon name="scroll" />
                     </Action>
-                </a>
-                <Circle>
-                    Tickets
-                </Circle>
-            </FooterContainer>
-        );
+                    <Circle>Scroll</Circle>
+                </FooterContainer>
+            );
+        } else {
+            return (
+                <FooterContainer>
+                    <a href="https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218">
+                        <Action>
+                            <Icon name="ticket" />
+                        </Action>
+                    </a>
+                    <Circle>Tickets</Circle>
+                </FooterContainer>
+            );
+        }
     }
 }

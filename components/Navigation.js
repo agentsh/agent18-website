@@ -64,7 +64,7 @@ const List = styled.nav`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
+        width: 300px;
         list-style-type: none;
         list-style-position: inside;
 
