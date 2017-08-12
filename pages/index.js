@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import fetch from 'isomorphic-fetch';
 import config from '../config';
+import Icon from '../components/Icon';
 import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
@@ -11,6 +12,7 @@ import Footer from '../components/Footer';
 import Tickets from '../components/Tickets';
 import VideoTrigger from '../components/VideoTrigger';
 import VideoPlayer from '../components/VideoPlayer';
+import EyeCatcher from '../components/EyeCatcher';
 const maxProgress = 100;
 
 const SlideContainerWrapper = styled.div`height: ${props => props.height}px;`;
@@ -96,6 +98,37 @@ const VideoText = styled.div`
         width: 380px;
         font-size: 64px;
         line-height: 64px;
+    }
+`;
+
+const CfpHeader = styled.h2`
+    font-family: Teko;
+    font-size: 36px;
+    font-weight: 100;
+    line-height: 51px;
+    text-transform: uppercase;
+`;
+
+const CfpDeadline = styled.div`
+    color: #d9d9d9;
+`;
+
+const CfpSubmit = styled.a`
+    margin-top: 30px;
+
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 26px;
+    text-decoration: none;
+
+    > span:first-child {
+        margin-right: 15px;
+        text-decoration: underline;
+    }
+
+    > span:last-child {
+        font-size: 10px;
     }
 `;
 
@@ -358,6 +391,19 @@ export default class Index extends React.PureComponent {
                         visible={this.state.showVideoPlayer}
                         youtubeId={this.props.videoYoutubeId}
                         handleClose={this.toggleVideoPlayer} />
+                    <EyeCatcher>
+                        <CfpHeader>Call for Papers</CfpHeader>
+                        <CfpDeadline>
+                            Deadline: Fri, May 19th, 2017 20:00 PM UTC<br />
+                        </CfpDeadline>
+                        <div>
+                            00 weeks 04 days 12:13:48
+                        </div>
+                        <CfpSubmit href="#">
+                            <span>Submit Here</span>
+                            <Icon name="forward" />
+                        </CfpSubmit>
+                    </EyeCatcher>
                 </Page>
             </div>
         );
