@@ -109,6 +109,15 @@ const CfpHeader = styled.h2`
     text-transform: uppercase;
 `;
 
+const CfpHeaderClosed = styled.h2`
+    font-family: Teko;
+    font-size: 20px;
+    line-height: 30px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    transform: rotate(-90deg);
+`;
+
 const CfpDeadline = styled.div`
     color: #d9d9d9;
 `;
@@ -392,21 +401,33 @@ export default class Index extends React.PureComponent {
                         youtubeId={this.props.videoYoutubeId}
                         handleClose={this.toggleVideoPlayer} />
                     <EyeCatcher>
-                        <CfpHeader>Call for Papers</CfpHeader>
-                        <CfpDeadline>
-                            Deadline: Fri, May 19th, 2017 20:00 PM UTC<br />
-                        </CfpDeadline>
-                        <div>
-                            00 weeks 04 days 12:13:48
-                        </div>
-                        <CfpSubmit href="#">
-                            <span>Submit Here</span>
-                            <Icon name="forward" />
-                        </CfpSubmit>
+                        {this.renderEyecatcher}
                     </EyeCatcher>
                 </Page>
             </div>
         );
+    }
+
+    renderEyecatcher(isOpen) {
+        if (isOpen) {
+            return (
+                <div>
+                    <CfpHeader>Call for Papers</CfpHeader>
+                    <CfpDeadline>
+                        Deadline: Fri, May 19th, 2017 20:00 PM UTC<br />
+                        00 weeks 04 days 12:13:48
+                    </CfpDeadline>
+                    <CfpSubmit href="#">
+                        <span>Submit Here</span>
+                        <Icon name="forward" />
+                    </CfpSubmit>
+                </div>
+            );
+        } else {
+            return (
+                <CfpHeaderClosed>Call for Papers</CfpHeaderClosed>
+            );
+        }
     }
 
     updateWindowHeight = () => {
