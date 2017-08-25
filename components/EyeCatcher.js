@@ -8,14 +8,16 @@ const EyeCatcherContainer = styled.div`
     z-index: 2;
     top: 50vh;
     right: 0;
+    box-sizing: border-box;
 
-    ${(props) => !props.isOpen ? 'width: 30px;' : ''}
+    ${(props) => !props.isOpen ? 'width: ' + props.height + 'px;' : ''}
+    ${(props) => !props.isOpen ? 'transform: rotate(-90deg);' : ''}
 
     padding: ${(props) => props.isOpen ? '25px 40px' : '0'};
     margin-top: -${(props) => props.height / 2}px;
 
     background-color: #000000;
-    border-radius: 10px 0 0 10px;
+border-radius: ${(props) => props.isOpen ? '10px 0 0 10px' : '10px 10px 0 0'};
 
     color: #ffffff;
     font-size: 16px;
@@ -52,7 +54,7 @@ export default class EyeCatcher extends React.PureComponent {
                 innerRef={this.setContainerHeight}
                 height={this.state.containerHeight}
                 isOpen={this.state.isOpen}>
-                <TogglerIcon name="forward" onClick={this.handleToggle} />
+                {this.state.isOpen && <TogglerIcon name="forward" onClick={this.handleToggle} />}
                 {this.props.children(this.state.isOpen)}
             </EyeCatcherContainer>
         );

@@ -111,11 +111,11 @@ const CfpHeader = styled.h2`
 
 const CfpHeaderClosed = styled.h2`
     font-family: Teko;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 50px;
     white-space: nowrap;
     text-transform: uppercase;
-    transform: rotate(-90deg);
+    text-align: center;
 `;
 
 const CfpDeadline = styled.div`
