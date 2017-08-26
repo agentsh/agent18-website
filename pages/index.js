@@ -408,16 +408,16 @@ export default class Index extends React.PureComponent {
         );
     }
 
-    renderEyecatcher(isOpen) {
+    renderEyecatcher = (isOpen) => {
         if (isOpen) {
+            const deadline = new Date(this.props.cfpDeadline);
             return (
                 <div>
                     <CfpHeader>Call for Papers</CfpHeader>
                     <CfpDeadline>
-                        Deadline: Fri, May 19th, 2017 20:00 PM UTC<br />
-                        00 weeks 04 days 12:13:48
+                        Deadline: {deadline.toDateString()}, 23:59:59 CEST
                     </CfpDeadline>
-                    <CfpSubmit href="#">
+                    <CfpSubmit href="https://www.papercall.io/agent-conf-2018">
                         <span>Submit Here</span>
                         <Icon name="forward" />
                     </CfpSubmit>
