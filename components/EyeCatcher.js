@@ -10,22 +10,40 @@ const EyeCatcherContainer = styled.div`
     right: 0;
     box-sizing: border-box;
 
-    ${(props) => !props.isOpen ? 'width: ' + props.height + 'px;' : ''}
-    ${(props) => !props.isOpen ? 'transform: rotate(-90deg);' : ''}
-
-    padding: ${(props) => props.isOpen ? '25px 40px' : '0'};
-    margin-top: -${(props) => props.height / 2}px;
-
     background-color: #000000;
-border-radius: ${(props) => props.isOpen ? '10px 0 0 10px' : '10px 10px 0 0'};
 
     color: #ffffff;
     font-size: 16px;
     line-height: 30px;
+
+    ${(props) => !props.height ? 'opacity: 0;' : ''}
+`;
+
+const OpenEyeCatcherContainer = styled(EyeCatcherContainer)`
+    padding: 25px 40px;
+    margin-top: -${(props) => props.height / 2}px;
+
+    border-radius: 10px 0 0 10px;
+`;
+
+const closedHeight = 50;
+
+const ClosedEyeCatcherContainer = styled(EyeCatcherContainer)`
+    height: ${closedHeight}px;
+    width: ${(props) => props.height}px;
+    transform: rotate(-90deg) translateX(${(props) => props.height / 2}px);
+    transform-origin: bottom right;
+
+    margin-top: -${closedHeight}px;
+
+    border-radius: 10px 10px 0 0;
 `;
 
 const TogglerIcon = styled(Icon)`
-    float: right;
+    font-size: 12px;
+    float: ${(props) => props.isOpen ? 'right' : 'left'};
+
+    transform: rotate(${props => props.isOpen ? 0 : -90}deg) translate(${props => props.isOpen ? 0 : '-18px, 12px'});
 `;
 
 export default class EyeCatcher extends React.PureComponent {
@@ -39,6 +57,9 @@ export default class EyeCatcher extends React.PureComponent {
     };
 
     setContainerHeight = (container) => {
+        if (!container) {
+            return;
+        }
         this.setState({containerHeight: container.offsetHeight});
     };
 
@@ -49,14 +70,23 @@ export default class EyeCatcher extends React.PureComponent {
     };
 
     render() {
+        if (this.state.isOpen) {
+            return (
+                <OpenEyeCatcherContainer
+                    innerRef={this.setContainerHeight}
+                    height={this.state.containerHeight}>
+                    <TogglerIcon isOpen={this.state.isOpen} name="forward" onClick={this.handleToggle} />
+                    {this.props.children(this.state.isOpen)}
+                </OpenEyeCatcherContainer>
+            );
+        }
+
         return (
-            <EyeCatcherContainer
-                innerRef={this.setContainerHeight}
-                height={this.state.containerHeight}
-                isOpen={this.state.isOpen}>
-                {this.state.isOpen && <TogglerIcon name="forward" onClick={this.handleToggle} />}
+            <ClosedEyeCatcherContainer
+                height={this.state.containerHeight}>
+                <TogglerIcon isOpen={this.state.isOpen} name="forward" onClick={this.handleToggle} />
                 {this.props.children(this.state.isOpen)}
-            </EyeCatcherContainer>
+            </ClosedEyeCatcherContainer>
         );
     }
 }
