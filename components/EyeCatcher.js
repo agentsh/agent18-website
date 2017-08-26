@@ -17,6 +17,10 @@ const EyeCatcherContainer = styled.div`
     line-height: 30px;
 
     ${(props) => !props.height ? 'opacity: 0;' : ''}
+
+    @media(max-width: 800px) {
+        display: none;
+    }
 `;
 
 const OpenEyeCatcherContainer = styled(EyeCatcherContainer)`
