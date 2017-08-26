@@ -69,6 +69,28 @@ export default class EyeCatcher extends React.PureComponent {
         });
     };
 
+    hide = () => {
+        window.requestAnimationFrame(() => {
+            this.setState({
+                isOpen: false,
+            });
+        });
+    };
+
+    componentDidMount() {
+        if (!window) {
+            return;
+        }
+        window.addEventListener('scroll', this.hide);
+    }
+
+    componentWillUnmount() {
+        if (!window) {
+            return;
+        }
+        window.removeEventListener('scroll', this.hide);
+    }
+
     render() {
         if (this.state.isOpen) {
             return (
