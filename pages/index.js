@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import fetch from 'isomorphic-fetch';
 import config from '../config';
+import Icon from '../components/Icon';
 import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
@@ -11,6 +12,7 @@ import Footer from '../components/Footer';
 import Tickets from '../components/Tickets';
 import VideoTrigger from '../components/VideoTrigger';
 import VideoPlayer from '../components/VideoPlayer';
+import EyeCatcher from '../components/EyeCatcher';
 const maxProgress = 100;
 
 const SlideContainerWrapper = styled.div`height: ${props => props.height}px;`;
@@ -96,6 +98,46 @@ const VideoText = styled.div`
         width: 380px;
         font-size: 64px;
         line-height: 64px;
+    }
+`;
+
+const CfpHeader = styled.h2`
+    font-family: Teko;
+    font-size: 36px;
+    font-weight: 100;
+    line-height: 51px;
+    text-transform: uppercase;
+`;
+
+const CfpHeaderClosed = styled.h2`
+    font-family: Teko;
+    font-size: 18px;
+    line-height: 50px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-align: center;
+`;
+
+const CfpDeadline = styled.div`
+    color: #d9d9d9;
+`;
+
+const CfpSubmit = styled.a`
+    margin-top: 30px;
+
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 26px;
+    text-decoration: none;
+
+    > span:first-child {
+        margin-right: 15px;
+        text-decoration: underline;
+    }
+
+    > span:last-child {
+        font-size: 10px;
     }
 `;
 
@@ -358,9 +400,34 @@ export default class Index extends React.PureComponent {
                         visible={this.state.showVideoPlayer}
                         youtubeId={this.props.videoYoutubeId}
                         handleClose={this.toggleVideoPlayer} />
+                    <EyeCatcher>
+                        {this.renderEyecatcher}
+                    </EyeCatcher>
                 </Page>
             </div>
         );
+    }
+
+    renderEyecatcher = (isOpen) => {
+        if (isOpen) {
+            const deadline = new Date(this.props.cfpDeadline);
+            return (
+                <div>
+                    <CfpHeader>Call for Papers</CfpHeader>
+                    <CfpDeadline>
+                        Deadline: {deadline.toDateString()}, 23:59:59 CEST
+                    </CfpDeadline>
+                    <CfpSubmit href="https://www.papercall.io/agent-conf-2018">
+                        <span>Submit Here</span>
+                        <Icon name="forward" />
+                    </CfpSubmit>
+                </div>
+            );
+        } else {
+            return (
+                <CfpHeaderClosed>Call for Papers</CfpHeaderClosed>
+            );
+        }
     }
 
     updateWindowHeight = () => {
