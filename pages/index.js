@@ -118,9 +118,7 @@ const CfpHeaderClosed = styled.h2`
     text-align: center;
 `;
 
-const CfpDeadline = styled.div`
-    color: #d9d9d9;
-`;
+const CfpDeadline = styled.div`color: #d9d9d9;`;
 
 const CfpSubmit = styled.a`
     margin-top: 30px;
@@ -309,6 +307,7 @@ export default class Index extends React.PureComponent {
         videoYoutubeId: PropTypes.string.isRequired,
         videoHeadline: PropTypes.string.isRequired,
         seo: PropTypes.object.isRequired,
+        cfpDeadline: PropTypes.string.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
@@ -408,7 +407,7 @@ export default class Index extends React.PureComponent {
         );
     }
 
-    renderEyecatcher = (isOpen) => {
+    renderEyecatcher = isOpen => {
         if (isOpen) {
             const deadline = new Date(this.props.cfpDeadline);
             return (
@@ -424,11 +423,9 @@ export default class Index extends React.PureComponent {
                 </div>
             );
         } else {
-            return (
-                <CfpHeaderClosed>Call for Papers</CfpHeaderClosed>
-            );
+            return <CfpHeaderClosed>Call for Papers</CfpHeaderClosed>;
         }
-    }
+    };
 
     updateWindowHeight = () => {
         this.setState({windowHeight: window.innerHeight});
