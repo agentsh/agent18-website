@@ -23,11 +23,12 @@ export default class Header extends React.PureComponent {
                     {this.props.title}
                 </title>
                 <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="googlebot" content="index,follow,noodp" />
-
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
                 <meta name="title" content={this.props.title} />
                 <meta name="description" content={this.props.description} />
                 <meta name="keywords" content={this.props.keywords} />

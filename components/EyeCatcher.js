@@ -16,16 +16,14 @@ const EyeCatcherContainer = styled.div`
     font-size: 16px;
     line-height: 30px;
 
-    ${(props) => !props.height ? 'opacity: 0;' : ''}
-
-    @media(max-width: 800px) {
+    ${props => (!props.height ? 'opacity: 0;' : '')} @media(max-width: 800px) {
         display: none;
     }
 `;
 
 const OpenEyeCatcherContainer = styled(EyeCatcherContainer)`
     padding: 25px 40px;
-    margin-top: -${(props) => props.height / 2}px;
+    margin-top: -${props => props.height / 2}px;
 
     border-radius: 10px 0 0 10px;
 `;
@@ -34,8 +32,8 @@ const closedHeight = 50;
 
 const ClosedEyeCatcherContainer = styled(EyeCatcherContainer)`
     height: ${closedHeight}px;
-    width: ${(props) => props.height}px;
-    transform: rotate(-90deg) translateX(${(props) => props.height / 2}px);
+    width: ${props => props.height}px;
+    transform: rotate(-90deg) translateX(${props => props.height / 2}px);
     transform-origin: bottom right;
 
     margin-top: -${closedHeight}px;
@@ -45,9 +43,10 @@ const ClosedEyeCatcherContainer = styled(EyeCatcherContainer)`
 
 const TogglerIcon = styled(Icon)`
     font-size: 12px;
-    float: ${(props) => props.isOpen ? 'right' : 'left'};
+    float: ${props => (props.isOpen ? 'right' : 'left')};
 
-    transform: rotate(${props => props.isOpen ? 0 : -90}deg) translate(${props => props.isOpen ? 0 : '-18px, 12px'});
+    transform: rotate(${props => (props.isOpen ? 0 : -90)}deg) translate(${props =>
+    props.isOpen ? 0 : '-18px, 12px'});
 `;
 
 export default class EyeCatcher extends React.PureComponent {
@@ -60,7 +59,7 @@ export default class EyeCatcher extends React.PureComponent {
         isOpen: true,
     };
 
-    setContainerHeight = (container) => {
+    setContainerHeight = container => {
         if (!container) {
             return;
         }
@@ -98,9 +97,7 @@ export default class EyeCatcher extends React.PureComponent {
     render() {
         if (this.state.isOpen) {
             return (
-                <OpenEyeCatcherContainer
-                    innerRef={this.setContainerHeight}
-                    height={this.state.containerHeight}>
+                <OpenEyeCatcherContainer innerRef={this.setContainerHeight} height={this.state.containerHeight}>
                     <TogglerIcon isOpen={this.state.isOpen} name="forward" onClick={this.handleToggle} />
                     {this.props.children(this.state.isOpen)}
                 </OpenEyeCatcherContainer>
@@ -108,8 +105,7 @@ export default class EyeCatcher extends React.PureComponent {
         }
 
         return (
-            <ClosedEyeCatcherContainer
-                height={this.state.containerHeight}>
+            <ClosedEyeCatcherContainer height={this.state.containerHeight}>
                 <TogglerIcon isOpen={this.state.isOpen} name="forward" onClick={this.handleToggle} />
                 {this.props.children(this.state.isOpen)}
             </ClosedEyeCatcherContainer>

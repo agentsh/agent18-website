@@ -13,6 +13,7 @@ import Tickets from '../components/Tickets';
 import VideoTrigger from '../components/VideoTrigger';
 import VideoPlayer from '../components/VideoPlayer';
 import EyeCatcher from '../components/EyeCatcher';
+
 const maxProgress = 100;
 
 const SlideContainerWrapper = styled.div`height: ${props => props.height}px;`;
@@ -21,8 +22,8 @@ const SlideContainer = styled.div`
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
     left: 0;
+    height: 100%;
     background-color: ${props => ('color' in props ? props.color : '#fff')};
 `;
 
@@ -308,16 +309,22 @@ export default class Index extends React.PureComponent {
         videoHeadline: PropTypes.string.isRequired,
         seo: PropTypes.object.isRequired,
         cfpDeadline: PropTypes.string.isRequired,
+        scrollSpeed: PropTypes.number.isRequired,
     };
 
     mountainSlideScrollDividend = 50;
     citySlideScrollDividend = 30;
     videoSlideScrollDividend = 10;
 
-    static async getInitialProps() {
+    static async getInitialProps(ctx) {
+        const {req} = ctx;
+        const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
         const response = await fetch(config.baseUrl + '/.json');
         const json = await response.json();
-
+        json.scrollSpeed = 1;
+        if (userAgent && userAgent.toLowerCase().match(/(ipad|iphone|ipod|android)/g)) {
+            json.scrollSpeed = 1.5;
+        }
         return json;
     }
 
@@ -383,13 +390,13 @@ export default class Index extends React.PureComponent {
                 <Page
                     hideHeader={this.state.showVideoPlayer}
                     showScrollInfo={this.state.scrollY < mountainSlideHeight + citySlideHeight + videoSlideHeight}>
-                    <SlideContainerWrapper height={mountainSlideHeight}>
+                    <SlideContainerWrapper height={mountainSlideHeight / this.props.scrollSpeed}>
                         {mountainSlide}
                     </SlideContainerWrapper>
-                    <SlideContainerWrapper height={citySlideHeight}>
+                    <SlideContainerWrapper height={citySlideHeight / this.props.scrollSpeed}>
                         {citySlide}
                     </SlideContainerWrapper>
-                    <SlideContainerWrapper height={videoSlideHeight + this.state.windowHeight}>
+                    <SlideContainerWrapper height={videoSlideHeight / this.props.scrollSpeed + this.state.windowHeight}>
                         {videoSlide}
                     </SlideContainerWrapper>
                     {videoImageContainer}
@@ -432,7 +439,7 @@ export default class Index extends React.PureComponent {
     };
 
     updateScrollY = () => {
-        this.setState({scrollY: window.scrollY});
+        this.setState({scrollY: window.scrollY * this.props.scrollSpeed});
     };
     toggleVideoPlayer = () => {
         this.setState({showVideoPlayer: !this.state.showVideoPlayer});
