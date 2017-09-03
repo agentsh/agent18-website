@@ -126,7 +126,7 @@ export default class Navigation extends React.PureComponent {
                         <a href="https://blog.agent.sh">Blog</a>
                     </li>
                     <li onClick={this.handleClose}>
-                        <a href="http://www.2017.agent.sh">AgentConf 2017</a>
+                        <a href="http://2017.agent.sh">AgentConf 2017</a>
                     </li>
                 </ul>
             </List>
