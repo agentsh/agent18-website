@@ -8,7 +8,18 @@ const speakers = [
     {
         name: 'Brent Vatne',
         title: 'Expo chief coder',
-        teaser: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        teaser:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        github: 'brentvatne',
+        twitter: 'brentvatne',
+        imageUrls: 'http://lorempixel.com/360/360/people/',
+        isModerator: true,
+    },
+    {
+        name: 'Brent Vatne',
+        title: 'Expo chief coder',
+        teaser:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
         github: 'brentvatne',
         twitter: 'brentvatne',
         imageUrl: 'http://lorempixel.com/360/360/people/',
@@ -16,7 +27,8 @@ const speakers = [
     {
         name: 'Brent Vatne',
         title: 'Expo chief coder',
-        teaser: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        teaser:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
         github: 'brentvatne',
         twitter: 'brentvatne',
         imageUrl: 'http://lorempixel.com/360/360/people/',
@@ -24,7 +36,8 @@ const speakers = [
     {
         name: 'Brent Vatne',
         title: 'Expo chief coder',
-        teaser: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        teaser:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
         github: 'brentvatne',
         twitter: 'brentvatne',
         imageUrl: 'http://lorempixel.com/360/360/people/',
@@ -32,15 +45,8 @@ const speakers = [
     {
         name: 'Brent Vatne',
         title: 'Expo chief coder',
-        teaser: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-        github: 'brentvatne',
-        twitter: 'brentvatne',
-        imageUrl: 'http://lorempixel.com/360/360/people/',
-    },
-    {
-        name: 'Brent Vatne',
-        title: 'Expo chief coder',
-        teaser: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        teaser:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
         github: 'brentvatne',
         twitter: 'brentvatne',
         imageUrl: 'http://lorempixel.com/360/360/people/',
@@ -60,13 +66,12 @@ export default class Navigation extends React.PureComponent {
         centerMode: true,
         variableWidth: true,
         afterChange: idx => {
-            console.log(idx);
-            this.setState({ currentSlide: idx });
+            this.setState({currentSlide: idx});
         },
     });
 
     render() {
-        const { currentSlide } = this.state;
+        const {currentSlide} = this.state;
         const slides = speakers.map((speaker, idx) => {
             return (
                 <span key={idx}>

@@ -341,7 +341,6 @@ export default class Index extends React.PureComponent {
     }
 
     render() {
-<<<<<<< HEAD
         const mountainSlideHeight = maxProgress * this.mountainSlideScrollDividend;
         const citySlideHeight = maxProgress * this.citySlideScrollDividend;
         const videoSlideHeight = maxProgress * this.videoSlideScrollDividend;
@@ -413,9 +412,6 @@ export default class Index extends React.PureComponent {
                 </Page>
             </div>
         );
-=======
-        return <Page />;
->>>>>>> slider started, basics done
     }
 
     renderEyecatcher = isOpen => {
