@@ -1,18 +1,20 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react';
 import fetch from 'isomorphic-fetch';
-import config from '../config';
+import styled from 'styled-components';
+
+import EyeCatcher from '../components/EyeCatcher';
+import Footer from '../components/Footer';
+import Head from '../components/Head';
 import Icon from '../components/Icon';
 import Page from '../components/Page';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
-import Head from '../components/Head';
-import Footer from '../components/Footer';
+import SpeakerSlider from '../components/SpeakerSlider';
 import Tickets from '../components/Tickets';
-import VideoTrigger from '../components/VideoTrigger';
 import VideoPlayer from '../components/VideoPlayer';
-import EyeCatcher from '../components/EyeCatcher';
+import VideoTrigger from '../components/VideoTrigger';
+import config from '../config';
 
 const maxProgress = 100;
 
@@ -309,6 +311,7 @@ export default class Index extends React.PureComponent {
         videoHeadline: PropTypes.string.isRequired,
         seo: PropTypes.object.isRequired,
         cfpDeadline: PropTypes.string.isRequired,
+        speakers: PropTypes.array.isRequired,
         scrollSpeed: PropTypes.number.isRequired,
     };
 
@@ -387,9 +390,7 @@ export default class Index extends React.PureComponent {
         return (
             <div>
                 <Head {...this.props.seo} />
-                <Page
-                    hideHeader={this.state.showVideoPlayer}
-                    showScrollInfo={this.state.scrollY < mountainSlideHeight + citySlideHeight + videoSlideHeight}>
+                <Page hideHeader={this.state.showVideoPlayer} showScrollInfo={this.state.scrollY < 500}>
                     <SlideContainerWrapper height={mountainSlideHeight / this.props.scrollSpeed}>
                         {mountainSlide}
                     </SlideContainerWrapper>
@@ -401,6 +402,7 @@ export default class Index extends React.PureComponent {
                     </SlideContainerWrapper>
                     {videoImageContainer}
                     <Tickets {...this.props} />
+                    {this.props.speakers && <SpeakerSlider speakers={this.props.speakers} />}
                     <Footer />
                     <VideoPlayer
                         visible={this.state.showVideoPlayer}

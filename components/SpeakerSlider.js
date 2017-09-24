@@ -1,61 +1,50 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import Slider from 'react-slick';
-import SpeakerSlide from './SpeakerSlide';
 
-const speakers = [
-    {
-        name: 'Brent Vatne',
-        title: 'Expo chief coder',
-        teaser:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-        github: 'brentvatne',
-        twitter: 'brentvatne',
-        imageUrls: 'http://lorempixel.com/360/360/people/',
-        isModerator: true,
-    },
-    {
-        name: 'Brent Vatne',
-        title: 'Expo chief coder',
-        teaser:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-        github: 'brentvatne',
-        twitter: 'brentvatne',
-        imageUrl: 'http://lorempixel.com/360/360/people/',
-    },
-    {
-        name: 'Brent Vatne',
-        title: 'Expo chief coder',
-        teaser:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-        github: 'brentvatne',
-        twitter: 'brentvatne',
-        imageUrl: 'http://lorempixel.com/360/360/people/',
-    },
-    {
-        name: 'Brent Vatne',
-        title: 'Expo chief coder',
-        teaser:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-        github: 'brentvatne',
-        twitter: 'brentvatne',
-        imageUrl: 'http://lorempixel.com/360/360/people/',
-    },
-    {
-        name: 'Brent Vatne',
-        title: 'Expo chief coder',
-        teaser:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-        github: 'brentvatne',
-        twitter: 'brentvatne',
-        imageUrl: 'http://lorempixel.com/360/360/people/',
-    },
-];
+import Icon from './Icon';
+import SpeakerSlide from './SpeakerSlide';
+import styled from 'styled-components';
+
+const Container = styled.div`margin-bottom: 40px;`;
+const Headline = styled.div`
+    font-family: Teko;
+
+    text-transform: uppercase;
+    font-size: 50px;
+    color: white;
+    line-height: 50px;
+    margin-bottom: 20px;
+    @media (min-width: 800px) {
+        margin-left: 15%;
+        width: 250px;
+        font-size: 64px;
+        line-height: 64px;
+    }
+`;
+
+const NextArrow = ({className, style, onClick}) => {
+    return (
+        <div className={className} style={style} onClick={onClick}>
+            <Icon name="iconRight" />
+        </div>
+    );
+};
+const PrevArrow = ({className, style, onClick}) => {
+    return (
+        <div className={className} style={style} onClick={onClick}>
+            <Icon name="iconLeft" />
+        </div>
+    );
+};
 
 export default class Navigation extends React.PureComponent {
     state = {
         currentSlide: 0,
+    };
+
+    static propTypes = {
+        speakers: PropTypes.array.isRequired,
     };
 
     _sliderSettings = () => ({
@@ -65,6 +54,8 @@ export default class Navigation extends React.PureComponent {
         slidesToShow: 1,
         centerMode: true,
         variableWidth: true,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         afterChange: idx => {
             this.setState({currentSlide: idx});
         },
@@ -72,6 +63,7 @@ export default class Navigation extends React.PureComponent {
 
     render() {
         const {currentSlide} = this.state;
+        const {speakers} = this.props;
         const slides = speakers.map((speaker, idx) => {
             return (
                 <span key={idx}>
@@ -81,9 +73,12 @@ export default class Navigation extends React.PureComponent {
         });
 
         return (
-            <Slider {...this._sliderSettings()}>
-                {slides}
-            </Slider>
+            <Container>
+                <Headline>Agentconf 2018 Speaker Lineup</Headline>
+                <Slider {...this._sliderSettings()} pre>
+                    {slides}
+                </Slider>
+            </Container>
         );
     }
 }

@@ -6,13 +6,13 @@ import Icon from './Icon';
 import Link from 'next/link';
 
 const FooterContainer = styled.footer`
-    margin: 0 0 55px 0;
+    margin: 100px 0 55px 0;
     padding: 60px 25px;
     color: white;
     background-color: black;
     font-family: Teko;
     @media (min-width: 800px) {
-        margin: 0 70px 55px 70px;
+        margin: 150px 70px 55px 70px;
         padding: 45px 60px;
     }
 `;

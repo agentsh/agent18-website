@@ -79,6 +79,7 @@ export default class Header extends React.PureComponent {
 
                 <script src="static/js/tracking.header.js" />
                 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Teko" rel="stylesheet" />
+                <link href="static/slick.css" rel="stylesheet" />
             </Head>
         );
     }

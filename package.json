@@ -6,6 +6,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.1.4",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.3",
     "isomorphic-fetch": "^2.2.1",
@@ -13,8 +14,8 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-slick": "^0.15.4",
     "react-youtube": "^7.4.0",
-    "babel-plugin-styled-components": "^1.1.4",
     "styled-components": "^2.0.0-17"
   },
   "devDependencies": {
