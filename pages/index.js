@@ -401,8 +401,8 @@ export default class Index extends React.PureComponent {
                         {videoSlide}
                     </SlideContainerWrapper>
                     {videoImageContainer}
-                    <Tickets {...this.props} />
                     {this.props.speakers && <SpeakerSlider speakers={this.props.speakers} />}
+                    <Tickets {...this.props} />
                     <Footer />
                     <VideoPlayer
                         visible={this.state.showVideoPlayer}

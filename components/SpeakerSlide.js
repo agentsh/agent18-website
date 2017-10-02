@@ -34,12 +34,15 @@ const SlideFilter = styled.div`
         font-size: 35px;
         color: white;
         text-decoration: none;
+        cursor: pointer;
     }
 `;
 
 const SlideHeadline = styled.h3`
     font-family: Teko;
     font-size: 36px;
+    font-weight: 100;
+    text-transform: uppercase;
     line-height: 51px;
 `;
 
@@ -47,6 +50,7 @@ const SlideSubHeadline = styled.h4`
     font-family: Teko;
     font-size: 14px;
     font-weight: 500;
+    text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 14px;
     margin-bottom: 30px;
@@ -54,13 +58,17 @@ const SlideSubHeadline = styled.h4`
 const SlideTeaser = styled.p`
     font-family: 'Open Sans';
     font-size: 16px;
-    line-height: 24px;
+    line-height: 30px;
     margin-bottom: 15px;
 `;
 
-const Image = styled.img`max-width: 360px;`;
+const Image = styled.img`
+    max-width: 360px;
+`;
 
-const A = styled.a`margin-right: 30px;`;
+const A = styled.a`
+    margin-right: 30px;
+`;
 
 const Moderator = styled.div`
     position: absolute;
@@ -85,7 +93,7 @@ const SpeakerSlide = ({speaker, active}) => {
                         {speaker.name}
                     </SlideHeadline>
                     <SlideSubHeadline>
-                        {speaker.title}
+                        — {speaker.title}
                     </SlideSubHeadline>
                     <SlideTeaser dangerouslySetInnerHTML={{__html: speaker.teaser}} />
                     {speaker.github &&

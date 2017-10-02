@@ -23,6 +23,12 @@ const Headline = styled.div`
     }
 `;
 
+const propTypes = {
+    className: PropTypes.string,
+    style: PropTypes.object,
+    onClick: PropTypes.function,
+};
+
 const NextArrow = ({className, style, onClick}) => {
     return (
         <div className={className} style={style} onClick={onClick}>
@@ -30,6 +36,8 @@ const NextArrow = ({className, style, onClick}) => {
         </div>
     );
 };
+NextArrow.propTypes = propTypes;
+
 const PrevArrow = ({className, style, onClick}) => {
     return (
         <div className={className} style={style} onClick={onClick}>
@@ -37,8 +45,9 @@ const PrevArrow = ({className, style, onClick}) => {
         </div>
     );
 };
+PrevArrow.propTypes = propTypes;
 
-export default class Navigation extends React.PureComponent {
+export default class SpeakerSlider extends React.PureComponent {
     state = {
         currentSlide: 0,
     };
