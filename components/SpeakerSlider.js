@@ -9,12 +9,13 @@ import styled from 'styled-components';
 const Container = styled.div`margin-bottom: 40px;`;
 const Headline = styled.div`
     font-family: Teko;
-
     text-transform: uppercase;
     font-size: 50px;
     color: white;
     line-height: 50px;
+    margin-top: 30px;
     margin-bottom: 20px;
+    margin-left: 30px;
     @media (min-width: 800px) {
         margin-left: 15%;
         width: 250px;
@@ -26,10 +27,10 @@ const Headline = styled.div`
 const propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
-    onClick: PropTypes.function,
+    onClick: PropTypes.func,
 };
 
-const NextArrow = ({className, style, onClick}) => {
+const NextArrow = ({ className, style, onClick }) => {
     return (
         <div className={className} style={style} onClick={onClick}>
             <Icon name="iconRight" />
@@ -38,7 +39,7 @@ const NextArrow = ({className, style, onClick}) => {
 };
 NextArrow.propTypes = propTypes;
 
-const PrevArrow = ({className, style, onClick}) => {
+const PrevArrow = ({ className, style, onClick }) => {
     return (
         <div className={className} style={style} onClick={onClick}>
             <Icon name="iconLeft" />
@@ -66,13 +67,13 @@ export default class SpeakerSlider extends React.PureComponent {
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
         afterChange: idx => {
-            this.setState({currentSlide: idx});
+            this.setState({ currentSlide: idx });
         },
     });
 
     render() {
-        const {currentSlide} = this.state;
-        const {speakers} = this.props;
+        const { currentSlide } = this.state;
+        const { speakers } = this.props;
         const slides = speakers.map((speaker, idx) => {
             return (
                 <span key={idx}>
