@@ -67,7 +67,7 @@ export default class Page extends React.PureComponent {
                 </Main>
                 {!this.props.hideHeader && <Navigation />}
                 <Footer>
-                    <FooterHint showScrollInfo={this.props.showScrollInfo} />
+                    <FooterHint showScrollInfo={this.props.showScrollInfo && !this.props.hideHeader} />
                 </Footer>
             </Container>
         );

@@ -120,6 +120,9 @@ export default class Navigation extends React.PureComponent {
                         </Link>
                     </li>
                     <li onClick={this.handleClose}>
+                        <a href="https://www.eventbrite.de/e/agentconf-2018-tickets-31262914218">Tickets</a>
+                    </li>
+                    <li onClick={this.handleClose}>
                         <a href="https://www.papercall.io/agent-conf-2018">Call for Papers</a>
                     </li>
                     <li onClick={this.handleClose}>

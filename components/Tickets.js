@@ -13,7 +13,7 @@ const TicketWrapper = styled.div`
     left: 0;
     right: 0;
     margin: 0 auto;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     padding-left: 15px;
     padding-right: 15px;
     box-sizing: border-box;
@@ -192,7 +192,7 @@ export default class Tickets extends React.PureComponent {
                     </ClosedTicketbox>
                     <ActiveTicketbox>
                         <Headline>
-                            {this.props.ticket1Headline}
+                            {this.props.ticket2Headline}
                         </Headline>
                         <Line />
                         <Price>
