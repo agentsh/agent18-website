@@ -63,6 +63,7 @@ export default class SpeakerSlider extends React.PureComponent {
         speed: 300,
         slidesToShow: 1,
         centerMode: true,
+        centerPadding: 0,
         variableWidth: true,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
