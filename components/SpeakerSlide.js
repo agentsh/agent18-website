@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Icon from './Icon';
 
 const SlideContent = styled.div`
+    display: block;
     width: 280px;
     height: 280px;
     background: white;

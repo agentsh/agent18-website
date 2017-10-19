@@ -47,6 +47,9 @@ export default class Footer extends React.PureComponent {
         return (
             <FooterContainer>
                 <Newsletter />
+                <Link href="/dornbirn">
+                    <TextLink>Venue Dornbirn</TextLink>
+                </Link>
                 <Link href="/coc">
                     <TextLink>Code of Conduct</TextLink>
                 </Link>
