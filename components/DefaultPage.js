@@ -9,7 +9,7 @@ const HeaderImageContainer = styled.div`
 
     @media (min-width: 800px) {
         height: calc(100vh - 120px);
-        width: calc(100vh - 120px);
+        width: calc(100vw - 120px);
         margin: 60px;
     }
 `;
