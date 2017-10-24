@@ -174,7 +174,7 @@ export default class Tickets extends React.PureComponent {
     render() {
         return (
             <TicketWrapper>
-                <Title>Tickets, Prices and Benefits</Title>
+                <Title>Tickets and Prices</Title>
                 <div style={{clear: 'both'}}>
                     <ClosedTicketbox>
                         <Headline>
