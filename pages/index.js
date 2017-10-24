@@ -189,7 +189,7 @@ class MountainSlide extends React.PureComponent {
                 <SlideTitle animationProgress={this.props.animationProgress} progressStep={this.progressStep}>
                     <h3>25 - 28 January 2018</h3>
                     <h2>
-                        Experts and industry leaders will come together to showcase their work in ReactJS, React Native
+                        Experts and industry leaders come together to showcase their work in ReactJS, React Native
                         and more
                     </h2>
                 </SlideTitle>
