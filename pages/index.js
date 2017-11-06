@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import fetch from 'isomorphic-fetch';
 import styled from 'styled-components';
-
 import EyeCatcher from '../components/EyeCatcher';
 import Footer from '../components/Footer';
 import Head from '../components/Head';
@@ -408,9 +407,10 @@ export default class Index extends React.PureComponent {
                         visible={this.state.showVideoPlayer}
                         youtubeId={this.props.videoYoutubeId}
                         handleClose={this.toggleVideoPlayer} />
-                    <EyeCatcher>
-                        {this.renderEyecatcher}
-                    </EyeCatcher>
+                    {new Date(this.props.cfpDeadline).getTime() > new Date().getTime() &&
+                        <EyeCatcher>
+                            {this.renderEyecatcher}
+                        </EyeCatcher>}
                 </Page>
             </div>
         );

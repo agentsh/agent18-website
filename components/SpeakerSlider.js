@@ -77,9 +77,9 @@ export default class SpeakerSlider extends React.PureComponent {
         const { speakers } = this.props;
         const slides = speakers.map((speaker, idx) => {
             return (
-                <span key={idx}>
-                    <SpeakerSlide speaker={speaker} active={currentSlide === idx} />
-                </span>
+                <div key={idx} style={{display: 'block'}}>
+                    <SpeakerSlide speaker={speaker} active={currentSlide === idx}  />
+                </div>
             );
         });
 
