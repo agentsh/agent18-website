@@ -87,11 +87,6 @@ const ActiveTicketbox = styled(TicketBox)`
     }
 `;
 
-const ClosedTicketbox = styled(TicketBox)`
-    color: #757575;
-    border: none;
-`;
-
 const Line = styled.div`
     box-sizing: border-box;
     height: 0;
