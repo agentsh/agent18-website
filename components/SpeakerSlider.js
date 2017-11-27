@@ -7,20 +7,13 @@ import SpeakerSlide from './SpeakerSlide';
 import styled from 'styled-components';
 
 const Container = styled.div`margin-bottom: 40px;`;
-const Headline = styled.div`
-    font-family: Teko;
-    text-transform: uppercase;
-    font-size: 50px;
-    color: white;
-    line-height: 50px;
+const Headline = styled.h2`
     margin-top: 30px;
     margin-bottom: 20px;
     margin-left: 30px;
     @media (min-width: 800px) {
         margin-left: 15%;
         width: 250px;
-        font-size: 64px;
-        line-height: 64px;
     }
 `;
 
