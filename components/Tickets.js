@@ -73,9 +73,9 @@ const ActiveTicketbox = styled(TicketBox)`
     margin-top: -24px;
     padding-top: 54px;
     height: 548px;
-    color:black;
-    background:white;
-    border:none;
+    color: black;
+    background: white;
+    border: none;
     width: 550px;
     max-width: 95%;
     @media (min-width: 900px) {
@@ -85,11 +85,6 @@ const ActiveTicketbox = styled(TicketBox)`
     @media (min-width: 1060px) {
         width: 380px;
     }
-`;
-
-const ClosedTicketbox = styled(TicketBox)`
-    color: #757575;
-    border:none;
 `;
 
 const Line = styled.div`
@@ -115,7 +110,7 @@ const Price = styled.div`
 const Description = styled.div`
     padding-top: 50px;
     padding-bottom: 70px;
-    height: 140px;
+    height: 250px;
     font-size: 16px;
     line-height: 40px;
     font-weight: 600;
@@ -142,10 +137,11 @@ const ButtonLink = styled.a`
     text-align: center;
     width: 80%;
     font-family: Teko;
-    font-size: 14px;
+    padding-top: 4px;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: 2px;
-    line-height: 40px;
+    line-height: 38px;
     text-align: center;
     text-transform: uppercase;
     margin: 0 auto;
@@ -176,28 +172,20 @@ export default class Tickets extends React.PureComponent {
             <TicketWrapper>
                 <Title>Tickets and Prices</Title>
                 <div style={{clear: 'both'}}>
-                    <ClosedTicketbox>
-                        <Headline>
-                            {this.props.ticket1Headline}
-                        </Headline>
+                    <TicketBox>
+                        <Headline>{this.props.ticket1Headline}</Headline>
                         <Line />
-                        <Price>
-                            {this.props.ticket1Price} €
-                        </Price>
+                        <Price>{this.props.ticket1Price} €</Price>
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket1Description}} />
-                        <ButtonLink type="past">
+                        <ButtonLink type="addon" href={bookingUrl} target="_blank">
                             {this.props.ticket1ButtonText}
                         </ButtonLink>
-                    </ClosedTicketbox>
+                    </TicketBox>
                     <ActiveTicketbox>
-                        <Headline>
-                            {this.props.ticket2Headline}
-                        </Headline>
+                        <Headline>{this.props.ticket2Headline}</Headline>
                         <Line />
-                        <Price>
-                            {this.props.ticket2Price} €
-                        </Price>
+                        <Price>{this.props.ticket2Price} €</Price>
                         <Line />
                         <Description dangerouslySetInnerHTML={{__html: this.props.ticket2Description}} />
                         <ButtonLink type="now" href={bookingUrl} target="_blank">
@@ -205,13 +193,9 @@ export default class Tickets extends React.PureComponent {
                         </ButtonLink>
                     </ActiveTicketbox>
                     <TicketBox>
-                        <Headline>
-                            {this.props.ticket3Headline}
-                        </Headline>
+                        <Headline>{this.props.ticket3Headline}</Headline>
                         <Line />
-                        <Price>
-                            {this.props.ticket3Price} €
-                        </Price>
+                        <Price>{this.props.ticket3Price} €</Price>
                         <Line />
                         <Description
                             dangerouslySetInnerHTML={{
