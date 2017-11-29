@@ -3,12 +3,22 @@ import styled from 'styled-components';
 
 const SponsorContainer = styled.div`
     margin: 0 160px 0 130px;
-    display: flex;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 
     h2 {
-        width: 170px;
-        margin-left: 40px;
+        order: 1;
+    }
+
+    @media(min-width: 900px) {
+        flex-direction: row;
+
+        h2 {
+            width: 170px;
+            margin-left: 40px;
+            order: 3;
+        }
     }
 
     h3 {
@@ -32,12 +42,14 @@ const SponsorContainer = styled.div`
 const SponsorBox = styled.div`
     background-color: #282828;
     flex-grow: 1;
+    order: 2;
 `;
 
 export default class Sponsors extends React.PureComponent {
     render() {
         return (
             <SponsorContainer>
+                <h2>The partners making it all possible</h2>
                 <SponsorBox>
                     <h3>Main Sponsor</h3>
                     <hr />
@@ -45,7 +57,6 @@ export default class Sponsors extends React.PureComponent {
                     <hr />
                     <h3>Partners</h3>
                 </SponsorBox>
-                <h2>The partners making it all possible</h2>
             </SponsorContainer>
         );
     }
