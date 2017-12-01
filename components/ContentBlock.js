@@ -35,6 +35,12 @@ const Wrapper = styled.div`
     width: 100%;
     margin-bottom: 30px;
 
+    a, a:hover {
+        text-decoration: underline;
+        font-size: 16px;
+        font-family: 'Open Sans';
+    }
+
     @media (min-width: 800px) {
         flex-direction: ${props => (props.col ? 'column' : 'row')};
     }
