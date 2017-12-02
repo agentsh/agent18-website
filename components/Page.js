@@ -47,7 +47,10 @@ const Footer = styled.footer`
     z-index: 2;
 `;
 
-const Container = styled.div`height: 100%;`;
+const Container = styled.div`
+    height: 100%;
+    max-width: 100%;
+`;
 
 export default class Page extends React.PureComponent {
     static propTypes = {
@@ -62,9 +65,7 @@ export default class Page extends React.PureComponent {
             <Container>
                 <Head {...this.props.seo} />
                 <Lines color="rgba(0, 0, 0, 0.15)" />
-                <Main>
-                    {this.props.children}
-                </Main>
+                <Main>{this.props.children}</Main>
                 {!this.props.hideHeader && <Navigation />}
                 <Footer>
                     <FooterHint showScrollInfo={this.props.showScrollInfo && !this.props.hideHeader} />
