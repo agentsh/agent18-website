@@ -50,6 +50,7 @@ const Footer = styled.footer`
 const Container = styled.div`
     height: 100%;
     max-width: 100%;
+    overflow-x: hidden;
 `;
 
 export default class Page extends React.PureComponent {
