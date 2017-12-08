@@ -5,6 +5,9 @@ import Sponsor from './Sponsor';
 
 const SponsorContainer = styled.div`
     margin: 0 160px 0 130px;
+    @media (max-width: 600px) {
+        margin: 0 20px 0 20px;
+    }
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -13,7 +16,7 @@ const SponsorContainer = styled.div`
         order: 1;
     }
 
-    @media(min-width: 900px) {
+    @media (min-width: 900px) {
         flex-direction: row;
 
         h2 {
@@ -34,7 +37,7 @@ const SponsorContainer = styled.div`
     }
 
     hr {
-        background-color: rgba(224,224,224,0.2);
+        background-color: rgba(224, 224, 224, 0.2);
         border: 0;
         height: 1px;
         margin: 0 70px 0;
@@ -77,15 +80,15 @@ export default class Sponsors extends React.PureComponent {
                     <h3>Sponsors</h3>
                     <SponsorsContainer>
                         {this.props.sponsors.map((sponsor, index) => (
-                            <Sponsor key={index} website={sponsor.website} logo={sponsor.logo} />)
-                        )}
+                            <Sponsor key={index} website={sponsor.website} logo={sponsor.logo} />
+                        ))}
                     </SponsorsContainer>
                     <hr />
                     <h3>Partners</h3>
                     <SponsorsContainer>
                         {this.props.partners.map((partner, index) => (
-                            <Sponsor key={index} website={partner.website} logo={partner.logo} />)
-                        )}
+                            <Sponsor key={index} website={partner.website} logo={partner.logo} />
+                        ))}
                     </SponsorsContainer>
                 </SponsorBox>
             </SponsorContainer>

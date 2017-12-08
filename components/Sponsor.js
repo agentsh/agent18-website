@@ -10,11 +10,14 @@ const SponsorContainer = styled.span`
     float: left;
     width: 25%;
     height: 120px;
-    opacity: .6;
+    opacity: 0.6;
 
     img {
-        max-width: ${(props) => props.main ? 260 : 130}px;
-        max-height: ${(props) => props.main ? 120 : 60}px;
+        max-width: ${props => (props.main ? 260 : 130)}px;
+        max-height: ${props => (props.main ? 120 : 60)}px;
+    }
+    @media (max-width: 600px) {
+        width: 100%;
     }
 `;
 
