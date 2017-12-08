@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Sponsor from './Sponsor';
 
 const SponsorContainer = styled.div`
     margin: 0 160px 0 130px;
@@ -46,16 +48,28 @@ const SponsorBox = styled.div`
 `;
 
 export default class Sponsors extends React.PureComponent {
+    static propTypes = {
+        mainSponsor: PropTypes.object,
+        sponsors: PropTypes.array,
+        partners: PropTypes.array,
+    };
     render() {
         return (
             <SponsorContainer>
                 <h2>The partners making it all possible</h2>
                 <SponsorBox>
                     <h3>Main Sponsor</h3>
+                    <Sponsor website={this.props.mainSponsor.website} logo={this.props.mainSponsor.logo} />
                     <hr />
                     <h3>Sponsors</h3>
+                    {this.props.sponsors.map((sponsor, index) => (
+                        <Sponsor key={index} website={sponsor.website} logo={sponsor.logo} />)
+                    )}
                     <hr />
                     <h3>Partners</h3>
+                    {this.props.partners.map((partner, index) => (
+                        <Sponsor key={index} website={partner.website} logo={partner.logo} />)
+                    )}
                 </SponsorBox>
             </SponsorContainer>
         );

@@ -324,6 +324,10 @@ export default class Index extends React.PureComponent {
         cfpDeadline: PropTypes.string.isRequired,
         speakers: PropTypes.array.isRequired,
         scrollSpeed: PropTypes.number.isRequired,
+        mainSponsorLogo: PropTypes.string,
+        mainSponsorWebsite: PropTypes.string,
+        sponsors: PropTypes.array,
+        partners: PropTypes.array,
     };
 
     mountainSlideScrollDividend = 50;
@@ -414,7 +418,13 @@ export default class Index extends React.PureComponent {
                     {videoImageContainer}
                     {this.props.speakers && <SpeakerSlider speakers={this.props.speakers} />}
                     <Tickets {...this.props} />
-                    <Sponsors />
+                    <Sponsors
+                        mainSponsor={{
+                            logo: this.props.mainSponsorLogo,
+                            website: this.props.mainSponsorWebsite,
+                        }}
+                        sponsors={this.props.sponsors}
+                        partners={this.props.partners}/>
                     <Footer />
                     <VideoPlayer
                         visible={this.state.showVideoPlayer}
