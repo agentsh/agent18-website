@@ -30,7 +30,7 @@ const SponsorContainer = styled.div`
         line-height: 40px;
         text-transform: uppercase;
         text-align: center;
-        margin: 40px 0;
+        margin: 40px 0 0 0;
     }
 
     hr {
@@ -38,6 +38,7 @@ const SponsorContainer = styled.div`
         border: 0;
         height: 1px;
         margin: 60px 70px 0;
+        clear: both;
     }
 `;
 
