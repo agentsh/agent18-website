@@ -424,7 +424,7 @@ export default class Index extends React.PureComponent {
                             website: this.props.mainSponsorWebsite,
                         }}
                         sponsors={this.props.sponsors}
-                        partners={this.props.partners}/>
+                        partners={this.props.partners} />
                     <Footer />
                     <VideoPlayer
                         visible={this.state.showVideoPlayer}
