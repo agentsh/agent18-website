@@ -19,14 +19,9 @@ const TicketWrapper = styled.div`
     box-sizing: border-box;
 `;
 
-const Title = styled.div`
-    font-size: 48px;
-    line-height: 54px;
-    color: white;
+const Title = styled.h2`
     margin-bottom: 50px;
     margin-top: 80px;
-    text-transform: uppercase;
-    font-family: Teko;
     margin-left: 20px;
     margin-right: 20px;
     @media (min-width: 800px) {
