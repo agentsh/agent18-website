@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Head from '../components/Head';
 import Icon from '../components/Icon';
 import Page from '../components/Page';
+import Sponsors from '../components/Sponsors';
 import SlideBackground from '../components/index/SlideBackground';
 import SlideTitle from '../components/index/SlideTitle';
 import SpeakerSlider from '../components/SpeakerSlider';
@@ -18,6 +19,17 @@ import config from '../config';
 const maxProgress = 100;
 
 const SlideContainerWrapper = styled.div`height: ${props => props.height}px;`;
+
+const IndexContainer = styled.div`
+    h2 {
+        font-size: 48px;
+        font-family: Teko;
+        font-weight: 100;
+        line-height: 54px;
+        color: white;
+        text-transform: uppercase;
+    }
+`;
 
 const SlideContainer = styled.div`
     position: fixed;
@@ -312,6 +324,10 @@ export default class Index extends React.PureComponent {
         cfpDeadline: PropTypes.string.isRequired,
         speakers: PropTypes.array.isRequired,
         scrollSpeed: PropTypes.number.isRequired,
+        mainSponsorLogo: PropTypes.string,
+        mainSponsorWebsite: PropTypes.string,
+        sponsors: PropTypes.array,
+        partners: PropTypes.array,
     };
 
     mountainSlideScrollDividend = 50;
@@ -387,7 +403,7 @@ export default class Index extends React.PureComponent {
         }
 
         return (
-            <div>
+            <IndexContainer>
                 <Head {...this.props.seo} />
                 <Page hideHeader={this.state.showVideoPlayer} showScrollInfo={this.state.scrollY < 500}>
                     <SlideContainerWrapper height={mountainSlideHeight / this.props.scrollSpeed}>
@@ -402,6 +418,13 @@ export default class Index extends React.PureComponent {
                     {videoImageContainer}
                     {this.props.speakers && <SpeakerSlider speakers={this.props.speakers} />}
                     <Tickets {...this.props} />
+                    <Sponsors
+                        mainSponsor={{
+                            logo: this.props.mainSponsorLogo,
+                            website: this.props.mainSponsorWebsite,
+                        }}
+                        sponsors={this.props.sponsors}
+                        partners={this.props.partners} />
                     <Footer />
                     <VideoPlayer
                         visible={this.state.showVideoPlayer}
@@ -412,7 +435,7 @@ export default class Index extends React.PureComponent {
                             {this.renderEyecatcher}
                         </EyeCatcher>}
                 </Page>
-            </div>
+            </IndexContainer>
         );
     }
 
