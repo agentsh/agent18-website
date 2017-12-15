@@ -37,7 +37,7 @@ const SponsorContainer = styled.div`
         background-color: rgba(224,224,224,0.2);
         border: 0;
         height: 1px;
-        margin: 60px 70px 0;
+        margin: 0 70px 0;
         clear: both;
     }
 `;
@@ -46,6 +46,13 @@ const SponsorBox = styled.div`
     background-color: #282828;
     flex-grow: 1;
     order: 2;
+`;
+
+const SponsorsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 `;
 
 export default class Sponsors extends React.PureComponent {
@@ -60,17 +67,26 @@ export default class Sponsors extends React.PureComponent {
                 <h2>The partners making it all possible</h2>
                 <SponsorBox>
                     <h3>Main Sponsor</h3>
-                    <Sponsor website={this.props.mainSponsor.website} logo={this.props.mainSponsor.logo} />
+                    <SponsorsContainer>
+                        <Sponsor
+                            website={this.props.mainSponsor.website}
+                            logo={this.props.mainSponsor.logo}
+                            main={true} />
+                    </SponsorsContainer>
                     <hr />
                     <h3>Sponsors</h3>
-                    {this.props.sponsors.map((sponsor, index) => (
-                        <Sponsor key={index} website={sponsor.website} logo={sponsor.logo} />)
-                    )}
+                    <SponsorsContainer>
+                        {this.props.sponsors.map((sponsor, index) => (
+                            <Sponsor key={index} website={sponsor.website} logo={sponsor.logo} />)
+                        )}
+                    </SponsorsContainer>
                     <hr />
                     <h3>Partners</h3>
-                    {this.props.partners.map((partner, index) => (
-                        <Sponsor key={index} website={partner.website} logo={partner.logo} />)
-                    )}
+                    <SponsorsContainer>
+                        {this.props.partners.map((partner, index) => (
+                            <Sponsor key={index} website={partner.website} logo={partner.logo} />)
+                        )}
+                    </SponsorsContainer>
                 </SponsorBox>
             </SponsorContainer>
         );
