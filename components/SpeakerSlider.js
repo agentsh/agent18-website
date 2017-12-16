@@ -17,6 +17,14 @@ const Headline = styled.h2`
     }
 `;
 
+const SliderContainer = styled.div`
+    background-color: #343434;
+    background-size: cover;
+    background-position: bottom;
+    background-image: url('static/mountains.jpg');
+    padding: 88px 0 212px 0;
+`;
+
 const propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
@@ -79,9 +87,11 @@ export default class SpeakerSlider extends React.PureComponent {
         return (
             <Container>
                 <Headline>Agentconf 2018 Speaker Lineup</Headline>
-                <Slider {...this._sliderSettings()} pre>
-                    {slides}
-                </Slider>
+                <SliderContainer>
+                    <Slider {...this._sliderSettings()}>
+                        {slides}
+                    </Slider>
+                </SliderContainer>
             </Container>
         );
     }
