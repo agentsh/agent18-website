@@ -38,6 +38,10 @@ const SlideContainer = styled.div`
     left: 0;
     height: 100%;
     background-color: ${props => ('color' in props ? props.color : '#fff')};
+
+    h2 {
+        color: black;
+    }
 `;
 
 const MountainCloud = styled.img`
