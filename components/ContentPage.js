@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Circle from './Circle';
 
 import {
     HeaderImage,
@@ -21,8 +22,24 @@ export default class ContentPage extends React.PureComponent {
         contentBlocks: PropTypes.array.isRequired,
     };
 
+    state = {
+        windowHeight: 0,
+        windowWidth: 0,
+    };
+
+    componentDidMount() {
+        this.updateWindowDimensions();
+    }
+
+    updateWindowDimensions = () => {
+        this.setState({windowHeight: document.body.scrollHeight, windowWidth: window.innerWidth});
+    };
+
     render() {
         const { contentBlocks } = this.props;
+        const {windowHeight} = this.state;
+        const circleCount = windowHeight ? Math.floor((windowHeight - 900) / 1300) : 1;
+
         return (
             <Page {...this.props}>
                 <HeaderImageContainer>
@@ -30,6 +47,12 @@ export default class ContentPage extends React.PureComponent {
                         <h1>{this.props.title}</h1>
                     </HeaderImage>
                 </HeaderImageContainer>
+                {[...Array(circleCount)].map((element, index) => (
+                    <Circle
+                        key={index}
+                        left={index % 2 === 0 ? 100 : this.state.windowWidth - 750}
+                        top={900 + 1300 * index} />
+                ))}
                 <Main>
                     <HeaderSection>
                         <h2>{this.props.title2}</h2>
