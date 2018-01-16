@@ -53,6 +53,9 @@ export default class Footer extends React.PureComponent {
                 <Link href="/dornbirn">
                     <TextLink>Venue Dornbirn</TextLink>
                 </Link>
+                <Link href="/lech">
+                    <TextLink>Venue Lech</TextLink>
+                </Link>
                 <Link href="/coc">
                     <TextLink>Code of Conduct</TextLink>
                 </Link>
