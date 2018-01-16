@@ -8,14 +8,14 @@ const SponsorContainer = styled.span`
     justify-content: center;
     text-align: center;
     float: left;
-    width: 25%;
+    width: ${(props) => props.type === 'partner' ? 20 : 25}%;
     height: 120px;
     opacity: 0.6;
 
     img {
-        max-width: ${props => (props.main ? 260 : 130)}px;
-        max-height: ${props => (props.main ? 120 : 60)}px;
-    }
+
+        max-width: ${(props) => props.type === 'main_sponsor' ? 260 : props.type === 'partner' ? 100 : 130}px;
+        max-height: ${(props) => props.type === 'main_sponsor' ? 120 : props.type === 'partner' ? 40 : 60}px;
     @media (max-width: 600px) {
         width: 100%;
     }
@@ -25,12 +25,14 @@ export default class Sponsor extends React.Component {
     static propTypes = {
         main: PropTypes.boolean,
         logo: PropTypes.string,
+        type: PropTypes.string,
         website: PropTypes.string,
     };
+
     render() {
-        const {main, logo, website} = this.props;
+        const {main, logo, type, website} = this.props;
         return (
-            <SponsorContainer main={main}>
+            <SponsorContainer main={main} type={type}>
                 <a href={website}>
                     <img src={logo} />
                 </a>

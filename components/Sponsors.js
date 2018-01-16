@@ -74,7 +74,7 @@ export default class Sponsors extends React.PureComponent {
                         <Sponsor
                             website={this.props.mainSponsor.website}
                             logo={this.props.mainSponsor.logo}
-                            main={true} />
+                            type="main_sponsor" />
                     </SponsorsContainer>
                     <hr />
                     <h3>Sponsors</h3>
@@ -87,8 +87,8 @@ export default class Sponsors extends React.PureComponent {
                     <h3>Partners</h3>
                     <SponsorsContainer>
                         {this.props.partners.map((partner, index) => (
-                            <Sponsor key={index} website={partner.website} logo={partner.logo} />
-                        ))}
+                            <Sponsor key={index} website={partner.website} logo={partner.logo} type="partner" />)
+                        )}
                     </SponsorsContainer>
                 </SponsorBox>
             </SponsorContainer>
