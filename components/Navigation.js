@@ -30,7 +30,7 @@ const Logo = styled.div`
     background: url(static/logo.png);
     background-size: ${logoSize}px ${logoSize}px;
     border-radius: ${logoSize / 2}px;
-    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
 `;
 
@@ -41,7 +41,7 @@ const Toggler = styled(Button)`
     z-index: 1;
     transform: translateX(-50%);
 
-    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const List = styled.nav`
@@ -79,6 +79,15 @@ const List = styled.nav`
             }
         }
     }
+    @media (max-height: 600px) {
+        font-size: 20px;
+        > ul {
+            margin-top: 20px;
+            > li {
+                margin: 10px 0 0 0;
+            }
+        }
+    }
 `;
 
 export default class Navigation extends React.PureComponent {
@@ -110,8 +119,8 @@ export default class Navigation extends React.PureComponent {
                 <Lines color="rgba(0, 0, 0, 0.07)" />
                 <ul>
                     <li onClick={this.handleClose}>
-                        <Link href="/disclaimer">
-                            <a>Disclaimer</a>
+                        <Link href="/schedule">
+                            <a>Schedule</a>
                         </Link>
                     </li>
                     <li onClick={this.handleClose}>
@@ -125,6 +134,11 @@ export default class Navigation extends React.PureComponent {
                     <li onClick={this.handleClose}>
                         <Link href="/dornbirn">
                             <a>Venue Dornbirn</a>
+                        </Link>
+                    </li>
+                    <li onClick={this.handleClose}>
+                        <Link href="/lech">
+                            <a>Venue Lech</a>
                         </Link>
                     </li>
                     <li onClick={this.handleClose}>

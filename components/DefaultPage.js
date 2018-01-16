@@ -5,7 +5,7 @@ import Page from '../components/Page.js';
 import Footer from '../components/Footer.js';
 
 export const HeaderImageContainer = styled.div`
-    height: 100%;
+    height: 100vh;
 
     @media (min-width: 800px) {
         height: calc(100vh - 120px);
@@ -13,16 +13,14 @@ export const HeaderImageContainer = styled.div`
         margin: 60px;
     }
 `;
-const headerImageGradient =
-  'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))';
+const headerImageGradient = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))';
 
 export const HeaderImage = styled.div`
     position: relative;
     z-index: 1;
-    height: 100vh;
+    height: 100%;
     max-width: 100vw;
-    background-image: ${headerImageGradient},
-    url(${props => props.image['small']});
+    background-image: ${headerImageGradient}, url(${props => props.image['small']});
     background-position: center;
     background-size: cover;
     display: flex;
@@ -33,8 +31,7 @@ export const HeaderImage = styled.div`
     }
 
     @media (min-width: 2000px) {
-        background-image: ${headerImageGradient},
-        url(${props => props.image['large']});
+        background-image: ${headerImageGradient}, url(${props => props.image['large']});
         margin: 60px 60px 0 60px;
     }
 
@@ -100,7 +97,7 @@ export const HeaderSection = styled.section`
     padding-left: 5%;
     @media (min-width: 1000px) {
         width: 320px;
-        padding-left:0;
+        padding-left: 0;
         padding-right: 70px;
     }
     h2 {
@@ -150,8 +147,7 @@ export default class DefaultPage extends React.PureComponent {
                     <HeaderSection>
                         <h2>{this.props.title2}</h2>
                     </HeaderSection>
-                    <MainSection
-                        dangerouslySetInnerHTML={{ __html: this.props.article }} />
+                    <MainSection dangerouslySetInnerHTML={{__html: this.props.article}} />
                 </Main>
                 <Footer />
             </Page>
