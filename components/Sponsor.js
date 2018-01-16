@@ -10,11 +10,14 @@ const SponsorContainer = styled.span`
     float: left;
     width: ${(props) => props.type === 'partner' ? 20 : 25}%;
     height: 120px;
-    opacity: .6;
+    opacity: 0.6;
 
     img {
+
         max-width: ${(props) => props.type === 'main_sponsor' ? 260 : props.type === 'partner' ? 100 : 130}px;
         max-height: ${(props) => props.type === 'main_sponsor' ? 120 : props.type === 'partner' ? 40 : 60}px;
+    @media (max-width: 600px) {
+        width: 100%;
     }
 `;
 
