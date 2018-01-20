@@ -68,7 +68,7 @@ const SpeakerInfo = styled.div`
 
     text-transform: uppercase;
     font-size: 28px;
-    line-height: 40px;
+    line-height: 28px;
     font-family: Teko;
     letter-spacing: 0.8px;
     div {
@@ -84,7 +84,7 @@ const SpeakerInfo = styled.div`
     top: 74px;
     @media (min-width: 320px) and (max-width: 520px) {
         left: 20px;
-        top: 120px;
+        top: 100px;
         div {
             font-size: 14px;
             width: 270px;
@@ -169,6 +169,13 @@ const Col = styled.div`
     flex 1;
 `;
 
+const Company  = styled.p`
+
+  font-size: 14px!important;
+  line-height: 14px;
+  padding-bottom:10px;
+`;
+
 const Slot = ({title, image, speaker, startTime, endTime, dark}) => {
     let content;
     let timeString = '';
@@ -198,6 +205,7 @@ const Slot = ({title, image, speaker, startTime, endTime, dark}) => {
                 <ImageOverlay />
                 <SpeakerInfo>
                     {speaker.name}
+                    <Company>{speaker.title}</Company>
                     <div dangerouslySetInnerHTML={{__html: speaker.teaser}} />
                 </SpeakerInfo>
                 {speaker2}
@@ -265,20 +273,20 @@ export default class Schedule extends React.PureComponent {
                             startTime="08:00"
                             endTime="09:00" />
                         <Slot speaker={slots[1]} dark={true} startTime="09:00" endTime="09:45" />
-                        <Slot speaker={slots[2]} dark={false} startTime="09:45" endTime="10:30" />
+                        <Slot speaker={slots[2]} dark={false} startTime="09:45" endTime="10:45" />
                         <Slot
                             title="Coffee Break"
                             image="static/schedule/coffee1.jpg"
-                            startTime="10:30"
-                            endTime="11:00" />
-                        <Slot speaker={slots[3]} dark={true} startTime="11:00" endTime="11:45" />
-                        <Slot speaker={slots[4]} dark={false} startTime="11:45" endTime="12:30" />
+                            startTime="10:45"
+                            endTime="11:15" />
+                        <Slot speaker={slots[3]} dark={true} startTime="11:15" endTime="12:00" />
+                        <Slot speaker={slots[4]} dark={false} startTime="12:00" endTime="12:45" />
                         <Slot
                             title="Lunch Break"
                             image="static/schedule/karren1.jpg"
-                            startTime="12:30"
-                            endTime="14:00" />
-                        <Slot speaker={slots[5]} dark={true} startTime="14:00" endTime="15:00" />
+                            startTime="12:45"
+                            endTime="14:15" />
+                        <Slot speaker={slots[5]} dark={true} startTime="14:15" endTime="15:00" />
                         <Slot speaker={slots[6]} dark={false} startTime="15:00" endTime="15:45" />
                         <Slot
                             title="Coffee Break"
